@@ -1,1 +1,1 @@
-[Структура](https://github.com/ksetrin/ksetrin.github.io/ru/structure.md)
+[Структура](https://ksetrin.github.io/ru/structure.md)
