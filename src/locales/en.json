@@ -1,0 +1,24 @@
+{
+  "homepage": {
+    "introduction": {
+      "title": "Hi! I'm Konstantin",
+      "description": "A passionate software engineer with 8+ years of experience in web and mobile development. Specializing in creating efficient, scalable applications using React and React Native."
+    },
+    "skills": {
+      "title": "Skills"
+    },
+    "experience": {
+      "title": "Experience"
+    },
+    "techStack": {
+      "title": "Tech Stack"
+    }
+  },
+  "header": {
+    "home": "Home",
+    "projects": "Projects",
+    "articles": "Articles",
+    "themeToggle": "Theme Toggle",
+    "languageSwitch": "Language Switch"
+  }
+}
