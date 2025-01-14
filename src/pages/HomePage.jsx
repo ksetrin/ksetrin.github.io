@@ -8,51 +8,57 @@ const HomePage = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="max-w-6xl mx-auto p-4 space-y-16">
+    <div className="max-w-5xl mx-auto p-4 space-y-8">
       {/* Hero Section */}
-      <section className="min-h-[80vh] flex flex-col md:flex-row items-center justify-center md:space-x-12 py-12">
-        <div className="relative mb-8 md:mb-0">
-          <div className="absolute inset-0 bg-blue-500 rounded-full opacity-10 blur-2xl transform scale-110"></div>
+      <section className="flex flex-col md:flex-row items-center justify-between py-8">
+        <div className="relative mb-6 md:mb-0 md:mr-8">
+          <div className="absolute inset-0 bg-blue-500 rounded-full opacity-10 blur-xl transform scale-105"></div>
           <img
             src="/src/assets/images/photo.jpeg"
             alt="Konstantin's Portrait"
-            className="w-48 h-48 md:w-64 md:h-64 rounded-full shadow-2xl ring-4 ring-blue-500/30 object-cover relative z-10"
+            className="w-40 h-40 md:w-48 md:h-48 rounded-full shadow-lg ring-2 ring-blue-500/20 object-cover relative z-10"
           />
         </div>
-        <div className="text-center md:text-left max-w-2xl">
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <div className="text-center md:text-left max-w-2xl flex-1">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             {t('homepage.introduction.title')}
           </h1>
-          <h2 className="text-2xl md:text-3xl mt-4 text-gray-600 dark:text-gray-300">
+          <h2 className="text-xl md:text-2xl mt-3 text-gray-600 dark:text-gray-300">
             {t('homepage.introduction.subtitle')}
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+          <p className="mt-4 text-gray-700 dark:text-gray-300">
             {t('homepage.introduction.description')}
           </p>
-          <Link to="/projects" className="inline-block mt-8 px-8 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors">
-            {t('homepage.introduction.ctaButton')}
-          </Link>
+          <div className="mt-6 flex gap-4 justify-center md:justify-start">
+            <Link to="/projects" className="px-6 py-2 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700 transition-colors">
+              {t('homepage.introduction.ctaButton')}
+            </Link>
+            <a href="mailto:contact@example.com" className="px-6 py-2 border border-blue-600 text-blue-600 rounded-full text-sm font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
+              Contact Me
+            </a>
+          </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section className="py-12 bg-gray-50 dark:bg-gray-800 rounded-3xl p-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold">{t('homepage.skills.title')}</h2>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">{t('homepage.skills.description')}</p>
+      <section className="py-6 bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold">{t('homepage.skills.title')}</h2>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">{t('homepage.skills.description')}</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {[
-            { icon: <FaReact className="w-8 h-8" />, name: 'React' },
-            { icon: <FaReact className="w-8 h-8" />, name: 'React Native' },
-            { icon: <SiTypescript className="w-8 h-8" />, name: 'TypeScript' },
-            { icon: <SiGit className="w-8 h-8" />, name: 'Git' },
-            { icon: <FaCode className="w-8 h-8" />, name: 'REST API' },
-            { icon: <FaNode className="w-8 h-8" />, name: 'Node.js' },
+            { icon: <FaReact className="w-6 h-6" />, name: 'React', level: 'Expert' },
+            { icon: <FaReact className="w-6 h-6" />, name: 'React Native', level: 'Advanced' },
+            { icon: <SiTypescript className="w-6 h-6" />, name: 'TypeScript', level: 'Expert' },
+            { icon: <SiGit className="w-6 h-6" />, name: 'Git', level: 'Advanced' },
+            { icon: <FaCode className="w-6 h-6" />, name: 'REST API', level: 'Expert' },
+            { icon: <FaNode className="w-6 h-6" />, name: 'Node.js', level: 'Intermediate' },
           ].map(skill => (
-            <div key={skill.name} className="flex items-center p-4 bg-white dark:bg-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-blue-500 mr-4">{skill.icon}</div>
-              <span className="font-medium">{skill.name}</span>
+            <div key={skill.name} className="flex flex-col items-center p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-blue-500 mb-2">{skill.icon}</div>
+              <span className="font-medium text-sm">{skill.name}</span>
+              <span className="text-xs text-gray-500 mt-1">{skill.level}</span>
             </div>
           ))}
         </div>
@@ -109,12 +115,40 @@ const HomePage = () => {
       </section>
 
       {/* Purpose Section */}
-      <section className="py-12">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold">{t('homepage.purpose.title')}</h2>
-          <p className="mt-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            {t('homepage.purpose.description')}
-          </p>
+      <section className="py-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
+            <h2 className="text-2xl font-bold mb-4 text-center">{t('homepage.purpose.title')}</h2>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="bg-blue-100 dark:bg-blue-800 p-2 rounded-lg">
+                  <FaCode className="w-5 h-5 text-blue-600 dark:text-blue-300" />
+                </div>
+                <div>
+                  <h3 className="font-medium">Available for Full-time & Contract Work</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Open to both permanent positions and project-based collaborations</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="bg-blue-100 dark:bg-blue-800 p-2 rounded-lg">
+                  <FaReact className="w-5 h-5 text-blue-600 dark:text-blue-300" />
+                </div>
+                <div>
+                  <h3 className="font-medium">Specialized in Modern Web Technologies</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Expert in React ecosystem with strong TypeScript foundation</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="bg-blue-100 dark:bg-blue-800 p-2 rounded-lg">
+                  <FaGithub className="w-5 h-5 text-blue-600 dark:text-blue-300" />
+                </div>
+                <div>
+                  <h3 className="font-medium">Remote-First Professional</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Experienced in remote collaboration with proven track record</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
