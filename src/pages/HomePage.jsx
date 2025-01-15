@@ -14,7 +14,7 @@ const HomePage = () => {
         <div className="relative mb-6 md:mb-0 md:mr-8">
           <div className="absolute inset-0 bg-blue-500 rounded-full opacity-10 blur-xl transform scale-105"></div>
           <img
-            src="/src/assets/images/photo.jpeg"
+            src="/ksetrin.github.io/assets/images/photo.jpeg"
             alt="Konstantin's Portrait"
             className="w-40 h-40 md:w-48 md:h-48 rounded-full shadow-lg ring-2 ring-blue-500/20 object-cover relative z-10"
           />
