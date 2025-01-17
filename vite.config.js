@@ -5,8 +5,9 @@ export default defineConfig({
   plugins: [react()],
   base: '/ksetrin.github.io/',
   build: {
-    outDir: './',
+    outDir: '.',
     assetsDir: 'assets',
+    emptyOutDir: true,
     sourcemap: false,
     minify: true,
   },
