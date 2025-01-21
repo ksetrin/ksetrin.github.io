@@ -3,11 +3,11 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/ksetrin.github.io/',
+  base: '/',
   build: {
     outDir: '.',
     assetsDir: 'assets',
-    emptyOutDir: true,
+    emptyOutDir: false,
     sourcemap: false,
     minify: true,
   },
