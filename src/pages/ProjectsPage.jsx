@@ -6,29 +6,29 @@ const ProjectsPage = () => {
   
   const projects = [
     {
-      title: 'Portfolio Website',
-      description: 'A personal portfolio website built with React and Tailwind CSS.',
+      title: 'CarMix',
+      description: 'Offline application works on sockets and allows to measure weight from mixing car on a way.',
       image: '/project1.jpg',
-      technologies: ['React', 'Tailwind CSS', 'Vite'],
+      technologies: ['React Native', 'MobX', 'TypeScript'],
       demoLink: '#',
       sourceLink: '#',
     },
     {
-      title: 'E-commerce App',
-      description: 'A React Native app for online shopping with integrated payment gateway.',
+      title: 'TapCar',
+      description: 'Mobile application for sharing cars by person to person.',
       image: '/project2.jpg',
-      technologies: ['React Native', 'Redux', 'Node.js'],
+      technologies: ['React Native', 'AWS'],
       demoLink: '#',
       sourceLink: '#',
     },
     {
-      title: 'Task Manager',
-      description: 'A web app to manage tasks and projects collaboratively.',
+      title: 'Znaj.by',
+      description: 'Mobile application for school education platform Zna.by.',
       image: '/project3.jpg',
-      technologies: ['React', 'TypeScript', 'Firebase'],
+      technologies: ['React Native', 'AWS'],
       demoLink: '#',
       sourceLink: '#',
-    },
+    }
   ];
 
   return (
