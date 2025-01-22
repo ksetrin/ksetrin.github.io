@@ -7,9 +7,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "serve": "vite preview"
   },
   "dependencies": {
     "country-flag-icons": "^1.5.19",
