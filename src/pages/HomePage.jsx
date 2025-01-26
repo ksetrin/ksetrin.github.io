@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaReact, FaGithub, FaNode, FaCode } from 'react-icons/fa';
 import { SiTypescript, SiFirebase, SiRedux, SiMobx, SiGit } from 'react-icons/si';
+import photo from '@/assets/images/photo.jpeg';
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ const HomePage = () => {
         <div className="relative mb-6 md:mb-0 md:mr-8">
           <div className="absolute inset-0 bg-blue-500 rounded-full opacity-10 blur-xl transform scale-105"></div>
           <img
-            src="/assets/images/photo.jpeg"
+            src={photo}
             alt="Konstantin's Portrait"
             className="w-40 h-40 md:w-48 md:h-48 rounded-full shadow-lg ring-2 ring-blue-500/20 object-cover relative z-10"
           />
