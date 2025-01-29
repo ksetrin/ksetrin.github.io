@@ -1,0 +1,255 @@
+{
+  "tapcar": {
+    "hero": {
+      "subtitle": "Peer-to-Peer Car Sharing • React Native",
+      "title": "TapCar",
+      "description": "Private Car Sharing Application for Smart Vehicles",
+      "tagline": "A revolutionary peer-to-peer car sharing platform that decouples car usage from ownership, focusing on trust-based sharing within small groups of family, friends, and colleagues.",
+      "visitWebsite": "Visit TapCar Website",
+      "downloadApp": "Download on App Store",
+      "technologies": ["React Native", "Node.js", "OEM Integration", "BLE", "AutoPASS", "Real-time Analytics"]
+    },
+    "overview": {
+      "title": "Project Overview",
+      "description": "TapCar represents a paradigm shift in mobility, moving beyond traditional car rental to create a trust-based car sharing ecosystem. As the React Native developer, I built the entire mobile application that integrates directly with vehicle telematics and external systems.",
+      "role": "React Native Developer",
+      "duration": "2019 - 2021 (2 years)",
+      "company": "Bamboo Agile, Norway",
+      "partnership": "Developed in cooperation with SINTEF",
+      "funding": "Supported by Research Council of Norway"
+    },
+    "challenge": {
+      "title": "The Challenge",
+      "description": "Traditional car sharing solutions focus on rental models with third-party telematics that require expensive installations. TapCar needed to create a fundamentally different approach based on trust and seamless integration with modern vehicles.",
+      "problems": [
+        {
+          "title": "Third-Party Telematics Dependencies",
+          "description": "Existing solutions require costly dongles and complex installations"
+        },
+        {
+          "title": "Lack of Trust in Car Sharing",
+          "description": "Traditional platforms don't foster genuine sharing relationships"
+        },
+        {
+          "title": "Complex Vehicle Integration",
+          "description": "Direct OEM integration requires sophisticated technical solutions"
+        },
+        {
+          "title": "Fair Pricing Challenges",
+          "description": "Transparent and equitable cost allocation for all parties"
+        }
+      ]
+    },
+    "solution": {
+      "title": "Innovative Solution",
+      "description": "I developed a comprehensive React Native application that revolutionizes car sharing through direct OEM integration, proprietary algorithms, and trust-based user relationships.",
+      "features": [
+        {
+          "title": "Zero Third-Party Telematics",
+          "description": "Direct integration with embedded OEM telematic hardware eliminates need for dongles or installations.",
+          "details": [
+            "Seamless OEM vehicle integration",
+            "No installation costs or delays",
+            "Support for 10+ car brands",
+            "Patent-protected BLE backup system"
+          ]
+        },
+        {
+          "title": "Trust-Based Sharing Groups",
+          "description": "Enable car owners to share vehicles with select groups of trusted individuals - family, friends, and colleagues.",
+          "details": [
+            "Pre-approval system for drivers",
+            "Incognito mode for owners",
+            "Corporate carpool solutions",
+            "Relationship-based access control"
+          ]
+        },
+        {
+          "title": "Smart Cost Allocation",
+          "description": "Proprietary algorithms automatically calculate fair pricing and distribute costs including tolls and usage fees.",
+          "details": [
+            "AutoPASS toll integration",
+            "Real-time pricing calculations",
+            "Transparent cost breakdown",
+            "Automated billing system"
+          ]
+        },
+        {
+          "title": "Mission-Critical Reliability",
+          "description": "Custom BLE device developed with SINTEF provides ultra-high reliability for critical use cases.",
+          "details": [
+            "100% installation-free BLE device",
+            "Independent from OEM servers",
+            "SINTEF research partnership",
+            "Internationally patent protected"
+          ]
+        }
+      ]
+    },
+    "technical": {
+      "title": "Technical Excellence",
+      "description": "Built with cutting-edge technologies and research-backed innovations",
+      "architecture": {
+        "title": "Architecture & Integration",
+        "items": [
+          "React Native cross-platform development",
+          "Node.js backend with real-time capabilities",
+          "Direct OEM telematic integration",
+          "Custom BLE device communication",
+          "Microservices architecture",
+          "Real-time data processing"
+        ]
+      },
+      "integrations": {
+        "title": "External Integrations",
+        "items": [
+          "OEM embedded telematics",
+          "AutoPASS toll system",
+          "Motor Vehicle Register",
+          "Billing and payment systems",
+          "Custom BLE hardware",
+          "Real-time analytics platform"
+        ]
+      },
+      "algorithms": {
+        "title": "Proprietary Algorithms",
+        "items": [
+          "Operations research principles",
+          "Queuing theory implementation",
+          "Statistical pricing models",
+          "Economic methodology application",
+          "Real-time cost calculation",
+          "Trust scoring algorithms"
+        ]
+      },
+      "technologies": [
+        {
+          "category": "Frontend",
+          "items": ["React Native", "Redux", "Real-time UI", "Custom Components"]
+        },
+        {
+          "category": "Backend",
+          "items": ["Node.js", "Express", "Real-time APIs", "Microservices"]
+        },
+        {
+          "category": "Integration",
+          "items": ["OEM APIs", "AutoPASS", "BLE Protocol", "Vehicle Telematics"]
+        },
+        {
+          "category": "Research",
+          "items": ["SINTEF Partnership", "Operations Research", "Statistical Models", "Patent Development"]
+        }
+      ]
+    },
+    "innovation": {
+      "title": "Research & Innovation",
+      "description": "TapCar is backed by cutting-edge research and international patents",
+      "partnerships": [
+        {
+          "organization": "SINTEF",
+          "description": "Europe's largest independent research organisation",
+          "contribution": "BLE device development and reliability research"
+        },
+        {
+          "organization": "Research Council of Norway",
+          "description": "National research funding agency",
+          "contribution": "Financial support for innovative mobility solutions"
+        }
+      ],
+      "innovations": [
+        {
+          "title": "Patent-Protected BLE System",
+          "description": "Internationally patented installation-free BLE device for mission-critical reliability"
+        },
+        {
+          "title": "Operations Research Application",
+          "description": "Advanced mathematical models for optimal car sharing efficiency"
+        },
+        {
+          "title": "Trust Algorithm",
+          "description": "Proprietary system for building and maintaining trust within sharing groups"
+        },
+        {
+          "title": "Zero-Installation Integration",
+          "description": "Revolutionary approach to vehicle connectivity without third-party hardware"
+        }
+      ]
+    },
+    "impact": {
+      "title": "Market Impact",
+      "description": "Transforming the mobility industry in Norway and beyond",
+      "metrics": [
+        {
+          "value": "10+",
+          "label": "Car Brands Supported",
+          "description": "Direct OEM integration"
+        },
+        {
+          "value": "0",
+          "label": "Installation Required",
+          "description": "Zero third-party telematics"
+        },
+        {
+          "value": "100%",
+          "label": "Reliability",
+          "description": "Mission-critical BLE backup"
+        },
+        {
+          "value": "20+",
+          "label": "Target Brands 2023",
+          "description": "Expansion roadmap"
+        }
+      ],
+      "recognition": [
+        {
+          "outlet": "Tek.no",
+          "title": "Norwegian Tech Coverage",
+          "description": "Featured in leading Norwegian technology publication"
+        },
+        {
+          "outlet": "TV2",
+          "title": "National Television",
+          "description": "Covered by major Norwegian broadcasting network"
+        },
+        {
+          "outlet": "Norwegian Electric Car Association",
+          "title": "Industry Recognition",
+          "description": "Highlighted by electric vehicle advocacy organization"
+        }
+      ]
+    },
+    "userExperience": {
+      "title": "User Experience Design",
+      "description": "Designed for simplicity while handling complex vehicle integrations",
+      "principles": [
+        {
+          "title": "Trust-First Design",
+          "description": "Interface designed to foster genuine sharing relationships rather than transactions"
+        },
+        {
+          "title": "Seamless Integration",
+          "description": "Users experience their regular car at disposal without technical complexity"
+        },
+        {
+          "title": "Transparent Pricing",
+          "description": "Real-time cost breakdown builds trust between owners and drivers"
+        },
+        {
+          "title": "Group Management",
+          "description": "Intuitive tools for managing trusted sharing circles"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Interested in Mobility Innovation?",
+      "description": "I specialize in building complex automotive and mobility applications with React Native. Let's discuss how I can help bring your transportation technology vision to life.",
+      "button": "Contact Me",
+      "features": [
+        "OEM Vehicle Integration",
+        "Real-time Telematics",
+        "Complex Algorithm Implementation",
+        "Research Partnership Experience"
+      ]
+    }
+  }
+}
