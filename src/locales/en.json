@@ -13,26 +13,46 @@
   },
   "homepage": {
     "introduction": {
-      "title": "Hi! I'm Konstantin",
-      "subtitle": "Senior React & React Native Developer",
-      "description": "A passionate software engineer with 8+ years of experience in web and mobile development. Specializing in creating efficient, scalable applications using React and React Native. Strong focus on code quality and user experience.",
+      "title": "Hi! I'm Peter Evsikov",
+      "subtitle": "Senior Software Engineer (React Native 7+ years)",
+      "description": "Since end of 2017 I work only with React Native projects and want to go ahead. I'm really interested in all about mobile and web development. The React Native is not a silver bullet, but excellent tool for prototyping and MVP apps and sometimes much more.",
       "ctaButton": "View My Projects"
+    },
+    "contact": {
+      "email": "ksetrinn@gmail.com",
+      "telegram": "ksetrin",
+      "location": "Russia",
+      "availability": "Available for new projects"
     },
     "skills": {
       "title": "Core Skills",
-      "description": "My expertise spans across modern web and mobile technologies"
+      "description": "My expertise in mobile and web development",
+      "primary": "Primary Skills",
+      "secondary": "Additional Technologies"
     },
     "experience": {
       "title": "Professional Journey",
-      "description": "Over 8 years of delivering impactful solutions"
+      "description": "7+ years of React Native development experience",
+      "current": "Present",
+      "years": "years"
     },
     "techStack": {
       "title": "Technology Stack",
-      "description": "Tools and technologies I use daily"
+      "description": "Tools and technologies I use daily",
+      "frontend": "Frontend & Mobile",
+      "backend": "Backend & Services",
+      "tools": "Development Tools"
     },
     "purpose": {
       "title": "What I Can Offer",
-      "description": "I specialize in building scalable, efficient applications that solve real business problems. My experience spans from early-stage startups to enterprise-level solutions."
+      "description": "I specialize in React Native development with focus on high-quality mobile applications for startups and enterprise solutions.",
+      "expertise": "Areas of Expertise",
+      "specialization": "React Native Specialist",
+      "specializationDesc": "7+ years focused exclusively on React Native development",
+      "fullCycle": "Full Development Cycle",
+      "fullCycleDesc": "From MVP prototyping to enterprise-level applications",
+      "modernTech": "Modern Technologies",
+      "modernTechDesc": "TypeScript, Redux, MobX, AWS, Firebase integration"
     }
   },
   "header": {
