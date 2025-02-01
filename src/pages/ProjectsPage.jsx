@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { FaExternalLinkAlt, FaArrowRight, FaApple } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaArrowRight, FaApple, FaGooglePlay } from 'react-icons/fa';
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
@@ -29,18 +29,21 @@ const ProjectsPage = () => {
       status: 'Research-Backed Innovation'
     },
     {
+      title: 'Znaj.by',
+      description: 'Unified educational platform connecting teachers, parents, and students. Top 100 EdTech companies in CIS region.',
+      image: '/projects/znaj.jpg',
+      technologies: ['React Native', 'AWS', 'Redux', 'Educational APIs', 'Real-time Sync'],
+      detailLink: '/projects/znaj',
+      appStoreLink: 'https://apps.apple.com/by/app/%D0%B7%D0%BD%D0%B0%D0%B9-%D0%B1%D0%B0%D0%B9/id1500741599',
+      googlePlayLink: 'https://play.google.com/store/apps/details?id=by.znaj2',
+      featured: true,
+      status: 'Top 100 EdTech CIS'
+    },
+    {
       title: 'CarMix',
       description: 'Offline application works on sockets and allows to measure weight from mixing car on a way.',
       image: '/projects/carmix.jpg',
       technologies: ['React Native', 'MobX', 'TypeScript', 'Socket.io'],
-      detailLink: '#',
-      sourceLink: '#',
-    },
-    {
-      title: 'Znaj.by',
-      description: 'Mobile application for school education platform Zna.by.',
-      image: '/projects/znaj.jpg',
-      technologies: ['React Native', 'AWS', 'Redux'],
       detailLink: '#',
       sourceLink: '#',
     }

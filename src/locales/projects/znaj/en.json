@@ -1,0 +1,255 @@
+{
+  "znaj": {
+    "hero": {
+      "subtitle": "EdTech Platform • React Native",
+      "title": "Znaj.by",
+      "description": "Unified Platform of Electronic Services for Education",
+      "tagline": "A comprehensive educational platform that automates routine tasks, connects teachers, parents, and students, making the learning process more efficient and accessible for everyone in the educational ecosystem.",
+      "downloadIOS": "Download on App Store",
+      "downloadAndroid": "Get it on Google Play",
+      "technologies": ["React Native", "AWS", "Redux", "Real-time Sync", "Educational APIs", "Payment Integration"]
+    },
+    "overview": {
+      "title": "Project Overview",
+      "description": "Znaj.by is a revolutionary educational platform that transforms traditional school management into a digital ecosystem. As the React Native developer, I built mobile applications that serve teachers, parents, and students, creating seamless communication and efficient educational processes.",
+      "role": "React Native Developer",
+      "duration": "2019 - 2021 (2 years)",
+      "company": "Bamboo Agile, Belarus",
+      "recognition": "Top 100 EdTech Companies in CIS",
+      "category": "Top 5 Educational Management Platforms"
+    },
+    "challenge": {
+      "title": "Educational Challenges",
+      "description": "Traditional school management systems are fragmented, inefficient, and fail to provide seamless communication between all educational stakeholders. Schools need comprehensive digital transformation.",
+      "problems": [
+        {
+          "title": "Fragmented Communication",
+          "description": "Disconnected systems between teachers, parents, and students"
+        },
+        {
+          "title": "Manual Administrative Tasks",
+          "description": "Time-consuming paperwork and routine administrative processes"
+        },
+        {
+          "title": "Limited Progress Tracking",
+          "description": "Parents struggle to monitor their children's academic progress"
+        },
+        {
+          "title": "Complex Payment Systems",
+          "description": "Difficulty managing school-related expenses and payments"
+        }
+      ]
+    },
+    "solution": {
+      "title": "Comprehensive Educational Solution",
+      "description": "I developed a complete mobile ecosystem that connects all participants in the educational process through intuitive React Native applications with real-time synchronization and smart automation.",
+      "features": [
+        {
+          "title": "Digital Grade Book & Registry",
+          "description": "Real-time electronic gradebook with class registry that automatically tracks student performance and attendance.",
+          "details": [
+            "Real-time grade updates",
+            "Automated attendance tracking",
+            "Performance analytics",
+            "Progress visualization"
+          ]
+        },
+        {
+          "title": "Parent Engagement Portal",
+          "description": "Comprehensive tools for parents to track children's progress, communicate with teachers, and manage school payments.",
+          "details": [
+            "Real-time progress monitoring",
+            "Direct teacher communication",
+            "Payment management system",
+            "Event notifications"
+          ]
+        },
+        {
+          "title": "Teacher Management Tools",
+          "description": "Streamlined interface for educators to manage classes, assignments, grades, and communicate with parents efficiently.",
+          "details": [
+            "Class management dashboard",
+            "Assignment distribution",
+            "Grade entry system",
+            "Parent communication tools"
+          ]
+        },
+        {
+          "title": "Student Learning Hub",
+          "description": "Focused environment for students to access assignments, track their progress, and engage with educational content.",
+          "details": [
+            "Assignment access",
+            "Progress tracking",
+            "Learning materials",
+            "Performance insights"
+          ]
+        }
+      ]
+    },
+    "technical": {
+      "title": "Technical Implementation",
+      "description": "Built with modern React Native architecture and educational-grade scalability",
+      "architecture": {
+        "title": "Architecture & Performance",
+        "items": [
+          "Cross-platform React Native development",
+          "Redux for state management",
+          "Real-time data synchronization",
+          "Offline-first architecture",
+          "Scalable microservices backend",
+          "Educational API integrations"
+        ]
+      },
+      "features": {
+        "title": "Educational Features",
+        "items": [
+          "Electronic document management",
+          "Automated grade calculations",
+          "Multi-role user management",
+          "Payment processing integration",
+          "Real-time notifications",
+          "Progress analytics dashboard"
+        ]
+      },
+      "platforms": {
+        "title": "Platform Coverage",
+        "items": [
+          "iOS native application",
+          "Android native application",
+          "Web platform integration",
+          "Real-time synchronization",
+          "Cross-device consistency",
+          "Offline functionality"
+        ]
+      },
+      "technologies": [
+        {
+          "category": "Frontend",
+          "items": ["React Native", "Redux", "Real-time UI", "Cross-platform Components"]
+        },
+        {
+          "category": "Backend",
+          "items": ["AWS", "Real-time APIs", "Educational Services", "Payment Systems"]
+        },
+        {
+          "category": "Education",
+          "items": ["Grade Management", "Class Registry", "Document Systems", "Analytics"]
+        },
+        {
+          "category": "Integration",
+          "items": ["Payment Gateways", "School Systems", "Notification Services", "Analytics Platforms"]
+        }
+      ]
+    },
+    "impact": {
+      "title": "Educational Impact",
+      "description": "Transforming education across Belarus and CIS region",
+      "recognition": {
+        "title": "Industry Recognition",
+        "items": [
+          {
+            "award": "HolonIQ CIS EdTech 100",
+            "description": "Ranked among top 100 EdTech companies in CIS region",
+            "year": "2020"
+          },
+          {
+            "award": "Top 5 Management Platforms",
+            "description": "Recognized in category of best educational management platforms",
+            "organization": "HolonIQ & EdCrunch"
+          }
+        ]
+      },
+      "metrics": [
+        {
+          "value": "Top 100",
+          "label": "EdTech Companies",
+          "description": "CIS Region Recognition"
+        },
+        {
+          "value": "Top 5",
+          "label": "Management Platforms",
+          "description": "Educational Category"
+        },
+        {
+          "value": "3",
+          "label": "User Groups Served",
+          "description": "Teachers, Parents, Students"
+        },
+        {
+          "value": "100%",
+          "label": "Digital Transformation",
+          "description": "Complete school ecosystem"
+        }
+      ]
+    },
+    "userExperience": {
+      "title": "Multi-Stakeholder Design",
+      "description": "Designed specifically for the unique needs of teachers, parents, and students",
+      "stakeholders": [
+        {
+          "title": "For Teachers",
+          "description": "Streamlined tools to organize teaching processes and manage classroom activities",
+          "benefits": [
+            "Automated grade entry",
+            "Class management dashboard",
+            "Parent communication tools",
+            "Assignment distribution"
+          ]
+        },
+        {
+          "title": "For Parents",
+          "description": "Complete visibility into children's educational progress and school activities",
+          "benefits": [
+            "Real-time progress tracking",
+            "Direct teacher communication",
+            "Payment management",
+            "Event notifications"
+          ]
+        },
+        {
+          "title": "For Students",
+          "description": "Focused learning environment that helps students concentrate on education",
+          "benefits": [
+            "Assignment access",
+            "Progress visualization",
+            "Learning materials",
+            "Achievement tracking"
+          ]
+        }
+      ]
+    },
+    "methodology": {
+      "title": "Development Methodology",
+      "description": "Built following educational best practices and global EdTech standards",
+      "criteria": [
+        {
+          "title": "Market Quality & Potential",
+          "description": "Comprehensive analysis of educational market needs and growth opportunities"
+        },
+        {
+          "title": "Product Quality & Uniqueness",
+          "description": "Innovative features that distinguish Znaj from traditional school management systems"
+        },
+        {
+          "title": "User Experience Focus",
+          "description": "Designed with extensive user research across all educational stakeholders"
+        },
+        {
+          "title": "Scalability & Growth",
+          "description": "Architecture designed to support educational institutions of all sizes"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Interested in EdTech Innovation?",
+      "description": "I specialize in building comprehensive educational platforms with React Native. Let's discuss how I can help transform your educational technology vision into reality.",
+      "button": "Contact Me",
+      "features": [
+        "Multi-Stakeholder Platforms",
+        "Educational API Integration",
+        "Real-time Collaboration Tools",
+        "Scalable EdTech Solutions"
+      ]
+    }
+  }
+}
