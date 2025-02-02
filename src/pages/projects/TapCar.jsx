@@ -32,20 +32,6 @@ import {
 const TapcarProject = () => {
     const { t, i18n } = useTranslation();
 
-    useEffect(() => {
-        const loadTranslations = async () => {
-            const lng = i18n.language;
-            try {
-                const translations = await import(`../../locales/projects/tapcar/${lng}.json`);
-                i18n.addResourceBundle(lng, 'tapcar', translations.default, true, true);
-            } catch (error) {
-                const fallbackTranslations = await import(`../../locales/projects/tapcar/en.json`);
-                i18n.addResourceBundle(lng, 'tapcar', fallbackTranslations.default, true, true);
-            }
-        };
-        loadTranslations();
-    }, [i18n]);
-
     const tTapcar = (key) => t(key, { ns: 'tapcar' });
 
     const technologies = [
@@ -58,10 +44,10 @@ const TapcarProject = () => {
     ];
 
     const metrics = [
-        { value: '10+', label: tTapcar('tapcar.impact.metrics.0.label'), description: tTapcar('tapcar.impact.metrics.0.description') },
-        { value: '0', label: tTapcar('tapcar.impact.metrics.1.label'), description: tTapcar('tapcar.impact.metrics.1.description') },
-        { value: '100%', label: tTapcar('tapcar.impact.metrics.2.label'), description: tTapcar('tapcar.impact.metrics.2.description') },
-        { value: '20+', label: tTapcar('tapcar.impact.metrics.3.label'), description: tTapcar('tapcar.impact.metrics.3.description') }
+        { value: '10+', label: t('tapcar.impact.metrics.0.label'), description: t('tapcar.impact.metrics.0.description') },
+        { value: '0', label: t('tapcar.impact.metrics.1.label'), description: t('tapcar.impact.metrics.1.description') },
+        { value: '100%', label: t('tapcar.impact.metrics.2.label'), description: t('tapcar.impact.metrics.2.description') },
+        { value: '20+', label: t('tapcar.impact.metrics.3.label'), description: t('tapcar.impact.metrics.3.description') }
     ];
 
     return (
@@ -82,16 +68,16 @@ const TapcarProject = () => {
                         <div className="space-y-8">
                             <div>
                                 <div className="inline-block bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
-                                    {tTapcar('tapcar.hero.subtitle')}
+                                    {t('tapcar.hero.subtitle')}
                                 </div>
                                 <h1 className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-green-600 via-blue-600 to-green-800 bg-clip-text text-transparent mb-6">
-                                    {tTapcar('tapcar.hero.title')}
+                                    {t('tapcar.hero.title')}
                                 </h1>
                                 <h2 className="text-2xl lg:text-3xl text-gray-700 dark:text-gray-300 font-light mb-6">
-                                    {tTapcar('tapcar.hero.description')}
+                                    {t('tapcar.hero.description')}
                                 </h2>
                                 <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-                                    {tTapcar('tapcar.hero.tagline')}
+                                    {t('tapcar.hero.tagline')}
                                 </p>
                             </div>
 
@@ -112,7 +98,7 @@ const TapcarProject = () => {
                                     className="inline-flex items-center gap-2 bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-colors"
                                 >
                                     <FaApple className="w-5 h-5" />
-                                    {tTapcar('tapcar.hero.downloadApp')}
+                                    {t('tapcar.hero.downloadApp')}
                                 </a>
                                 <a
                                     href="https://www.tapcar.no/"
@@ -120,7 +106,7 @@ const TapcarProject = () => {
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 border-2 border-green-600 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20 px-6 py-3 rounded-full font-semibold transition-colors"
                                 >
-                                    {tTapcar('tapcar.hero.visitWebsite')}
+                                    {t('tapcar.hero.visitWebsite')}
                                     <FaExternalLinkAlt className="w-4 h-4" />
                                 </a>
                             </div>
@@ -143,7 +129,7 @@ const TapcarProject = () => {
                                     <FaAward className="w-6 h-6 text-green-500" />
                                     <div className="text-center">
                                         <div className="text-sm font-semibold text-green-600 dark:text-green-400">
-                                            {tTapcar('tapcar.overview.funding')}
+                                            {t('tapcar.overview.funding')}
                                         </div>
                                     </div>
                                 </div>
@@ -157,39 +143,39 @@ const TapcarProject = () => {
                 <section className="py-20">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
-                            <h2 className="text-4xl font-bold mb-6">{tTapcar('tapcar.overview.title')}</h2>
+                            <h2 className="text-4xl font-bold mb-6">{t('tapcar.overview.title')}</h2>
                             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                                {tTapcar('tapcar.overview.description')}
+                                {t('tapcar.overview.description')}
                             </p>
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <FaUsers className="w-5 h-5 text-green-500" />
-                                    <span className="font-medium">{tTapcar('tapcar.overview.role')}</span>
+                                    <span className="font-medium">{t('tapcar.overview.role')}</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <FaRocket className="w-5 h-5 text-blue-500" />
-                                    <span className="font-medium">{tTapcar('tapcar.overview.duration')}</span>
+                                    <span className="font-medium">{t('tapcar.overview.duration')}</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <FaAward className="w-5 h-5 text-purple-500" />
-                                    <span className="font-medium">{tTapcar('tapcar.overview.company')}</span>
+                                    <span className="font-medium">{t('tapcar.overview.company')}</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <FaBrain className="w-5 h-5 text-orange-500" />
-                                    <span className="font-medium">{tTapcar('tapcar.overview.partnership')}</span>
+                                    <span className="font-medium">{t('tapcar.overview.partnership')}</span>
                                 </div>
                             </div>
                         </div>
                         <div className="bg-gradient-to-br from-gray-50 to-green-50 dark:from-gray-800 dark:to-green-900/30 rounded-3xl p-8">
-                            <h3 className="text-xl font-semibold mb-6">{tTapcar('tapcar.challenge.title')}</h3>
-                            <p className="text-gray-600 dark:text-gray-300 mb-6">{tTapcar('tapcar.challenge.description')}</p>
+                            <h3 className="text-xl font-semibold mb-6">{t('tapcar.challenge.title')}</h3>
+                            <p className="text-gray-600 dark:text-gray-300 mb-6">{t('tapcar.challenge.description')}</p>
                             <div className="space-y-4">
                                 {[0, 1, 2, 3].map((index) => (
                                     <div key={index} className="flex items-start gap-3">
                                         <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                                         <div>
-                                            <div className="font-medium mb-1">{tTapcar(`tapcar.challenge.problems.${index}.title`)}</div>
-                                            <div className="text-sm text-gray-600 dark:text-gray-400">{tTapcar(`tapcar.challenge.problems.${index}.description`)}</div>
+                                            <div className="font-medium mb-1">{t(`tapcar.challenge.problems.${index}.title`)}</div>
+                                            <div className="text-sm text-gray-600 dark:text-gray-400">{t(`tapcar.challenge.problems.${index}.description`)}</div>
                                         </div>
                                     </div>
                                 ))}
@@ -201,9 +187,9 @@ const TapcarProject = () => {
                 <section className="py-20 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-3xl my-20">
                     <div className="max-w-6xl mx-auto px-8">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl font-bold mb-6">{tTapcar('tapcar.solution.title')}</h2>
+                            <h2 className="text-4xl font-bold mb-6">{t('tapcar.solution.title')}</h2>
                             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                                {tTapcar('tapcar.solution.description')}
+                                {t('tapcar.solution.description')}
                             </p>
                         </div>
 
@@ -216,14 +202,14 @@ const TapcarProject = () => {
                                         {index === 2 && <FaChartLine className="w-6 h-6 text-white" />}
                                         {index === 3 && <SiBluetooth className="w-6 h-6 text-white" />}
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-4">{tTapcar(`tapcar.solution.features.${index}.title`)}</h3>
-                                    <p className="text-gray-600 dark:text-gray-300 mb-6">{tTapcar(`tapcar.solution.features.${index}.description`)}</p>
+                                    <h3 className="text-xl font-semibold mb-4">{t(`tapcar.solution.features.${index}.title`)}</h3>
+                                    <p className="text-gray-600 dark:text-gray-300 mb-6">{t(`tapcar.solution.features.${index}.description`)}</p>
                                     <ul className="space-y-2">
                                         {[0, 1, 2, 3].map((detailIndex) => (
                                             <li key={detailIndex} className="flex items-center gap-2">
                                                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
                                                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                          {tTapcar(`tapcar.solution.features.${index}.details.${detailIndex}`)}
+                          {t(`tapcar.solution.features.${index}.details.${detailIndex}`)}
                         </span>
                                             </li>
                                         ))}
@@ -236,9 +222,9 @@ const TapcarProject = () => {
 
                 <section className="py-20">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold mb-6">{tTapcar('tapcar.technical.title')}</h2>
+                        <h2 className="text-4xl font-bold mb-6">{t('tapcar.technical.title')}</h2>
                         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                            {tTapcar('tapcar.technical.description')}
+                            {t('tapcar.technical.description')}
                         </p>
                     </div>
 
@@ -247,12 +233,12 @@ const TapcarProject = () => {
                             <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mb-6">
                                 <FaRocket className="w-6 h-6 text-white" />
                             </div>
-                            <h3 className="text-xl font-semibold mb-4">{tTapcar('tapcar.technical.architecture.title')}</h3>
+                            <h3 className="text-xl font-semibold mb-4">{t('tapcar.technical.architecture.title')}</h3>
                             <ul className="space-y-2">
                                 {[0, 1, 2, 3, 4, 5].map((index) => (
                                     <li key={index} className="flex items-center gap-2">
                                         <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                                        <span className="text-sm">{tTapcar(`tapcar.technical.architecture.items.${index}`)}</span>
+                                        <span className="text-sm">{t(`tapcar.technical.architecture.items.${index}`)}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -262,12 +248,12 @@ const TapcarProject = () => {
                             <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-6">
                                 <FaDatabase className="w-6 h-6 text-white" />
                             </div>
-                            <h3 className="text-xl font-semibold mb-4">{tTapcar('tapcar.technical.integrations.title')}</h3>
+                            <h3 className="text-xl font-semibold mb-4">{t('tapcar.technical.integrations.title')}</h3>
                             <ul className="space-y-2">
                                 {[0, 1, 2, 3, 4, 5].map((index) => (
                                     <li key={index} className="flex items-center gap-2">
                                         <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
-                                        <span className="text-sm">{tTapcar(`tapcar.technical.integrations.items.${index}`)}</span>
+                                        <span className="text-sm">{t(`tapcar.technical.integrations.items.${index}`)}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -277,12 +263,12 @@ const TapcarProject = () => {
                             <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mb-6">
                                 <FaBrain className="w-6 h-6 text-white" />
                             </div>
-                            <h3 className="text-xl font-semibold mb-4">{tTapcar('tapcar.technical.algorithms.title')}</h3>
+                            <h3 className="text-xl font-semibold mb-4">{t('tapcar.technical.algorithms.title')}</h3>
                             <ul className="space-y-2">
                                 {[0, 1, 2, 3, 4, 5].map((index) => (
                                     <li key={index} className="flex items-center gap-2">
                                         <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
-                                        <span className="text-sm">{tTapcar(`tapcar.technical.algorithms.items.${index}`)}</span>
+                                        <span className="text-sm">{t(`tapcar.technical.algorithms.items.${index}`)}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -292,11 +278,11 @@ const TapcarProject = () => {
                     <div className="grid lg:grid-cols-4 gap-6">
                         {[0, 1, 2, 3].map((categoryIndex) => (
                             <div key={categoryIndex} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                                <h4 className="font-semibold mb-4">{tTapcar(`tapcar.technical.technologies.${categoryIndex}.category`)}</h4>
+                                <h4 className="font-semibold mb-4">{t(`tapcar.technical.technologies.${categoryIndex}.category`)}</h4>
                                 <div className="space-y-2">
                                     {[0, 1, 2, 3].map((itemIndex) => (
                                         <div key={itemIndex} className="text-sm text-gray-600 dark:text-gray-400">
-                                            {tTapcar(`tapcar.technical.technologies.${categoryIndex}.items.${itemIndex}`)}
+                                            {t(`tapcar.technical.technologies.${categoryIndex}.items.${itemIndex}`)}
                                         </div>
                                     ))}
                                 </div>
@@ -308,9 +294,9 @@ const TapcarProject = () => {
                 <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-3xl my-20">
                     <div className="max-w-6xl mx-auto px-8">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl font-bold mb-6">{tTapcar('tapcar.innovation.title')}</h2>
+                            <h2 className="text-4xl font-bold mb-6">{t('tapcar.innovation.title')}</h2>
                             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                                {tTapcar('tapcar.innovation.description')}
+                                {t('tapcar.innovation.description')}
                             </p>
                         </div>
 
@@ -321,10 +307,10 @@ const TapcarProject = () => {
                                         <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl flex items-center justify-center">
                                             <FaAward className="w-6 h-6 text-white" />
                                         </div>
-                                        <h3 className="text-xl font-semibold">{tTapcar(`tapcar.innovation.partnerships.${partnerIndex}.organization`)}</h3>
+                                        <h3 className="text-xl font-semibold">{t(`tapcar.innovation.partnerships.${partnerIndex}.organization`)}</h3>
                                     </div>
-                                    <p className="text-gray-600 dark:text-gray-300 mb-4">{tTapcar(`tapcar.innovation.partnerships.${partnerIndex}.description`)}</p>
-                                    <p className="text-sm text-green-600 dark:text-green-400 font-medium">{tTapcar(`tapcar.innovation.partnerships.${partnerIndex}.contribution`)}</p>
+                                    <p className="text-gray-600 dark:text-gray-300 mb-4">{t(`tapcar.innovation.partnerships.${partnerIndex}.description`)}</p>
+                                    <p className="text-sm text-green-600 dark:text-green-400 font-medium">{t(`tapcar.innovation.partnerships.${partnerIndex}.contribution`)}</p>
                                 </div>
                             ))}
                         </div>
@@ -332,8 +318,8 @@ const TapcarProject = () => {
                         <div className="grid lg:grid-cols-2 gap-8">
                             {[0, 1, 2, 3].map((innovationIndex) => (
                                 <div key={innovationIndex} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-                                    <h4 className="text-lg font-semibold mb-3">{tTapcar(`tapcar.innovation.innovations.${innovationIndex}.title`)}</h4>
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm">{tTapcar(`tapcar.innovation.innovations.${innovationIndex}.description`)}</p>
+                                    <h4 className="text-lg font-semibold mb-3">{t(`tapcar.innovation.innovations.${innovationIndex}.title`)}</h4>
+                                    <p className="text-gray-600 dark:text-gray-300 text-sm">{t(`tapcar.innovation.innovations.${innovationIndex}.description`)}</p>
                                 </div>
                             ))}
                         </div>
@@ -342,9 +328,9 @@ const TapcarProject = () => {
 
                 <section className="py-20">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold mb-6">{tTapcar('tapcar.impact.title')}</h2>
+                        <h2 className="text-4xl font-bold mb-6">{t('tapcar.impact.title')}</h2>
                         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                            {tTapcar('tapcar.impact.description')}
+                            {t('tapcar.impact.description')}
                         </p>
                     </div>
 
@@ -368,9 +354,9 @@ const TapcarProject = () => {
                                     {recognitionIndex === 1 && <FaTv className="w-8 h-8 text-white" />}
                                     {recognitionIndex === 2 && <FaGlobe className="w-8 h-8 text-white" />}
                                 </div>
-                                <h3 className="text-xl font-semibold mb-4">{tTapcar(`tapcar.impact.recognition.${recognitionIndex}.outlet`)}</h3>
-                                <h4 className="text-lg text-green-600 dark:text-green-400 font-medium mb-3">{tTapcar(`tapcar.impact.recognition.${recognitionIndex}.title`)}</h4>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm">{tTapcar(`tapcar.impact.recognition.${recognitionIndex}.description`)}</p>
+                                <h3 className="text-xl font-semibold mb-4">{t(`tapcar.impact.recognition.${recognitionIndex}.outlet`)}</h3>
+                                <h4 className="text-lg text-green-600 dark:text-green-400 font-medium mb-3">{t(`tapcar.impact.recognition.${recognitionIndex}.title`)}</h4>
+                                <p className="text-gray-600 dark:text-gray-300 text-sm">{t(`tapcar.impact.recognition.${recognitionIndex}.description`)}</p>
                             </div>
                         ))}
                     </div>
@@ -379,9 +365,9 @@ const TapcarProject = () => {
                 <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-3xl my-20">
                     <div className="max-w-6xl mx-auto px-8">
                         <div className="text-center mb-16">
-                            <h2 className="text-4xl font-bold mb-6">{tTapcar('tapcar.userExperience.title')}</h2>
+                            <h2 className="text-4xl font-bold mb-6">{t('tapcar.userExperience.title')}</h2>
                             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                                {tTapcar('tapcar.userExperience.description')}
+                                {t('tapcar.userExperience.description')}
                             </p>
                         </div>
 
@@ -394,8 +380,8 @@ const TapcarProject = () => {
                                         {principleIndex === 2 && <FaChartLine className="w-6 h-6 text-white" />}
                                         {principleIndex === 3 && <FaUsers className="w-6 h-6 text-white" />}
                                     </div>
-                                    <h3 className="text-xl font-semibold mb-4">{tTapcar(`tapcar.userExperience.principles.${principleIndex}.title`)}</h3>
-                                    <p className="text-gray-600 dark:text-gray-300">{tTapcar(`tapcar.userExperience.principles.${principleIndex}.description`)}</p>
+                                    <h3 className="text-xl font-semibold mb-4">{t(`tapcar.userExperience.principles.${principleIndex}.title`)}</h3>
+                                    <p className="text-gray-600 dark:text-gray-300">{t(`tapcar.userExperience.principles.${principleIndex}.description`)}</p>
                                 </div>
                             ))}
                         </div>
@@ -404,8 +390,8 @@ const TapcarProject = () => {
 
                 <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl text-white my-20">
                     <div className="max-w-4xl mx-auto text-center px-8">
-                        <h2 className="text-4xl font-bold mb-6">{tTapcar('tapcar.cta.title')}</h2>
-                        <p className="text-xl text-green-100 mb-8">{tTapcar('tapcar.cta.description')}</p>
+                        <h2 className="text-4xl font-bold mb-6">{t('tapcar.cta.title')}</h2>
+                        <p className="text-xl text-green-100 mb-8">{t('tapcar.cta.description')}</p>
 
                         <div className="grid md:grid-cols-4 gap-6 mb-8">
                             {[0, 1, 2, 3].map((index) => (
@@ -416,7 +402,7 @@ const TapcarProject = () => {
                                         {index === 2 && <FaBrain className="w-6 h-6" />}
                                         {index === 3 && <FaAward className="w-6 h-6" />}
                                     </div>
-                                    <div className="text-sm font-medium">{tTapcar(`tapcar.cta.features.${index}`)}</div>
+                                    <div className="text-sm font-medium">{t(`tapcar.cta.features.${index}`)}</div>
                                 </div>
                             ))}
                         </div>
@@ -425,7 +411,7 @@ const TapcarProject = () => {
                             to="/contact"
                             className="inline-flex items-center gap-2 bg-white text-green-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all transform hover:scale-105"
                         >
-                            {tTapcar('tapcar.cta.button')}
+                            {t('tapcar.cta.button')}
                         </Link>
                     </div>
                 </section>
