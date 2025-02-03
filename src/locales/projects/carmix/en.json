@@ -1,0 +1,280 @@
+{
+  "carmix": {
+    "hero": {
+      "subtitle": "Construction Technology • React Native",
+      "title": "Apollo CarMix",
+      "description": "Smart Mobile Concrete Plant Management System",
+      "tagline": "Revolutionary mobile application that transforms concrete production through augmented reality, IoT integration, and intelligent mix-design control for construction sites worldwide.",
+      "downloadIOS": "Download on App Store",
+      "downloadAndroid": "Get it on Google Play",
+      "technologies": ["React Native", "Redux", "Augmented Reality", "IoT Integration", "SQL Server", "Real-time Control"]
+    },
+    "overview": {
+      "title": "Project Overview",
+      "description": "Apollo CarMix represents the next generation of construction technology, digitizing mobile concrete plant operations through advanced mobile applications. As the React Native developer, I built a comprehensive system that integrates AR technology, IoT sensors, and intelligent concrete management.",
+      "role": "React Native Developer",
+      "duration": "2022 - 2024 (2+ years)",
+      "company": "CarMix, Italy",
+      "industry": "Construction Technology",
+      "scope": "Global Construction Market"
+    },
+    "challenge": {
+      "title": "Construction Industry Challenges",
+      "description": "Traditional concrete production relies on manual processes, lacks real-time monitoring, and provides limited quality control. Construction sites need intelligent, automated solutions for consistent concrete quality and operational efficiency.",
+      "problems": [
+        {
+          "title": "Manual Mix-Design Control",
+          "description": "Error-prone manual dosing and inconsistent concrete quality"
+        },
+        {
+          "title": "Limited Real-Time Monitoring",
+          "description": "Lack of live data on production status and quality metrics"
+        },
+        {
+          "title": "Complex Machinery Operation",
+          "description": "Steep learning curve for operators on sophisticated equipment"
+        },
+        {
+          "title": "Quality Documentation",
+          "description": "Manual paperwork and certification processes prone to errors"
+        }
+      ]
+    },
+    "solution": {
+      "title": "Smart Construction Solution",
+      "description": "I developed an innovative React Native application that revolutionizes concrete production through AR visualization, IoT integration, and intelligent automation systems for optimal construction site efficiency.",
+      "features": [
+        {
+          "title": "Augmented Reality Integration",
+          "description": "3D machinery projections and interactive AR experiences that bring construction equipment to life on mobile devices.",
+          "details": [
+            "3D equipment visualization",
+            "Interactive AR machinery tours",
+            "QR code content access",
+            "Virtual equipment demonstrations"
+          ]
+        },
+        {
+          "title": "Concrete-Mate Smart System",
+          "description": "Intelligent mix-design control supporting up to 15 formulas and 99 material types with automated dosing and quality monitoring.",
+          "details": [
+            "15 different concrete formulas",
+            "99 types of materials support",
+            "Automated ingredient dosing",
+            "Real-time quality monitoring"
+          ]
+        },
+        {
+          "title": "IoT Sensor Integration",
+          "description": "Advanced load cell weighing system with 4 electronic sensors providing precise control and instant data collection.",
+          "details": [
+            "4 electronic load cells",
+            "Real-time weight monitoring",
+            "Automatic data logging",
+            "USB data export capabilities"
+          ]
+        },
+        {
+          "title": "Smart Operations Management",
+          "description": "Comprehensive control system with geolocation, engine diagnostics, and automated certification generation.",
+          "details": [
+            "GPS location tracking",
+            "Engine diagnostics monitoring",
+            "Automated certificate generation",
+            "Remote internet control (IPOTWeb)"
+          ]
+        }
+      ]
+    },
+    "technical": {
+      "title": "Technical Excellence",
+      "description": "Built with cutting-edge technologies for industrial-grade reliability and performance",
+      "architecture": {
+        "title": "Architecture & Integration",
+        "items": [
+          "Cross-platform React Native development",
+          "Redux state management",
+          "Real-time IoT data processing",
+          "AR/VR technology integration",
+          "Industrial sensor connectivity",
+          "Cloud-based remote monitoring"
+        ]
+      },
+      "hardware": {
+        "title": "Hardware Integration",
+        "items": [
+          "4 electronic load cell system",
+          "Industrial weighing sensors",
+          "Engine diagnostic interfaces",
+          "GPS tracking modules",
+          "QR/Tag scanning capabilities",
+          "USB data export systems"
+        ]
+      },
+      "software": {
+        "title": "Software Capabilities",
+        "items": [
+          "SQL Server with stored procedures",
+          "Real-time data synchronization",
+          "Automated certificate generation",
+          "Multi-recipe storage system",
+          "Quality control algorithms",
+          "Remote monitoring dashboard"
+        ]
+      },
+      "technologies": [
+        {
+          "category": "Frontend",
+          "items": ["React Native", "Redux", "AR Components", "Real-time UI"]
+        },
+        {
+          "category": "Backend",
+          "items": ["SQL Server", "Stored Procedures", "IoT APIs", "Cloud Services"]
+        },
+        {
+          "category": "Hardware",
+          "items": ["Load Cells", "IoT Sensors", "GPS Modules", "Industrial Controllers"]
+        },
+        {
+          "category": "Features",
+          "items": ["Augmented Reality", "QR Scanning", "Certificate Generation", "Remote Control"]
+        }
+      ]
+    },
+    "features": {
+      "title": "Revolutionary Features",
+      "description": "Transforming construction through intelligent automation and digital innovation",
+      "capabilities": [
+        {
+          "title": "Smart Mix-Design Control",
+          "description": "Advanced concrete formulation management with automatic water-cement ratio adjustment",
+          "icon": "formula"
+        },
+        {
+          "title": "Real-Time Quality Monitoring",
+          "description": "Continuous monitoring of production quality with instant deviation alerts",
+          "icon": "monitor"
+        },
+        {
+          "title": "Automated Documentation",
+          "description": "Automatic generation of RMC Plant Standard certificates with complete traceability",
+          "icon": "document"
+        },
+        {
+          "title": "Remote Plant Control",
+          "description": "Full remote operation capabilities through IPOTWeb internet-based control system",
+          "icon": "remote"
+        },
+        {
+          "title": "AR Equipment Visualization",
+          "description": "Interactive 3D machinery projections for enhanced operator training and support",
+          "icon": "ar"
+        },
+        {
+          "title": "Geolocation Integration",
+          "description": "GPS-based location tracking for precise concrete delivery and documentation",
+          "icon": "location"
+        }
+      ]
+    },
+    "impact": {
+      "title": "Industry Impact",
+      "description": "Revolutionizing concrete production across global construction markets",
+      "metrics": [
+        {
+          "value": "15",
+          "label": "Concrete Formulas",
+          "description": "Different mix-design options"
+        },
+        {
+          "value": "99",
+          "label": "Material Types",
+          "description": "Supported ingredients"
+        },
+        {
+          "value": "4",
+          "label": "Load Cells",
+          "description": "Precision weighing system"
+        },
+        {
+          "value": "100%",
+          "label": "Automation",
+          "description": "Fully automated process"
+        }
+      ],
+      "benefits": [
+        {
+          "title": "Enhanced Quality Control",
+          "description": "Precise mix-design execution with minimal human error and consistent concrete quality"
+        },
+        {
+          "title": "Operational Efficiency",
+          "description": "Streamlined processes reducing production time and operational costs"
+        },
+        {
+          "title": "Digital Documentation",
+          "description": "Automated certification and comprehensive data logging for compliance"
+        },
+        {
+          "title": "Remote Monitoring",
+          "description": "Real-time oversight of multiple construction sites from central locations"
+        }
+      ]
+    },
+    "userExperience": {
+      "title": "Operator-Centric Design",
+      "description": "Designed for construction professionals with focus on safety, efficiency, and ease of use",
+      "principles": [
+        {
+          "title": "Intuitive Operation",
+          "description": "Simple interface that guides operators through complex concrete production processes"
+        },
+        {
+          "title": "Safety First",
+          "description": "Built-in safety protocols and real-time monitoring to prevent accidents and errors"
+        },
+        {
+          "title": "Training Support",
+          "description": "AR-powered training modules help operators learn equipment operation quickly"
+        },
+        {
+          "title": "Data Transparency",
+          "description": "Clear visualization of all production data and quality metrics in real-time"
+        }
+      ]
+    },
+    "innovation": {
+      "title": "Technology Innovation",
+      "description": "Pioneering the future of construction technology through digital transformation",
+      "innovations": [
+        {
+          "title": "AR in Construction",
+          "description": "First-of-its-kind augmented reality implementation for heavy construction machinery"
+        },
+        {
+          "title": "IoT Integration",
+          "description": "Seamless connection between mobile apps and industrial-grade sensors"
+        },
+        {
+          "title": "Smart Automation",
+          "description": "AI-powered automatic adjustment of concrete ratios based on material conditions"
+        },
+        {
+          "title": "Remote Operations",
+          "description": "Revolutionary remote control capabilities for construction equipment"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Interested in Construction Tech?",
+      "description": "I specialize in building industrial IoT applications with React Native. Let's discuss how I can help bring your construction technology innovation to life.",
+      "button": "Contact Me",
+      "features": [
+        "Industrial IoT Integration",
+        "Augmented Reality Development",
+        "Real-time Sensor Data",
+        "Construction Industry Expertise"
+      ]
+    }
+  }
+}
