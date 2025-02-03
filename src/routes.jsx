@@ -6,6 +6,7 @@ import ArticlesPage from './pages/ArticlesPage';
 import MebixProject from './pages/projects/Mebix';
 import TapcarProject from './pages/projects/TapCar';
 import ZnajProject from './pages/projects/Znaj';
+import CarMixProject from "@/pages/projects/CarMix.jsx";
 
 const AppRoutes = () => {
     return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
             <Route path="/projects/mebix" element={<MebixProject />} />
             <Route path="/projects/tapcar" element={<TapcarProject />} />
             <Route path="/projects/znaj" element={<ZnajProject />} />
+            <Route path="/projects/carmix" element={<CarMixProject />} />
             <Route path="/articles" element={<ArticlesPage />} />
         </Routes>
     );

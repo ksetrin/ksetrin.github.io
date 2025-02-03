@@ -40,12 +40,15 @@ const ProjectsPage = () => {
       status: 'Top 100 EdTech CIS'
     },
     {
-      title: 'CarMix',
-      description: 'Offline application works on sockets and allows to measure weight from mixing car on a way.',
+      title: 'Apollo CarMix',
+      description: 'Smart mobile concrete plant management with AR technology and IoT integration. Revolutionary construction industry solution.',
       image: '/projects/carmix.jpg',
-      technologies: ['React Native', 'MobX', 'TypeScript', 'Socket.io'],
-      detailLink: '#',
-      sourceLink: '#',
+      technologies: ['React Native', 'Redux', 'Augmented Reality', 'IoT', 'SQL Server'],
+      detailLink: '/projects/carmix',
+      appStoreLink: 'https://apps.apple.com/ar/app/apollo-carmix/id6476922567?l=en-GB',
+      googlePlayLink: 'https://play.google.com/store/apps/details?id=com.torai.tor_equip.apollo&hl=en_GB&pli=1',
+      featured: true,
+      status: 'Industrial IoT Innovation'
     }
   ];
 
