@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProjectsPage from './pages/ProjectsPage';
 import ArticlesPage from './pages/ArticlesPage';
-import MebixProject from './pages/projects/mebix';
-import TapcarProject from './pages/projects/tapcar';
-import ZnajProject from './pages/projects/znaj';
+import MebixProject from './pages/projects/Mebix';
+import TapcarProject from './pages/projects/TapCar';
+import ZnajProject from './pages/projects/Znaj';
 
 const AppRoutes = () => {
     return (
