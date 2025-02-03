@@ -13,13 +13,16 @@ import ruTapcar from './locales/projects/tapcar/ru.json';
 import enZnaj from './locales/projects/znaj/en.json';
 import ruZnaj from './locales/projects/znaj/ru.json';
 
+import enCarmix from './locales/projects/carmix/en.json';
+import ruCarmix from './locales/projects/carmix/ru.json';
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
-      translation: { ...en, ...enTapcar, ...enMebix, ...enZnaj}
+      translation: { ...en, ...enTapcar, ...enMebix, ...enZnaj, ...enCarmix}
     },
     ru: {
-      translation: { ...ru, ...ruTapcar, ...ruMebix, ...ruZnaj}
+      translation: { ...ru, ...ruTapcar, ...ruMebix, ...ruZnaj, ...ruCarmix}
     },
   },
   lng: 'en',
