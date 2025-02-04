@@ -49,6 +49,15 @@ const ProjectsPage = () => {
       googlePlayLink: 'https://play.google.com/store/apps/details?id=com.torai.tor_equip.apollo&hl=en_GB&pli=1',
       featured: true,
       status: 'Industrial IoT Innovation'
+    },
+    {
+      title: 'Chelyabinskgorgaz',
+      description: 'Government digital services platform serving 58K+ users across Chelyabinsk region. Complete gas infrastructure management system.',
+      image: '/projects/chelyabinskgorgaz.jpg',
+      technologies: ['React Native', 'Redux', 'Government APIs', 'Digital Identity', 'Payment Integration'],
+      detailLink: '/projects/chelyabinskgorgaz',
+      featured: true,
+      status: 'Government Digital Services'
     }
   ];
 

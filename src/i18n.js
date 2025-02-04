@@ -16,13 +16,16 @@ import ruZnaj from './locales/projects/znaj/ru.json';
 import enCarmix from './locales/projects/carmix/en.json';
 import ruCarmix from './locales/projects/carmix/ru.json';
 
+import enChelyabinskgorgaz from './locales/projects/chelyabinskgorgaz/en.json';
+import ruChelyabinskgorgaz from './locales/projects/chelyabinskgorgaz/ru.json';
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
-      translation: { ...en, ...enTapcar, ...enMebix, ...enZnaj, ...enCarmix}
+      translation: { ...en, ...enTapcar, ...enMebix, ...enZnaj, ...enCarmix, ...enChelyabinskgorgaz}
     },
     ru: {
-      translation: { ...ru, ...ruTapcar, ...ruMebix, ...ruZnaj, ...ruCarmix}
+      translation: { ...ru, ...ruTapcar, ...ruMebix, ...ruZnaj, ...ruCarmix, ...ruChelyabinskgorgaz}
     },
   },
   lng: 'en',

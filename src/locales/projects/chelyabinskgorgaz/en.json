@@ -1,0 +1,293 @@
+{
+  "chelyabinskgorgaz": {
+    "hero": {
+      "subtitle": "Government Digital Services • React Native",
+      "title": "Chelyabinskgorgaz",
+      "description": "Digital Personal Cabinet for Gas Distribution Services",
+      "tagline": "Comprehensive mobile application serving over 58,000 users across Chelyabinsk region, digitizing gas infrastructure services from appointments to payments for two major Gazprom subsidiaries.",
+      "downloadIOS": "Download on App Store",
+      "downloadAndroid": "Get it on Google Play",
+      "technologies": ["React Native", "Redux", "Government APIs", "Payment Integration", "Digital Identity", "Real-time Data"]
+    },
+    "overview": {
+      "title": "Project Overview",
+      "description": "Chelyabinskgorgaz represents the digital transformation of regional gas infrastructure services. As the React Native developer, I built a comprehensive government services platform that serves hundreds of thousands of residents across Chelyabinsk region.",
+      "role": "React Native Developer",
+      "duration": "2017 - 2020 (3+ years)",
+      "company": "Gazprom Gazraspredelenie Chelyabinsk",
+      "group": "Gazprom Mezhregiongaz Group",
+      "scope": "Regional Government Services"
+    },
+    "challenge": {
+      "title": "Public Service Challenges",
+      "description": "Traditional gas infrastructure services required physical visits, manual paperwork, and complex bureaucratic processes. Citizens needed efficient digital access to essential utility services without compromising security and compliance.",
+      "problems": [
+        {
+          "title": "Manual Service Processes",
+          "description": "Time-consuming physical visits for routine gas service requests"
+        },
+        {
+          "title": "Limited Service Hours",
+          "description": "Restricted access to services during business hours only"
+        },
+        {
+          "title": "Complex Documentation",
+          "description": "Extensive paperwork and bureaucratic procedures for gas connections"
+        },
+        {
+          "title": "Payment Inconvenience",
+          "description": "Limited payment options and manual billing processes"
+        }
+      ]
+    },
+    "solution": {
+      "title": "Digital Government Solution",
+      "description": "I developed a comprehensive React Native application that revolutionizes gas infrastructure services through digital transformation, providing 24/7 access to over 20 unified service types for regional residents.",
+      "features": [
+        {
+          "title": "Comprehensive Service Portal",
+          "description": "Over 20 types of unified applications available online, from gas connections to contract management.",
+          "details": [
+            "Gas connection applications",
+            "Technical conditions requests",
+            "Contract management",
+            "Service appointment scheduling"
+          ]
+        },
+        {
+          "title": "Digital Identity & Security",
+          "description": "Verified user system ensuring secure access to personal accounts and sensitive utility information.",
+          "details": [
+            "Identity verification system",
+            "Secure personal data access",
+            "Contract information protection",
+            "Compliance with government standards"
+          ]
+        },
+        {
+          "title": "Meter Management System",
+          "description": "Complete meter installation requests, readings submission, and consumption tracking capabilities.",
+          "details": [
+            "Meter installation requests",
+            "Monthly readings submission",
+            "Consumption history tracking",
+            "Automated billing integration"
+          ]
+        },
+        {
+          "title": "Integrated Payment Platform",
+          "description": "Secure payment processing for gas services with multiple payment methods and receipt management.",
+          "details": [
+            "Multiple payment methods",
+            "Digital receipt storage",
+            "Payment history tracking",
+            "Automatic billing notifications"
+          ]
+        }
+      ]
+    },
+    "technical": {
+      "title": "Technical Implementation",
+      "description": "Built with government-grade security and reliability standards",
+      "architecture": {
+        "title": "Architecture & Security",
+        "items": [
+          "Cross-platform React Native development",
+          "Redux state management",
+          "Government API integration",
+          "Bank-grade security protocols",
+          "Real-time data synchronization",
+          "Offline capability for critical functions"
+        ]
+      },
+      "integration": {
+        "title": "Government Integration",
+        "items": [
+          "Gazprom enterprise systems",
+          "Regional government databases",
+          "Banking payment systems",
+          "Digital identity verification",
+          "Emergency service integration",
+          "Compliance monitoring systems"
+        ]
+      },
+      "compliance": {
+        "title": "Security & Compliance",
+        "items": [
+          "Government data protection standards",
+          "Financial transaction security",
+          "Personal data encryption",
+          "Audit trail maintenance",
+          "Regional compliance requirements",
+          "Emergency service protocols"
+        ]
+      },
+      "technologies": [
+        {
+          "category": "Frontend",
+          "items": ["React Native", "Redux", "Government UI Standards", "Accessibility Features"]
+        },
+        {
+          "category": "Backend",
+          "items": ["Enterprise APIs", "Government Databases", "Payment Gateways", "Identity Services"]
+        },
+        {
+          "category": "Security",
+          "items": ["Data Encryption", "Identity Verification", "Audit Logging", "Compliance Monitoring"]
+        },
+        {
+          "category": "Integration",
+          "items": ["Gazprom Systems", "Banking APIs", "Government Services", "Emergency Systems"]
+        }
+      ]
+    },
+    "impact": {
+      "title": "Regional Impact",
+      "description": "Transforming public service delivery across Chelyabinsk region",
+      "metrics": [
+        {
+          "value": "58K+",
+          "label": "Registered Users",
+          "description": "Active digital service users"
+        },
+        {
+          "value": "20+",
+          "label": "Service Types",
+          "description": "Unified online applications"
+        },
+        {
+          "value": "800K+",
+          "label": "Apartments Served",
+          "description": "Residential gas connections"
+        },
+        {
+          "value": "13K",
+          "label": "Kilometers",
+          "description": "Gas pipeline network"
+        }
+      ],
+      "infrastructure": {
+        "title": "Infrastructure Scale",
+        "items": [
+          {
+            "metric": "7.5 billion m³",
+            "description": "Annual gas transportation volume"
+          },
+          {
+            "metric": "13,000 km",
+            "description": "Gas distribution pipeline network"
+          },
+          {
+            "metric": "800,000+",
+            "description": "Apartments with gas supply"
+          },
+          {
+            "metric": "24/7",
+            "description": "Emergency service availability"
+          }
+        ]
+      }
+    },
+    "services": {
+      "title": "Digital Services Portfolio",
+      "description": "Comprehensive suite of gas infrastructure services available through mobile app",
+      "categories": [
+        {
+          "title": "Connection Services",
+          "description": "Gas connection applications and technical condition requests",
+          "services": [
+            "New gas connection applications",
+            "Technical conditions requests",
+            "Connection status tracking",
+            "Documentation management"
+          ]
+        },
+        {
+          "title": "Account Management",
+          "description": "Personal account and contract management capabilities",
+          "services": [
+            "Contract information access",
+            "Service history tracking",
+            "Personal data management",
+            "Document storage"
+          ]
+        },
+        {
+          "title": "Meter Services",
+          "description": "Complete meter installation and management services",
+          "services": [
+            "Meter installation requests",
+            "Monthly readings submission",
+            "Consumption analytics",
+            "Maintenance scheduling"
+          ]
+        },
+        {
+          "title": "Support & Consultation",
+          "description": "Expert consultation and customer support services",
+          "services": [
+            "Gas safety consultations",
+            "Technical support requests",
+            "Appointment scheduling",
+            "FAQ and knowledge base"
+          ]
+        }
+      ]
+    },
+    "userExperience": {
+      "title": "Citizen-Centric Design",
+      "description": "Designed for accessibility and ease of use across all age groups and technical skill levels",
+      "principles": [
+        {
+          "title": "Accessibility First",
+          "description": "Interface designed to be accessible for users of all ages and technical backgrounds"
+        },
+        {
+          "title": "Government Standards",
+          "description": "Compliance with government digital service standards and accessibility requirements"
+        },
+        {
+          "title": "Security Transparency",
+          "description": "Clear communication about data security and privacy protection measures"
+        },
+        {
+          "title": "Offline Capability",
+          "description": "Critical functions available offline to ensure service continuity"
+        }
+      ]
+    },
+    "digitalization": {
+      "title": "Digital Transformation Impact",
+      "description": "Modernizing government services through mobile technology",
+      "achievements": [
+        {
+          "title": "Service Digitization",
+          "description": "Transformed 20+ manual processes into streamlined digital services"
+        },
+        {
+          "title": "Citizen Satisfaction",
+          "description": "Improved service accessibility and reduced waiting times significantly"
+        },
+        {
+          "title": "Operational Efficiency",
+          "description": "Reduced administrative burden and improved resource allocation"
+        },
+        {
+          "title": "Regional Leadership",
+          "description": "Set example for digital transformation in regional government services"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Interested in Government Digital Services?",
+      "description": "I specialize in building secure, scalable government and enterprise applications with React Native. Let's discuss how I can help digitize your public services.",
+      "button": "Contact Me",
+      "features": [
+        "Government Grade Security",
+        "Enterprise System Integration",
+        "Accessibility Compliance",
+        "Large Scale User Management"
+      ]
+    }
+  }
+}
