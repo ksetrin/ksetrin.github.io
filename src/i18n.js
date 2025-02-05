@@ -19,13 +19,16 @@ import ruCarmix from './locales/projects/carmix/ru.json';
 import enChelyabinskgorgaz from './locales/projects/chelyabinskgorgaz/en.json';
 import ruChelyabinskgorgaz from './locales/projects/chelyabinskgorgaz/ru.json';
 
+import enPreco from './locales/projects/preco/en.json';
+import ruPreco from './locales/projects/preco/ru.json';
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
-      translation: { ...en, ...enTapcar, ...enMebix, ...enZnaj, ...enCarmix, ...enChelyabinskgorgaz}
+      translation: { ...en, ...enTapcar, ...enMebix, ...enZnaj, ...enCarmix, ...enChelyabinskgorgaz, ...enPreco}
     },
     ru: {
-      translation: { ...ru, ...ruTapcar, ...ruMebix, ...ruZnaj, ...ruCarmix, ...ruChelyabinskgorgaz}
+      translation: { ...ru, ...ruTapcar, ...ruMebix, ...ruZnaj, ...ruCarmix, ...ruChelyabinskgorgaz, ...ruPreco}
     },
   },
   lng: 'en',
