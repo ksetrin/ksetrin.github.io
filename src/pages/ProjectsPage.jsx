@@ -58,6 +58,15 @@ const ProjectsPage = () => {
       detailLink: '/projects/chelyabinskgorgaz',
       featured: true,
       status: 'Government Digital Services'
+    },
+    {
+      title: 'URC and SUTU',
+      description: 'Comprehensive mobile application for educational institutions featuring dual-role architecture for students and faculty, complete academic management, and seamless offline-online synchronization.',
+      image: '/projects/preco.jpg',
+      technologies: ['React Native', 'Redux'],
+      detailLink: '/projects/preco',
+      featured: true,
+      status: 'Education'
     }
   ];
 
@@ -160,6 +169,8 @@ const ProjectsPage = () => {
                       )}
                     </div>
                   </div>
+
+
                 </div>
               </div>
           ))}
