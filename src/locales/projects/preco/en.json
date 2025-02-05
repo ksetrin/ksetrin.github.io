@@ -1,0 +1,298 @@
+{
+  "preco": {
+    "hero": {
+      "subtitle": "Educational Platform • React Native",
+      "title": "URC and SUTU",
+      "description": "Digital Student & Faculty Personal Cabinet",
+      "tagline": "Comprehensive mobile application for educational institutions featuring dual-role architecture for students and faculty, complete academic management, and seamless offline-online synchronization.",
+      "downloadIOS": "Download on App Store",
+      "downloadAndroid": "Get it on Google Play",
+      "technologies": ["React Native", "Redux", "Offline Sync", "Document Management", "Role-Based Access", "Educational APIs"]
+    },
+    "overview": {
+      "title": "Development Overview",
+      "description": "URC and SUTU represents a complete digital transformation of educational processes through mobile technology. I architected and developed a comprehensive React Native solution handling complex academic workflows, multi-role user management, and extensive document processing.",
+      "role": "Lead React Native Developer",
+      "duration": "2019 - 2020 (1+ year)",
+      "institutions": "South Ural Technological University & Ural Regional College",
+      "scope": "Educational Mobile Development",
+      "complexity": "Enterprise-Level Academic System"
+    },
+    "challenge": {
+      "title": "Technical Challenges",
+      "description": "Educational institutions require complex mobile solutions handling vast amounts of academic data, multiple user roles, document management, and real-time synchronization while maintaining security and performance.",
+      "problems": [
+        {
+          "title": "Multi-Role Architecture",
+          "description": "Complex permission system for students, faculty, and administrators"
+        },
+        {
+          "title": "Large Data Volumes",
+          "description": "Handling extensive academic records, documents, and multimedia content"
+        },
+        {
+          "title": "Offline Requirements",
+          "description": "Critical academic information must be accessible without internet connection"
+        },
+        {
+          "title": "Document Processing",
+          "description": "Complex document workflows including uploads, reviews, and version control"
+        }
+      ]
+    },
+    "solution": {
+      "title": "Technical Solution",
+      "description": "I developed a sophisticated React Native application with advanced state management, offline-first architecture, and role-based access control to handle complex educational workflows and data management.",
+      "features": [
+        {
+          "title": "Dual-Role Architecture",
+          "description": "Engineered flexible user interface that dynamically adapts based on user role (student vs faculty) with appropriate feature access.",
+          "details": [
+            "Dynamic UI rendering based on permissions",
+            "Role-specific navigation and features",
+            "Secure data segregation",
+            "Contextual interface adaptation"
+          ]
+        },
+        {
+          "title": "Academic Data Management",
+          "description": "Comprehensive system for managing grades, schedules, academic plans, and student records with real-time updates.",
+          "details": [
+            "Electronic gradebook integration",
+            "Real-time grade synchronization",
+            "Academic calendar management",
+            "Performance analytics dashboard"
+          ]
+        },
+        {
+          "title": "Document Workflow System",
+          "description": "Advanced document management supporting coursework uploads, peer reviews, portfolio creation, and version control.",
+          "details": [
+            "Multi-format document support",
+            "Version control and history tracking",
+            "Collaborative review workflows",
+            "Automated backup and sync"
+          ]
+        },
+        {
+          "title": "Offline-First Architecture",
+          "description": "Robust offline capabilities ensuring critical academic information remains accessible without internet connectivity.",
+          "details": [
+            "Intelligent data caching strategies",
+            "Conflict resolution algorithms",
+            "Background synchronization",
+            "Optimistic UI updates"
+          ]
+        }
+      ]
+    },
+    "technical": {
+      "title": "Technical Implementation",
+      "description": "Built with enterprise-grade architecture focusing on performance, security, and maintainability",
+      "architecture": {
+        "title": "Application Architecture",
+        "items": [
+          "React Native with TypeScript",
+          "Redux with middleware for state management",
+          "Offline-first data persistence",
+          "Modular component architecture",
+          "Automated testing and CI/CD",
+          "Performance monitoring and optimization"
+        ]
+      },
+      "dataManagement": {
+        "title": "Data Management",
+        "items": [
+          "SQLite for offline storage",
+          "Real-time synchronization protocols",
+          "Conflict resolution algorithms",
+          "Data encryption and security",
+          "Backup and recovery systems",
+          "Performance optimization for large datasets"
+        ]
+      },
+      "userExperience": {
+        "title": "User Experience Engineering",
+        "items": [
+          "Role-based UI adaptation",
+          "Intuitive navigation patterns",
+          "Accessibility compliance",
+          "Multi-device responsiveness",
+          "Loading state optimization",
+          "Error handling and recovery"
+        ]
+      },
+      "technologies": [
+        {
+          "category": "Frontend",
+          "items": ["React Native", "Redux", "TypeScript", "Custom UI Components"]
+        },
+        {
+          "category": "Data Layer",
+          "items": ["SQLite", "AsyncStorage", "File System APIs", "Sync Protocols"]
+        },
+        {
+          "category": "Security",
+          "items": ["Authentication", "Authorization", "Data Encryption", "Session Management"]
+        },
+        {
+          "category": "Performance",
+          "items": ["Code Splitting", "Lazy Loading", "Memory Optimization", "Bundle Analysis"]
+        }
+      ]
+    },
+    "features": {
+      "title": "Application Features",
+      "description": "Comprehensive educational functionality designed for modern academic workflows",
+      "studentFeatures": {
+        "title": "Student Portal",
+        "items": [
+          {
+            "title": "Electronic Grade Book",
+            "description": "Real-time access to grades, assessments, and academic progress tracking"
+          },
+          {
+            "title": "Schedule Management",
+            "description": "Interactive class schedules with notifications and calendar integration"
+          },
+          {
+            "title": "Portfolio Builder",
+            "description": "Digital portfolio creation with multimedia support and sharing capabilities"
+          },
+          {
+            "title": "Document Center",
+            "description": "Personal document management including coursework, certificates, and records"
+          },
+          {
+            "title": "Financial Information",
+            "description": "Tuition tracking, payment history, and financial aid information"
+          },
+          {
+            "title": "Communication Hub",
+            "description": "Direct messaging with faculty, announcements, and surveys"
+          }
+        ]
+      },
+      "facultyFeatures": {
+        "title": "Faculty Dashboard",
+        "items": [
+          {
+            "title": "Grade Management",
+            "description": "Efficient grade entry, calculation, and reporting tools"
+          },
+          {
+            "title": "Course Materials",
+            "description": "Upload and manage educational resources, syllabi, and assignments"
+          },
+          {
+            "title": "Student Analytics",
+            "description": "Performance tracking and analytics for student progress monitoring"
+          },
+          {
+            "title": "Administrative Tools",
+            "description": "Access to orders, policies, and institutional communications"
+          }
+        ]
+      }
+    },
+    "development": {
+      "title": "Development Process",
+      "description": "Agile development approach with focus on user-centered design and technical excellence",
+      "methodology": [
+        {
+          "title": "User Research & Analysis",
+          "description": "Extensive analysis of educational workflows and user needs across different roles"
+        },
+        {
+          "title": "Modular Architecture Design",
+          "description": "Created scalable architecture supporting multiple institutions and user types"
+        },
+        {
+          "title": "Iterative Development",
+          "description": "Agile development with continuous feedback from students and faculty"
+        },
+        {
+          "title": "Performance Optimization",
+          "description": "Continuous optimization for handling large datasets and complex operations"
+        }
+      ]
+    },
+    "impact": {
+      "title": "Development Impact",
+      "description": "Technical achievements and user experience improvements",
+      "metrics": [
+        {
+          "value": "2",
+          "label": "Institutions Served",
+          "description": "University and College deployment"
+        },
+        {
+          "value": "15+",
+          "label": "Core Features",
+          "description": "Comprehensive academic functions"
+        },
+        {
+          "value": "100%",
+          "label": "Offline Capability",
+          "description": "Critical features work offline"
+        },
+        {
+          "value": "Multi-Role",
+          "label": "User Architecture",
+          "description": "Students and Faculty support"
+        }
+      ],
+      "achievements": [
+        {
+          "title": "Seamless Offline Experience",
+          "description": "Implemented robust offline-first architecture ensuring uninterrupted access to academic data"
+        },
+        {
+          "title": "Role-Based Security",
+          "description": "Developed sophisticated permission system protecting sensitive academic information"
+        },
+        {
+          "title": "Performance Optimization",
+          "description": "Achieved excellent performance despite handling large volumes of educational data"
+        },
+        {
+          "title": "Scalable Architecture",
+          "description": "Created modular system easily adaptable for different educational institutions"
+        }
+      ]
+    },
+    "technicalHighlights": {
+      "title": "Technical Highlights",
+      "description": "Key technical innovations and solutions implemented",
+      "highlights": [
+        {
+          "title": "Smart Data Synchronization",
+          "description": "Developed intelligent sync algorithms handling conflicts and ensuring data consistency across devices"
+        },
+        {
+          "title": "Dynamic UI Rendering",
+          "description": "Built adaptive interface system that changes based on user role and permissions"
+        },
+        {
+          "title": "Document Processing Pipeline",
+          "description": "Created efficient document handling system supporting multiple formats and version control"
+        },
+        {
+          "title": "Performance Monitoring",
+          "description": "Implemented comprehensive analytics for monitoring app performance and user behavior"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Interested in Educational Technology?",
+      "description": "I specialize in building complex educational platforms with React Native. Let's discuss how I can help create innovative mobile solutions for your educational institution.",
+      "button": "Contact Me",
+      "features": [
+        "Multi-Role Architecture",
+        "Offline-First Development",
+        "Educational Data Management",
+        "Enterprise Security Standards"
+      ]
+    }
+  }
+}
