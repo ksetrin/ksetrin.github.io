@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import {
@@ -15,7 +15,12 @@ import {
     FaUsers,
     FaAward,
     FaHeart,
-    FaQuoteLeft
+    FaPlay,
+    FaPause,
+    FaVolumeUp,
+    FaVolumeMute,
+    FaExpand,
+    FaTimes
 } from 'react-icons/fa';
 import {
     SiTypescript,
@@ -24,9 +29,19 @@ import {
     SiTensorflow,
     SiGoogleanalytics
 } from 'react-icons/si';
+import video1 from '@/assets/video/mebix_video.mp4';
+import video_poster from '@/assets/images/project_preview/mebix_video_poster.jpg';
+import screen1 from '@/assets/images/screenshots/mebix/screen-1.png';
+import screen2 from '@/assets/images/screenshots/mebix/screen-2.png';
+import screen3 from '@/assets/images/screenshots/mebix/screen-3.png';
+import screen4 from '@/assets/images/screenshots/mebix/screen-4.png';
+import screen5 from '@/assets/images/screenshots/mebix/screen-5.png';
 
 const MebixProject = () => {
     const { t, i18n } = useTranslation();
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [videoPlaying, setVideoPlaying] = useState(false);
+    const [videoMuted, setVideoMuted] = useState(true);
 
     const technologies = [
         { icon: <FaReact className="w-6 h-6" />, name: 'React Native', color: 'text-blue-400' },
@@ -44,8 +59,39 @@ const MebixProject = () => {
         { value: '40%', label: t('mebix.results.metrics.3.label'), period: t('mebix.results.metrics.3.period') }
     ];
 
+    const screenshots = [screen1, screen2, screen3, screen4, screen5];
+
+    const toggleVideo = () => {
+        const video = document.getElementById('mebix-video');
+        if (video) {
+            if (videoPlaying) {
+                video.pause();
+            } else {
+                video.play();
+            }
+            setVideoPlaying(!videoPlaying);
+        }
+    };
+
+    const toggleMute = () => {
+        const video = document.getElementById('mebix-video');
+        if (video) {
+            video.muted = !videoMuted;
+            setVideoMuted(!videoMuted);
+        }
+    };
+
+    const openImageModal = (imageSrc) => {
+        setSelectedImage(imageSrc);
+    };
+
+    const closeImageModal = () => {
+        setSelectedImage(null);
+    };
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+            {/* Hero Section */}
             <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900">
                 <div className="absolute inset-0">
                     <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-500 rounded-full mix-blend-multiply dark:mix-blend-normal opacity-20 filter blur-3xl animate-pulse"></div>
@@ -123,6 +169,49 @@ const MebixProject = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <section className="py-20">
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl font-bold mb-6">Project Showcase</h2>
+                        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                            Watch how Mebix revolutionizes diabetes management through AI-powered nutrition tracking and personalized therapy guidance.
+                        </p>
+                    </div>
+
+                    <div className="relative max-w-4xl mx-auto">
+                        <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
+                            <video
+                                id="mebix-video"
+                                className="w-full h-auto"
+                                poster={video_poster}
+                                muted={videoMuted}
+                                loop
+                                onPlay={() => setVideoPlaying(true)}
+                                onPause={() => setVideoPlaying(false)}
+                            >
+                                <source src={video1} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">
+                                <div className="flex items-center gap-4">
+                                    <button
+                                        onClick={toggleVideo}
+                                        className="bg-white bg-opacity-20 backdrop-blur-sm text-white p-4 rounded-full hover:bg-opacity-30 transition-all"
+                                    >
+                                        {videoPlaying ? <FaPause className="w-6 h-6" /> : <FaPlay className="w-6 h-6 ml-1" />}
+                                    </button>
+                                    <button
+                                        onClick={toggleMute}
+                                        className="bg-white bg-opacity-20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-opacity-30 transition-all"
+                                    >
+                                        {videoMuted ? <FaVolumeMute className="w-5 h-5" /> : <FaVolumeUp className="w-5 h-5" />}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="py-20">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="text-4xl font-bold mb-6">{t('mebix.overview.title')}</h2>
@@ -171,6 +260,33 @@ const MebixProject = () => {
                             </p>
                         </div>
 
+                        <div className="mb-16">
+                            <h3 className="text-2xl font-bold text-center mb-8">App Screenshots</h3>
+                            <div className="flex gap-4 overflow-x-auto pb-4 justify-center">
+                                {screenshots.map((screenshot, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex-shrink-0 cursor-pointer group"
+                                        onClick={() => openImageModal(screenshot)}
+                                    >
+                                        <div className="relative w-32 h-68 md:w-40 md:h-85 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
+                                            <img
+                                                src={screenshot}
+                                                alt={`Mebix App Screenshot ${index + 1}`}
+                                                className="w-full h-full object-cover"
+                                                onError={(e) => {
+                                                    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzc1IiBoZWlnaHQ9Ijc5OCIgdmlld0JveD0iMCAwIDM3NSA3OTgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNzUiIGhlaWdodD0iNzk4IiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUI5QjlCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1lYml4IFNjcmVlbnNob3Q8L3RleHQ+Cjwvc3ZnPg==';
+                                                }}
+                                            />
+                                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                <FaExpand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
                         <div className="grid lg:grid-cols-2 gap-12">
                             {[0, 1, 2, 3].map((index) => (
                                 <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
@@ -187,8 +303,8 @@ const MebixProject = () => {
                                             <li key={detailIndex} className="flex items-center gap-2">
                                                 <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
                                                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                          {t(`mebix.solution.features.${index}.details.${detailIndex}`)}
-                        </span>
+                                                    {t(`mebix.solution.features.${index}.details.${detailIndex}`)}
+                                                </span>
                                             </li>
                                         ))}
                                     </ul>
@@ -297,12 +413,12 @@ const MebixProject = () => {
                                     <div className="space-y-3">
                                         {[0, 1, 2, 3].map((resultIndex) => (
                                             <div key={resultIndex} className="flex justify-between items-center">
-                        <span className="text-gray-600 dark:text-gray-300">
-                          {t(`mebix.results.studies.${studyIndex}.results.${resultIndex}`).split(':')[0]}:
-                        </span>
+                                                <span className="text-gray-600 dark:text-gray-300">
+                                                    {t(`mebix.results.studies.${studyIndex}.results.${resultIndex}`).split(':')[0]}:
+                                                </span>
                                                 <span className="font-semibold text-blue-600 dark:text-blue-400">
-                          {t(`mebix.results.studies.${studyIndex}.results.${resultIndex}`).split(':')[1]}
-                        </span>
+                                                    {t(`mebix.results.studies.${studyIndex}.results.${resultIndex}`).split(':')[1]}
+                                                </span>
                                             </div>
                                         ))}
                                     </div>
@@ -314,19 +430,16 @@ const MebixProject = () => {
 
                 <section className="py-20">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold mb-6">{t('mebix.testimonials.title')}</h2>
+                        <h2 className="text-4xl font-bold mb-6">{t('mebix.impact.title')}</h2>
+                        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                            {t('mebix.impact.description')}
+                        </p>
                     </div>
-                    <div className="grid lg:grid-cols-3 gap-8">
-                        {[0, 1, 2].map((index) => (
-                            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg relative">
-                                <FaQuoteLeft className="w-8 h-8 text-blue-500 mb-6" />
-                                <p className="text-gray-700 dark:text-gray-300 mb-6 italic">
-                                    "{t(`mebix.testimonials.items.${index}.text`)}"
-                                </p>
-                                <div>
-                                    <div className="font-semibold">{t(`mebix.testimonials.items.${index}.author`)}</div>
-                                    <div className="text-sm text-gray-500 dark:text-gray-400">{t(`mebix.testimonials.items.${index}.role`)}</div>
-                                </div>
+                    <div className="grid lg:grid-cols-2 gap-8">
+                        {[0, 1, 2, 3].map((index) => (
+                            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+                                <h3 className="text-xl font-semibold mb-4">{t(`mebix.impact.achievements.${index}.title`)}</h3>
+                                <p className="text-gray-600 dark:text-gray-300">{t(`mebix.impact.achievements.${index}.description`)}</p>
                             </div>
                         ))}
                     </div>
@@ -360,6 +473,25 @@ const MebixProject = () => {
                     </div>
                 </section>
             </div>
+
+            {selectedImage && (
+                <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4" onClick={closeImageModal}>
+                    <div className="relative max-w-sm mx-auto">
+                        <button
+                            onClick={closeImageModal}
+                            className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all"
+                        >
+                            <FaTimes className="w-4 h-4" />
+                        </button>
+                        <img
+                            src={selectedImage}
+                            alt="Mebix App Screenshot"
+                            className="w-full h-auto max-h-[90vh] object-contain rounded-2xl"
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

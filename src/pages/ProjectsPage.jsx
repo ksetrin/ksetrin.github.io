@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaExternalLinkAlt, FaArrowRight, FaApple, FaGooglePlay } from 'react-icons/fa';
+import image_mebix from '@/assets/images/project_preview/mebix.png';
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
@@ -10,7 +11,7 @@ const ProjectsPage = () => {
     {
       title: 'Mebix',
       description: 'Digital therapy companion for diabetes type 2. AI-powered nutrition tracking with medical-grade accuracy.',
-      image: '/projects/mebix.jpg',
+      image: image_mebix,
       technologies: ['React Native', 'TypeScript', 'Redux', 'Firebase', 'AI/ML'],
       detailLink: '/projects/mebix',
       externalLink: 'https://www.mebix.de/',
@@ -90,28 +91,32 @@ const ProjectsPage = () => {
                   }`}
               >
                 {project.featured && (
-                    <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center py-2 text-sm font-medium">
+                    <div
+                        className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center py-2 text-sm font-medium">
                       Featured Project
                     </div>
                 )}
 
-                <div className="h-48 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 relative">
-                  {project.image && (
+                <div
+                    className="h-48 bg-gradient-to-br from-indigo-100 to-white-100 dark:from-indigo-100 dark:to-white-100 relative p-3">
+                  {project.image ? (
                       <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain transition-opacity duration-300"
                           onError={(e) => {
                             e.target.style.display = 'none';
                           }}
                       />
+                  ) : (
+                      <div
+                          className="absolute inset-0 flex items-center justify-center text-gray-500 dark:text-gray-400 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold">{project.title}</div>
+                          <div className="text-sm">{project.status || 'Project Image'}</div>
+                        </div>
+                      </div>
                   )}
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-500 dark:text-gray-400">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold">{project.title}</div>
-                      <div className="text-sm">{project.status || 'Project Image'}</div>
-                    </div>
-                  </div>
                 </div>
 
                 <div className="p-6">
@@ -123,7 +128,7 @@ const ProjectsPage = () => {
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech, techIndex) => (
+                  {project.technologies.map((tech, techIndex) => (
                         <span
                             key={techIndex}
                             className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
@@ -140,7 +145,7 @@ const ProjectsPage = () => {
                             className="inline-flex justify-center items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white text-sm font-medium rounded-md transition-colors duration-200"
                         >
                           {t('projects.viewProject')}
-                          <FaArrowRight className="w-4 h-4" />
+                          <FaArrowRight className="w-4 h-4"/>
                         </Link>
                     )}
 
@@ -153,7 +158,7 @@ const ProjectsPage = () => {
                               className="flex-1 inline-flex justify-center items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
                           >
                             {t('projects.liveDemo')}
-                            <FaExternalLinkAlt className="w-3 h-3" />
+                            <FaExternalLinkAlt className="w-3 h-3"/>
                           </a>
                       )}
 
@@ -169,8 +174,6 @@ const ProjectsPage = () => {
                       )}
                     </div>
                   </div>
-
-
                 </div>
               </div>
           ))}
