@@ -203,26 +203,6 @@
         }
       ]
     },
-    "testimonials": {
-      "title": "What Users Say",
-      "items": [
-        {
-          "text": "Mebix has completely changed how I manage my diabetes. The AI food recognition is incredibly accurate and saves me so much time.",
-          "author": "Maria K.",
-          "role": "Diabetes Patient"
-        },
-        {
-          "text": "As a diabetologist, I'm impressed with the medical accuracy and evidence-based approach. My patients love using Mebix.",
-          "author": "Dr. Schmidt",
-          "role": "Diabetologist"
-        },
-        {
-          "text": "The personalized recommendations actually work. I've lost 8kg and my HbA1c improved significantly.",
-          "author": "Thomas B.",
-          "role": "Mebix User"
-        }
-      ]
-    },
     "cta": {
       "title": "Interested in Similar Projects?",
       "description": "I specialize in building medical-grade mobile applications with React Native. Let's discuss how I can help bring your healthcare innovation to life.",
