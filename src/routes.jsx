@@ -9,7 +9,7 @@ import ZnajProject from "@/pages/projects/Znaj.jsx";
 import CarMixProject from "@/pages/projects/CarMix.jsx";
 import ChelyabinskgorgazProject from "@/pages/projects/Chelyabinskgorgaz.jsx";
 import PrecoProject from "@/pages/projects/Preco.jsx";
-
+import ArticleViewer from "@/pages/ArticleViewer.jsx";
 
 const AppRoutes = () => {
     return (
@@ -23,6 +23,7 @@ const AppRoutes = () => {
             <Route path="/projects/chelyabinskgorgaz" element={<ChelyabinskgorgazProject />} />
             <Route path="/projects/preco" element={<PrecoProject />} />
             <Route path="/articles" element={<ArticlesPage />} />
+            <Route path="/articles/:filename" element={<ArticleViewer />} />
         </Routes>
     );
 };
