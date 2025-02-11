@@ -1,23 +1,83 @@
-Настройка GitHub Actions для android React Native
+---
+title: "GitHub Actions для iOS React Native"
+description: "Настройка CI/CD для iOS: от создания сертификатов до автоматического деплоя в TestFlight через Fastlane"
+category: "DevOps"
+tags: ["react-native", "ios", "ci-cd", "fastlane", "testflight"]
+---
 
-1. Зарегистрировать и оплатить [Developer Account](https://developer.apple.com/account)
-2. В [App Store connect](https://developer.apple.com/account) создать проект (приложение)
-3. Перейти в раздел TestFlights и создать группу тестировщиков
-4. Перейти в раздел [App Store Connect API](https://appstoreconnect.apple.com/access/integrations/api) и создать ключ
-5. В разделе [Certificates](https://developer.apple.com/account/resources/certificates/list) создать	Distribution и 	Development
-6. В разделе [Identifiers](https://developer.apple.com/account/resources/identifiers/list) создать идентификатор идентичный bundle id например com.example
-7. В разделе [Devices](https://developer.apple.com/account/resources/devices/list) зарегистировать свой iphone. Возможно это и не обязательно, но мне иначе не удавалось установить приложение на свой айфон
-8. В разделе [Provisioning Profile](https://developer.apple.com/account/resources/profiles/list) создать Profile с Platform - iOS, Type - App Store, Enabled Capabilities - In-App Purchase, Push Notifications
+# Настройка GitHub Actions для iOS React Native
 
-Теперь неодходимо подготовить скрипт для сборки, для этого используется fastlane
-1. Необходимо установить fastlane локально, например через brew
-2. Создать и перейти в папку ios/fastlane
-3. Сделать инициализацию fastlane (TODO добавить команду)
-4. Будут запрошены данные аккаунта, необходимо ввести и пройти весь setup
-5. В папке fastlane появится 2 файла: Appfile, Fastfile
+## Введение
 
-Содержимое Fastfile
+В этой статье рассматривается настройка автоматической сборки и деплоя iOS приложения на React Native с помощью GitHub Actions и Fastlane. Процесс более сложный чем для Android, но результат того стоит - полная автоматизация релизов в TestFlight.
+
+## Предварительные требования
+
+Перед началом убедитесь, что у вас есть:
+- Платный Apple Developer Account ($99/год)
+- Проект React Native
+- Репозиторий на GitHub
+- Доступ к macOS для первоначальной настройки
+
+## Шаг 1: Настройка Apple Developer Account
+
+### Регистрация и создание приложения
+
+1. Зарегистрируйтесь и оплатите [Apple Developer Account](https://developer.apple.com/account)
+2. В [App Store Connect](https://appstoreconnect.apple.com) создайте новое приложение
+3. Перейдите в раздел TestFlight и создайте группу тестировщиков
+
+### Настройка API ключа
+
+4. Перейдите в раздел [App Store Connect API](https://appstoreconnect.apple.com/access/integrations/api) и создайте ключ
+5. Сохраните ключ - он понадобится для автоматизации
+
+## Шаг 2: Создание сертификатов и профилей
+
+### Сертификаты
+
+1. В разделе [Certificates](https://developer.apple.com/account/resources/certificates/list) создайте:
+    - **Distribution Certificate** - для релизных сборок
+    - **Development Certificate** - для разработки
+
+### Идентификаторы и устройства
+
+2. В разделе [Identifiers](https://developer.apple.com/account/resources/identifiers/list) создайте App ID идентичный bundle id (например: `com.example.app`)
+
+3. В разделе [Devices](https://developer.apple.com/account/resources/devices/list) зарегистрируйте свой iPhone для тестирования
+
+### Provisioning Profile
+
+4. В разделе [Provisioning Profiles](https://developer.apple.com/account/resources/profiles/list) создайте профиль:
+    - **Platform**: iOS
+    - **Type**: App Store
+    - **Capabilities**: In-App Purchase, Push Notifications (если нужны)
+
+## Шаг 3: Настройка Fastlane
+
+### Установка и инициализация
+
+Fastlane - это инструмент для автоматизации сборки и деплоя iOS приложений.
+
+1. Установите Fastlane локально:
+```bash
+brew install fastlane
 ```
+
+2. Перейдите в папку iOS проекта и инициализируйте Fastlane:
+```bash
+cd ios
+fastlane init
+```
+
+3. Пройдите весь setup, введя данные Apple Developer аккаунта
+4. В папке `ios/fastlane` появятся файлы: `Appfile` и `Fastfile`
+
+### Настройка Fastfile
+
+Замените содержимое `Fastfile` на:
+
+```ruby
 default_platform(:ios)
 
 platform :ios do
@@ -53,7 +113,7 @@ platform :ios do
         provisioningProfiles: {
           "#{ENV["BUNDLE_ID"]}" => "example"
         },
-        signingCertificate: "Apple Distribution: Ilya Solovev (Y6CA97C76G)"
+        signingCertificate: "Apple Distribution: Your Name (XXXXXXXXXX)"
       }
     )
 
@@ -83,18 +143,26 @@ platform :ios do
 end
 ```
 
-В папке ios/fastlane можно создать файл .env и определить там секреты
-CERTIFICATE_PATH=cert.p12 \
-IOS_DISTRIBUTION_CERTIFICATE_PASSWORD=password \
-PROVISIONING_PROFILE_PATH=profile.mobileprovision \
-BUNDLE_ID=com.example
+### Локальные переменные окружения
 
-APP_STORE_CONNECT_KEY_ID=XXXXXXXXX \
-APP_STORE_CONNECT_ISSUER_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX \
-APP_STORE_CONNECT_API_KEY_P8=BASE64STRING=
+Создайте файл `ios/fastlane/.env` для локального тестирования:
 
-Если билд fastlane прошел успешно и все загрузилось в TestFlight можно авторизировать скриптом
+```env
+CERTIFICATE_PATH=cert.p12
+IOS_DISTRIBUTION_CERTIFICATE_PASSWORD=your_password
+PROVISIONING_PROFILE_PATH=profile.mobileprovision
+BUNDLE_ID=com.example.app
+
+APP_STORE_CONNECT_KEY_ID=XXXXXXXXX
+APP_STORE_CONNECT_ISSUER_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+APP_STORE_CONNECT_API_KEY_P8=BASE64_ENCODED_KEY
 ```
+
+## Шаг 4: GitHub Actions Workflow
+
+После успешного локального билда создайте файл `.github/workflows/ios.yml`:
+
+```yaml
 name: iOS CI/CD to TestFlight
 
 on:
@@ -130,7 +198,7 @@ jobs:
       - name: Enable Corepack (for Yarn 4)
         run: corepack enable
 
-      - name: Install JavaScript Dependencies with Yarn
+      - name: Install JavaScript Dependencies
         run: yarn install
 
       - name: Select Xcode 16.4
@@ -140,7 +208,6 @@ jobs:
         run: |
           cd ios
           pod install --repo-update
-          cd ..
 
       - name: Decode iOS Distribution Certificate
         env:
@@ -148,7 +215,6 @@ jobs:
         run: |
           mkdir -p "$TEMP_DIR"
           echo "$IOS_DISTRIBUTION_CERTIFICATE_P12" | base64 --decode > "$CERTIFICATE_PATH"
-          echo "::debug::Certificate decoded to $CERTIFICATE_PATH."
 
       - name: Decode iOS Provisioning Profile
         env:
@@ -156,27 +222,76 @@ jobs:
         run: |
           mkdir -p "$TEMP_DIR"
           echo "$IOS_PROVISIONING_PROFILE" | base64 --decode > "$PROVISIONING_PROFILE_PATH"
-          echo "::debug::Provisioning profile decoded to $PROVISIONING_PROFILE_PATH."
 
       - name: Install Fastlane
         run: |
           cd ios
           bundle install --path vendor/bundle
-          cd ..
 
-      - name: Build and Upload to TestFlight via Fastlane
+      - name: Build and Upload to TestFlight
         run: |
           cd ios
           bundle exec fastlane beta
-          cd ..
         env:
           CERTIFICATE_PATH: ${{ env.CERTIFICATE_PATH }}
           IOS_DISTRIBUTION_CERTIFICATE_PASSWORD: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
           PROVISIONING_PROFILE_PATH: ${{ env.PROVISIONING_PROFILE_PATH }}
 ```
 
-Очень важно использовать такие же версии как и на локальной машине
+## Шаг 5: GitHub Secrets
 
-Нарпимер, только macos-15 содержит Xcode 16.4
+Добавьте в настройки репозитория следующие секреты:
 
-А так же важно выбрать node-version: '23.11.0' и использовать Yarn 4
+```
+APPLE_ID                              # Ваш Apple ID
+DEVELOPER_TEAM_ID                     # Team ID из Developer Account
+BUNDLE_ID                             # Bundle ID приложения
+
+APP_STORE_CONNECT_KEY_ID              # Key ID из App Store Connect API
+APP_STORE_CONNECT_ISSUER_ID           # Issuer ID из App Store Connect API
+APP_STORE_CONNECT_API_KEY_P8          # Base64 содержимое .p8 файла
+
+IOS_DISTRIBUTION_CERTIFICATE_P12      # Base64 сертификата Distribution
+IOS_DISTRIBUTION_CERTIFICATE_PASSWORD # Пароль сертификата
+IOS_PROVISIONING_PROFILE              # Base64 Provisioning Profile
+```
+
+## Важные моменты
+
+### Версии инструментов
+
+Критически важно использовать совместимые версии:
+- **macOS 15** содержит Xcode 16.4
+- **Node.js 23.11.0** для стабильной работы
+- **Yarn 4** для управления зависимостями
+
+### Подготовка файлов
+
+Для добавления в GitHub Secrets:
+
+```bash
+# Кодирование сертификата
+base64 -i certificate.p12 | pbcopy
+
+# Кодирование Provisioning Profile
+base64 -i profile.mobileprovision | pbcopy
+
+# Кодирование API ключа
+base64 -i AuthKey_XXXXXXXXX.p8 | pbcopy
+```
+
+## Заключение
+
+После настройки каждый пуш в main ветку будет автоматически:
+1. Собирать iOS приложение
+2. Подписывать его валидными сертификатами
+3. Загружать в TestFlight для тестирования
+
+Процесс настройки сложнее Android, но обеспечивает полную автоматизацию iOS релизов.
+
+## Полезные ссылки
+
+- [Apple Developer Portal](https://developer.apple.com/account)
+- [App Store Connect](https://appstoreconnect.apple.com)
+- [Fastlane Documentation](https://docs.fastlane.tools)
+- [GitHub Actions для iOS](https://docs.github.com/en/actions)
