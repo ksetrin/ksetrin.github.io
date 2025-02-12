@@ -1,8 +1,17 @@
 {
   "articles": {
-    "title": "Articles",
-    "subtitle": "Sharing knowledge and experiences",
-    "readMore": "Read More"
+    "title": "Articles & Guides",
+    "subtitle": "Sharing experience in mobile development and DevOps practices",
+    "readMore": "Read more",
+    "allTags": "All",
+    "noArticles": "No articles found",
+    "tryOtherTag": "Try selecting another tag",
+    "totalArticles": "Total articles",
+    "backToArticles": "Back to articles",
+    "otherArticles": "Other articles",
+    "notFound": "Article not found",
+    "articleNotExists": "The requested article does not exist",
+    "words": "words"
   },
   "projects": {
     "title": "Projects",
