@@ -1,14 +1,11 @@
 class ArticlesService {
     constructor() {
-        this.githubUsername = 'ksetrin'; // ваш GitHub username
-        this.repoName = 'ksetrin.github.io'; // название репозитория
-        this.articlesPath = 'articles'; // папка со статьями
+        this.githubUsername = 'ksetrin';
+        this.repoName = 'ksetrin.github.io';
+        this.articlesPath = 'articles';
         this.baseApiUrl = 'https://api.github.com';
     }
 
-    /**
-     * Получает список всех .md файлов из папки articles
-     */
     async getArticlesList() {
         try {
             const response = await fetch(
@@ -21,7 +18,6 @@ class ArticlesService {
 
             const files = await response.json();
 
-            // Фильтруем только .md файлы
             const markdownFiles = files.filter(file =>
                 file.name.endsWith('.md') && file.type === 'file'
             );
@@ -33,9 +29,6 @@ class ArticlesService {
         }
     }
 
-    /**
-     * Получает содержимое конкретной статьи
-     */
     async getArticleContent(filename) {
         try {
             const response = await fetch(
@@ -48,13 +41,17 @@ class ArticlesService {
 
             const data = await response.json();
 
-            // GitHub возвращает содержимое в base64, декодируем
-            const content = atob(data.content.replace(/\n/g, ''));
+            const base64Content = data.content.replace(/\n/g, '');
+            const binaryString = atob(base64Content);
+            const uint8Array = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++) {
+                uint8Array[i] = binaryString.charCodeAt(i);
+            }
+            const content = new TextDecoder('utf-8').decode(uint8Array);
 
             return {
                 content,
                 sha: data.sha,
-                lastModified: data.last_modified || new Date().toISOString(),
                 size: data.size
             };
         } catch (error) {
@@ -63,9 +60,6 @@ class ArticlesService {
         }
     }
 
-    /**
-     * Парсит метаданные из frontmatter статьи
-     */
     parseFrontmatter(content) {
         const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
         const match = content.match(frontmatterRegex);
@@ -80,7 +74,6 @@ class ArticlesService {
         const frontmatter = match[1];
         const articleContent = match[2];
 
-        // Простой парсер YAML (для базовых случаев)
         const metadata = {};
         frontmatter.split('\n').forEach(line => {
             const colonIndex = line.indexOf(':');
@@ -88,13 +81,11 @@ class ArticlesService {
                 const key = line.substring(0, colonIndex).trim();
                 let value = line.substring(colonIndex + 1).trim();
 
-                // Убираем кавычки если есть
                 if ((value.startsWith('"') && value.endsWith('"')) ||
                     (value.startsWith("'") && value.endsWith("'"))) {
                     value = value.slice(1, -1);
                 }
 
-                // Парсим массивы
                 if (value.startsWith('[') && value.endsWith(']')) {
                     value = value.slice(1, -1).split(',').map(item => item.trim().replace(/['"]/g, ''));
                 }
@@ -109,9 +100,6 @@ class ArticlesService {
         };
     }
 
-    /**
-     * Получает полную информацию о статье с метаданными
-     */
     async getArticleWithMetadata(filename) {
         const articleData = await this.getArticleContent(filename);
 
@@ -121,7 +109,6 @@ class ArticlesService {
 
         const { metadata, content } = this.parseFrontmatter(articleData.content);
 
-        // Вычисляем время чтения (примерно 200 слов в минуту)
         const wordCount = content.split(/\s+/).length;
         const readTime = Math.ceil(wordCount / 200);
 
@@ -132,7 +119,6 @@ class ArticlesService {
             tags: metadata.tags || [],
             category: metadata.category || 'General',
             readTime: `${readTime} мин`,
-            lastModified: metadata.date || articleData.lastModified,
             content,
             metadata: {
                 ...metadata,
@@ -142,9 +128,6 @@ class ArticlesService {
         };
     }
 
-    /**
-     * Получает все статьи с метаданными
-     */
     async getAllArticles() {
         const filesList = await this.getArticlesList();
 
@@ -152,15 +135,11 @@ class ArticlesService {
             filesList.map(file => this.getArticleWithMetadata(file.name))
         );
 
-        // Фильтруем null значения и сортируем по дате
         return articles
             .filter(article => article !== null)
-            .sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
+            .sort((a, b) => a.title.localeCompare(b.title));
     }
 
-    /**
-     * Вспомогательные методы
-     */
     generateTitleFromFilename(filename) {
         return filename
             .replace('.md', '')
@@ -169,25 +148,19 @@ class ArticlesService {
     }
 
     generateDescriptionFromContent(content) {
-        // Берем первые 150 символов после заголовков
         const withoutHeaders = content.replace(/#{1,6}\s.*/g, '');
         return withoutHeaders.substring(0, 150).trim() + '...';
     }
 
-    /**
-     * Поиск статей
-     */
     searchArticles(articles, query, selectedTag = 'all') {
         let filtered = articles;
 
-        // Фильтр по тегу
         if (selectedTag !== 'all') {
             filtered = filtered.filter(article =>
                 article.tags.includes(selectedTag)
             );
         }
 
-        // Поиск по запросу
         if (query) {
             const searchLower = query.toLowerCase();
             filtered = filtered.filter(article =>
