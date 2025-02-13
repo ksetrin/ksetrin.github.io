@@ -10,8 +10,10 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "country-flag-icons": "^1.5.19",
     "i18next": "^23.2.1",
+    "marked": "^16.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.0.1",
