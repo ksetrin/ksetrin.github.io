@@ -1,37 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
+import { marked } from 'marked';
 import ArticlesService from '@/service/articlesService';
 
-const parseMarkdown = (content) => {
-    return content
-        .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">$1</h3>')
-        .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 mt-8">$1</h2>')
-        .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 mt-8">$1</h1>')
-
-        .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto mb-4"><code class="text-sm">$2</code></pre>')
-        .replace(/`([^`]+)`/g, '<code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">$1</code>')
-
-        .replace(/^\d+\.\s(.*)$/gim, '<li class="mb-2">$1</li>')
-        .replace(/^[-*]\s(.*)$/gim, '<li class="mb-2">$1</li>')
-
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline" target="_blank" rel="noopener noreferrer">$1</a>')
-
-        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
-
-        .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
-
-        .split('\n\n')
-        .map(paragraph => {
-            if (paragraph.trim().startsWith('<h') ||
-                paragraph.trim().startsWith('<pre') ||
-                paragraph.trim().startsWith('<li')) {
-                return paragraph;
-            }
-            return paragraph.trim() ? `<p class="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed">${paragraph.trim()}</p>` : '';
-        })
-        .join('');
-};
+marked.setOptions({
+    breaks: true,
+    gfm: true,
+});
 
 const ArticleViewer = () => {
     const { t } = useTranslation();
@@ -110,20 +86,21 @@ const ArticleViewer = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 animate-fade-in">
+        <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 animate-fade-in">
             <button
                 onClick={handleBackClick}
-                className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 mb-6 transition-all duration-200 transform hover:translate-x-1 border-none"
+                className="inline-flex items-center px-4 py-2  rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 transform hover:scale-105 border-none"
             >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
                 </svg>
                 {t('articles.backToArticles')}
             </button>
 
-            <header className="mb-8 animate-slide-down">
+            <header className="mt-8 animate-slide-down">
                 <div className="flex items-center gap-3 mb-4">
-            <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 ${getCategoryColor(article.category)}`}>
+            <span
+                className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 ${getCategoryColor(article.category)}`}>
               {article.category}
             </span>
                 </div>
@@ -148,10 +125,18 @@ const ArticleViewer = () => {
                 </div>
             </header>
 
-            <article className="prose prose-lg dark:prose-invert max-w-none animate-slide-up">
+            <article className="max-w-none animate-slide-up prose prose-lg dark:prose-invert
+prose-headings:text-gray-900 dark:prose-headings:text-gray-200
+prose-p:text-gray-700 dark:prose-p:text-gray-300
+prose-a:text-blue-600 hover:prose-a:text-blue-800 dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300
+prose-strong:text-gray-900 dark:prose-strong:text-gray-200
+prose-code:text-sm prose-code:bg-gray-800 prose-code:text-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
+dark:prose-code:bg-gray-600 dark:prose-code:text-gray-100
+prose-pre:bg-gray-800 prose-pre:text-gray-100 prose-pre:rounded-lg prose-pre:p-4
+dark:prose-pre:bg-gray-600 dark:prose-pre:text-gray-100">
                 <div
                     dangerouslySetInnerHTML={{
-                        __html: parseMarkdown(article.content)
+                        __html: marked(article.content)
                     }}
                 />
             </article>
@@ -162,7 +147,8 @@ const ArticleViewer = () => {
                         {article.metadata?.author && (
                             <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
                                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                 </svg>
                                 {article.metadata.author}
                             </div>
@@ -170,7 +156,8 @@ const ArticleViewer = () => {
                         {article.metadata?.wordCount && (
                             <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
                                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                 </svg>
                                 {article.metadata.wordCount} {t('articles.words')}
                             </div>
@@ -183,7 +170,7 @@ const ArticleViewer = () => {
                     >
                         {t('articles.otherArticles')}
                         <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
                         </svg>
                     </button>
                 </div>
