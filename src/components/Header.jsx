@@ -107,35 +107,43 @@ const Header = () => {
               </button>
             </div>
           </div>
-
-          {isMenuOpen && (
-              <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm">
-                <nav className="flex flex-col space-y-1 py-4">
-                  <Link
-                      to="/"
-                      onClick={closeMenu}
-                      className="px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all rounded-lg mx-2"
-                  >
-                    {t('header.home')}
-                  </Link>
-                  <Link
-                      to="/projects"
-                      onClick={closeMenu}
-                      className="px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all rounded-lg mx-2"
-                  >
-                    {t('header.projects')}
-                  </Link>
-                  <Link
-                      to="/articles"
-                      onClick={closeMenu}
-                      className="px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all rounded-lg mx-2"
-                  >
-                    {t('header.articles')}
-                  </Link>
-                </nav>
-              </div>
-          )}
         </div>
+
+        {isMenuOpen && (
+            <>
+              <div
+                  className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+                  onClick={closeMenu}
+              ></div>
+              <div className="absolute top-16 left-0 right-0 z-50 md:hidden shadow-xl">
+                <div className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+                  <nav className="flex flex-col space-y-1 py-4">
+                    <Link
+                        to="/"
+                        onClick={closeMenu}
+                        className="px-6 py-3 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all mx-2 rounded-lg"
+                    >
+                      {t('header.home')}
+                    </Link>
+                    <Link
+                        to="/projects"
+                        onClick={closeMenu}
+                        className="px-6 py-3 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all mx-2 rounded-lg"
+                    >
+                      {t('header.projects')}
+                    </Link>
+                    <Link
+                        to="/articles"
+                        onClick={closeMenu}
+                        className="px-6 py-3 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all mx-2 rounded-lg"
+                    >
+                      {t('header.articles')}
+                    </Link>
+                  </nav>
+                </div>
+              </div>
+            </>
+        )}
       </header>
   );
 };
