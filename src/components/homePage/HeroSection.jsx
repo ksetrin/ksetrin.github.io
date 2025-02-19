@@ -37,10 +37,6 @@ const HeroSection = () => {
                         <FaTelegram className="w-4 h-4 text-blue-600" />
                         <span>@{t('homepage.contact.telegram')}</span>
                     </div>
-                    <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 px-4 py-2 rounded-full">
-                        <FaMapMarkerAlt className="w-4 h-4 text-blue-600" />
-                        <span>{t('homepage.contact.location')}</span>
-                    </div>
                 </div>
 
                 <div className="mt-8 flex gap-4 justify-center lg:justify-start">
