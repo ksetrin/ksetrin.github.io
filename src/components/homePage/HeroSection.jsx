@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { FaEnvelope, FaTelegram, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaTelegram, FaMapMarkerAlt } from 'react-icons/fa';
 import photo from '@/assets/images/photo.jpeg';
 
 const HeroSection = () => {
@@ -28,24 +28,14 @@ const HeroSection = () => {
                     {t('homepage.introduction.description')}
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-4 justify-center lg:justify-start text-sm">
-                    <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 px-4 py-2 rounded-full">
-                        <FaEnvelope className="w-4 h-4 text-blue-600" />
-                        <span>{t('homepage.contact.email')}</span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 px-4 py-2 rounded-full">
-                        <FaTelegram className="w-4 h-4 text-blue-600" />
-                        <span>@{t('homepage.contact.telegram')}</span>
-                    </div>
-                </div>
 
                 <div className="mt-8 flex gap-4 justify-center lg:justify-start">
                     <Link to="/projects" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all">
                         {t('homepage.introduction.ctaButton')}
                     </Link>
-                    <a href="mailto:epv01@mail.ru" className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
+                    <Link to="/contact" className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
                         Contact Me
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>
