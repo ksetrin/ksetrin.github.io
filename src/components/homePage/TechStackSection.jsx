@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaReact, FaGithub, FaCode, FaDatabase, FaAws } from 'react-icons/fa';
+import { FaReact, FaGithub, FaCode, FaDatabase, FaAws, FaBrain } from 'react-icons/fa';
 import { SiTypescript, SiFirebase, SiRedux, SiMobx, SiGit, SiGraphql } from 'react-icons/si';
 
 const TechStackSection = () => {
@@ -22,7 +22,8 @@ const TechStackSection = () => {
         tools: [
             { icon: <SiGit className="w-8 h-8" />, name: 'Git' },
             { icon: <FaGithub className="w-8 h-8" />, name: 'CI/CD' },
-            { icon: <FaCode className="w-8 h-8" />, name: 'Testing' }
+            { icon: <FaCode className="w-8 h-8" />, name: 'Testing' },
+            { icon: <FaBrain className="w-8 h-8" />, name: 'AI' }
         ]
     };
 
@@ -60,7 +61,7 @@ const TechStackSection = () => {
 
                 <div className="text-center">
                     <h3 className="text-xl font-semibold mb-6 text-green-600 dark:text-green-400">{t('homepage.techStack.tools')}</h3>
-                    <div className="grid grid-cols-1 gap-4">
+                    <div className="grid grid-cols-2 gap-4">
                         {techStack.tools.map(tech => (
                             <div key={tech.name} className="flex flex-col items-center p-4 bg-white dark:bg-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
                                 <div className="text-green-500 mb-3">{tech.icon}</div>
