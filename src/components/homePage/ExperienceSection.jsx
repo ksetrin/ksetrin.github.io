@@ -10,7 +10,7 @@ const ExperienceSection = () => {
         {
             role: 'React Native Developer',
             company: 'Mebix',
-            years: '2021 - ' + t('homepage.experience.current'),
+            years: '2021 - 2025',
             duration: '3+ ' + t('homepage.experience.years'),
             location: 'Germany',
             description: 'Digital therapy companion for diabetes and cardiovascular diseases',
