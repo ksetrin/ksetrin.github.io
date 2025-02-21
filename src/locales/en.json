@@ -18,7 +18,8 @@
     "subtitle": "Selected works and contributions",
     "viewProject": "View Project",
     "sourceCode": "Source Code",
-    "liveDemo": "Live Demo"
+    "liveDemo": "Live Demo",
+    "backToProjects": "Back to Projects"
   },
   "homepage": {
     "introduction": {
@@ -71,5 +72,13 @@
     "languageSwitch": "Language Switch",
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Let's connect and discuss opportunities for collaboration",
+    "visit": "Visit"
+  },
+  "footer": {
+    "copyright": "© 2025 SP Evsikov Petr. All rights reserved."
   }
 }
