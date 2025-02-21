@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { FaGithub, FaTelegram, FaWhatsapp, FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
+import { FaGithub, FaTelegram, FaLinkedin, FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
 import { GB, RU } from 'country-flag-icons/react/3x2';
 import { useTheme } from '../context/ThemeContext';
 
@@ -74,12 +74,12 @@ const Header = () => {
                 <FaTelegram className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                  href="https://wa.me/+79991234567"
+                  href="https://www.linkedin.com/in/ksetrin/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
               >
-                <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
 
               <div className="h-4 w-px bg-gray-300 dark:bg-gray-700 hidden sm:block"></div>
