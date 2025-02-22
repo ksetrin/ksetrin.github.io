@@ -79,7 +79,7 @@ const CarMixProject = () => {
                 <div className="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
                     <Link to="/projects" className="inline-flex items-center text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors mb-8">
                         <FaArrowLeft className="w-4 h-4 mr-2" />
-                        Back to Projects
+                        {t('projects.backToProjects')}
                     </Link>
 
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
