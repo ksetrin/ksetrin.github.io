@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
 import ArticlesPage from "@/pages/ArticlesPage.jsx";
 import ProjectsPage from "@/pages/ProjectsPage.jsx";
+import ContactPage from "@/pages/ContactPage.jsx";
 import MebixProject from "@/pages/projects/Mebix.jsx";
 import TapcarProject from "@/pages/projects/TapCar.jsx";
 import ZnajProject from "@/pages/projects/Znaj.jsx";
@@ -24,6 +25,7 @@ const AppRoutes = () => {
             <Route path="/projects/preco" element={<PrecoProject />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/articles/:filename" element={<ArticleViewer />} />
+            <Route path="/contact" element={<ContactPage />} />
         </Routes>
     );
 };
