@@ -3,6 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaExternalLinkAlt, FaArrowRight, FaApple, FaGooglePlay } from 'react-icons/fa';
 import image_mebix from '@/assets/images/project_preview/mebix.png';
+import image_tapcar from '@/assets/images/project_preview/tapcar.png';
+import image_znajby from '@/assets/images/project_preview/znajby.png';
+import image_carmix from '@/assets/images/project_preview/carmix.png';
+import image_gazcom from '@/assets/images/project_preview/gazcom.png';
+import image_preco from '@/assets/images/project_preview/preco.png';
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
@@ -12,61 +17,67 @@ const ProjectsPage = () => {
       title: 'Mebix',
       description: 'Digital therapy companion for diabetes type 2. AI-powered nutrition tracking with medical-grade accuracy.',
       image: image_mebix,
+      imageBackground: 'bg-gradient-to-br from-indigo-100 to-white-100 dark:from-indigo-100 dark:to-white-100',
       technologies: ['React Native', 'TypeScript', 'Redux', 'Firebase', 'AI/ML'],
       detailLink: '/projects/mebix',
       externalLink: 'https://www.mebix.de/',
-      featured: true,
+      domain: 'healthcare',
       status: 'Live in Production'
     },
     {
       title: 'TapCar',
       description: 'Peer-to-peer car sharing application with zero third-party telematics. Direct OEM integration with trust-based sharing groups.',
-      image: '/projects/tapcar.jpg',
+      image: image_tapcar,
+      imageBackground: 'bg-black dark:bg-black',
       technologies: ['React Native', 'Node.js', 'OEM Integration', 'BLE', 'AutoPASS'],
       detailLink: '/projects/tapcar',
       externalLink: 'https://www.tapcar.no/',
       appStoreLink: 'https://apps.apple.com/no/app/tapcar-bildeling/id1567367431',
-      featured: true,
+      domain: 'automotive',
       status: 'Research-Backed Innovation'
     },
     {
       title: 'Znaj.by',
       description: 'Unified educational platform connecting teachers, parents, and students. Top 100 EdTech companies in CIS region.',
-      image: '/projects/znaj.jpg',
+      image: image_znajby,
+      imageBackground: 'bg-[#186032] dark:bg-[#186032]',
       technologies: ['React Native', 'AWS', 'Redux', 'Educational APIs', 'Real-time Sync'],
       detailLink: '/projects/znaj',
       appStoreLink: 'https://apps.apple.com/by/app/%D0%B7%D0%BD%D0%B0%D0%B9-%D0%B1%D0%B0%D0%B9/id1500741599',
       googlePlayLink: 'https://play.google.com/store/apps/details?id=by.znaj2',
-      featured: true,
+      domain: 'education',
       status: 'Top 100 EdTech CIS'
     },
     {
       title: 'Apollo CarMix',
       description: 'Smart mobile concrete plant management with AR technology and IoT integration. Revolutionary construction industry solution.',
-      image: '/projects/carmix.jpg',
+      image: image_carmix,
+      imageBackground: 'bg-gradient-to-br from-indigo-100 to-white-100 dark:from-indigo-100 dark:to-white-100',
       technologies: ['React Native', 'Redux', 'Augmented Reality', 'IoT', 'SQL Server'],
       detailLink: '/projects/carmix',
       appStoreLink: 'https://apps.apple.com/ar/app/apollo-carmix/id6476922567?l=en-GB',
       googlePlayLink: 'https://play.google.com/store/apps/details?id=com.torai.tor_equip.apollo&hl=en_GB&pli=1',
-      featured: true,
+      domain: 'automotive',
       status: 'Industrial IoT Innovation'
     },
     {
       title: 'Chelyabinskgorgaz',
       description: 'Government digital services platform serving 58K+ users across Chelyabinsk region. Complete gas infrastructure management system.',
-      image: '/projects/chelyabinskgorgaz.jpg',
+      image: image_gazcom,
+      imageBackground: 'bg-white dark:bg-gray-100',
       technologies: ['React Native', 'Redux', 'Government APIs', 'Digital Identity', 'Payment Integration'],
       detailLink: '/projects/chelyabinskgorgaz',
-      featured: true,
+      domain: 'utilities',
       status: 'Government Digital Services'
     },
     {
       title: 'URC and SUTU',
       description: 'Comprehensive mobile application for educational institutions featuring dual-role architecture for students and faculty, complete academic management, and seamless offline-online synchronization.',
-      image: '/projects/preco.jpg',
+      image: image_preco,
+      imageBackground: 'bg-[#79BF92] dark:bg-[#79BF92]',
       technologies: ['React Native', 'Redux'],
       detailLink: '/projects/preco',
-      featured: true,
+      domain: 'healthcare',
       status: 'Education'
     }
   ];
@@ -87,18 +98,18 @@ const ProjectsPage = () => {
               <div
                   key={index}
                   className={`bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px] ${
-                      project.featured ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''
+                      project.domain ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''
                   }`}
               >
-                {project.featured && (
+                {project.domain && (
                     <div
                         className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center py-2 text-sm font-medium">
-                      Featured Project
+                      {t(`projects.domains.${project.domain}`)}
                     </div>
                 )}
 
                 <div
-                    className="h-48 bg-gradient-to-br from-indigo-100 to-white-100 dark:from-indigo-100 dark:to-white-100 relative p-3">
+                    className={`h-48 ${project.imageBackground || 'bg-gradient-to-br from-indigo-100 to-white-100 dark:from-indigo-100 dark:to-white-100'} relative p-3`}>
                   {project.image ? (
                       <img
                           src={project.image}
@@ -150,18 +161,6 @@ const ProjectsPage = () => {
                     )}
 
                     <div className="flex space-x-3">
-                      {project.externalLink && (
-                          <a
-                              href={project.externalLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1 inline-flex justify-center items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
-                          >
-                            {t('projects.liveDemo')}
-                            <FaExternalLinkAlt className="w-3 h-3"/>
-                          </a>
-                      )}
-
                       {project.sourceLink && (
                           <a
                               href={project.sourceLink}
