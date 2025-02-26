@@ -19,7 +19,13 @@
     "viewProject": "Посмотреть проект",
     "sourceCode": "Исходный код",
     "liveDemo": "Демо версия",
-    "backToProjects": "Назад к Проектам"
+    "backToProjects": "Назад к Проектам",
+    "domains": {
+      "healthcare": "Здоровье",
+      "automotive": "Авто",
+      "education": "Образование",
+      "utilities": "Коммунальные услуги"
+    }
   },
   "homepage": {
     "introduction": {
@@ -37,7 +43,66 @@
       "title": "Основные Навыки",
       "description": "Мой опыт в мобильной и веб-разработке",
       "primary": "Основные навыки",
-      "secondary": "Дополнительные технологии"
+      "secondary": "Дополнительные технологии",
+      "coreReactNativeSkills": "Основные навыки React Native",
+      "architecturalTeamSkills": "Архитектурные и командные навыки",
+      "additionalAppliedSkills": "Дополнительные прикладные навыки",
+      "coreRNSkills": {
+        "mobileArchitecture": {
+          "title": "Проектирование мобильной архитектуры",
+          "description": "Проектирование и поддержка мобильных приложений на React Native",
+          "details": "Архитектура приложения, модульность, оптимизация производительности"
+        },
+        "codeRefactoring": {
+          "title": "Рефакторинг и миграция кода",
+          "description": "Рефакторинг и улучшение кода",
+          "details": "Рефакторинг больших кодовых баз, migration между версиями библиотек"
+        },
+        "dependencyManagement": {
+          "title": "Управление зависимостями",
+          "description": "Поддержка и обновление внешних зависимостей",
+          "details": "Dependency upkeep, устранение breaking changes, версионирование"
+        },
+        "productionDevelopment": {
+          "title": "Разработка в продакшене",
+          "description": "Разработка новой функциональности в продакшн-приложениях",
+          "details": "Feature development, интеграция с существующими системами"
+        },
+        "nativeModuleDevelopment": {
+          "title": "Разработка нативных модулей",
+          "description": "Работа с нативными/модульными компонентами",
+          "details": "Улучшение native модулей, bridge разработка, платформенная интеграция"
+        },
+        "crossPlatformWebIntegration": {
+          "title": "Кросс-платформенная веб-интеграция",
+          "description": "Интеграция веб-технологий в мобильные проекты",
+          "details": "Переиспользование компонентов между web и mobile, WebView интеграция, API синхронизация"
+        }
+      },
+      "architecturalSkills": {
+        "stateManagement": {
+          "title": "Архитектура управления состоянием",
+          "description": "Проектирование state-management и его миграция"
+        },
+        "codeReview": {
+          "title": "Код-ревью и поддержка команды",
+          "description": "Code review и поддержка кодовой базы на уровне команды"
+        },
+        "fullStack": {
+          "title": "Full-Stack интеграция",
+          "description": "Понимание full-stack процессов / интеграции с бэкендом"
+        }
+      },
+      "additionalSkills": {
+        "webDevelopment": {
+          "title": "Веб-разработка",
+          "description": "Веб-разработка (React) — перенос опыта веб→мобильное"
+        },
+        "backendDatabases": {
+          "title": "Backend и базы данных",
+          "description": "Работа с базами данных и backend как supporting skill"
+        }
+      }
     },
     "experience": {
       "title": "Профессиональный Путь",
@@ -50,7 +115,13 @@
       "description": "Инструменты и технологии, которые я использую ежедневно",
       "frontend": "Frontend и Mobile",
       "backend": "Backend и Сервисы",
-      "tools": "Инструменты разработки"
+      "tools": "Инструменты разработки",
+      "mobileDevelopment": "Мобильная разработка",
+      "frontendDevelopment": "Frontend разработка",
+      "stateManagement": "Управление состоянием",
+      "backendCloud": "Backend и облако",
+      "databases": "Базы данных",
+      "developmentTools": "Инструменты разработки"
     },
     "purpose": {
       "title": "Что Я Могу Предложить",

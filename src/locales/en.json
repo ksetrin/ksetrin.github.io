@@ -19,7 +19,13 @@
     "viewProject": "View Project",
     "sourceCode": "Source Code",
     "liveDemo": "Live Demo",
-    "backToProjects": "Back to Projects"
+    "backToProjects": "Back to Projects",
+    "domains": {
+      "healthcare": "Healthcare",
+      "automotive": "Automotive",
+      "education": "Education",
+      "utilities": "Utilities"
+    }
   },
   "homepage": {
     "introduction": {
@@ -37,7 +43,66 @@
       "title": "Core Skills",
       "description": "My expertise in mobile and web development",
       "primary": "Primary Skills",
-      "secondary": "Additional Technologies"
+      "secondary": "Additional Technologies",
+      "coreReactNativeSkills": "Core React Native Skills",
+      "architecturalTeamSkills": "Architectural & Team Skills",
+      "additionalAppliedSkills": "Additional Applied Skills",
+      "coreRNSkills": {
+        "mobileArchitecture": {
+          "title": "Mobile Architecture Design",
+          "description": "Design and maintenance of React Native mobile applications",
+          "details": "Application architecture, modularity, performance optimization"
+        },
+        "codeRefactoring": {
+          "title": "Code Refactoring & Migration",
+          "description": "Code refactoring and improvement",
+          "details": "Refactoring large codebases, migration between library versions"
+        },
+        "dependencyManagement": {
+          "title": "Dependency Management",
+          "description": "Maintenance and updating of external dependencies",
+          "details": "Dependency upkeep, resolving breaking changes, versioning"
+        },
+        "productionDevelopment": {
+          "title": "Production Development",
+          "description": "Development of new functionality in production applications",
+          "details": "Feature development, integration with existing systems"
+        },
+        "nativeModuleDevelopment": {
+          "title": "Native Module Development",
+          "description": "Working with native/modular components",
+          "details": "Improving native modules, bridge development, platform integration"
+        },
+        "crossPlatformWebIntegration": {
+          "title": "Cross-Platform Web Integration",
+          "description": "Integration of web technologies into mobile projects",
+          "details": "Component reuse between web and mobile, WebView integration, API synchronization"
+        }
+      },
+      "architecturalSkills": {
+        "stateManagement": {
+          "title": "State Management Architecture",
+          "description": "State management design and migration"
+        },
+        "codeReview": {
+          "title": "Code Review & Team Support",
+          "description": "Code review and codebase support at team level"
+        },
+        "fullStack": {
+          "title": "Full-Stack Integration",
+          "description": "Understanding full-stack processes and backend integration"
+        }
+      },
+      "additionalSkills": {
+        "webDevelopment": {
+          "title": "Web Development",
+          "description": "Web development (React) — transferring web→mobile experience"
+        },
+        "backendDatabases": {
+          "title": "Backend & Databases",
+          "description": "Working with databases and backend as a supporting skill"
+        }
+      }
     },
     "experience": {
       "title": "Professional Journey",
@@ -50,7 +115,13 @@
       "description": "Tools and technologies I use daily",
       "frontend": "Frontend & Mobile",
       "backend": "Backend & Services",
-      "tools": "Development Tools"
+      "tools": "Development Tools",
+      "mobileDevelopment": "Mobile Development",
+      "frontendDevelopment": "Frontend Development",
+      "stateManagement": "State Management",
+      "backendCloud": "Backend & Cloud",
+      "databases": "Databases",
+      "developmentTools": "Development Tools"
     },
     "purpose": {
       "title": "What I Can Offer",
