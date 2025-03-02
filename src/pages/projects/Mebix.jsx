@@ -36,6 +36,9 @@ import screen2 from '@/assets/images/screenshots/mebix/screen-2.png';
 import screen3 from '@/assets/images/screenshots/mebix/screen-3.png';
 import screen4 from '@/assets/images/screenshots/mebix/screen-4.png';
 import screen5 from '@/assets/images/screenshots/mebix/screen-5.png';
+import screen6 from '@/assets/images/screenshots/mebix/screen-6.png';
+import screen7 from '@/assets/images/screenshots/mebix/screen-7.png';
+import screen8 from '@/assets/images/screenshots/mebix/screen-8.png';
 
 const MebixProject = () => {
     const { t, i18n } = useTranslation();
@@ -59,7 +62,7 @@ const MebixProject = () => {
         { value: '40%', label: t('mebix.results.metrics.3.label'), period: t('mebix.results.metrics.3.period') }
     ];
 
-    const screenshots = [screen1, screen2, screen3, screen4, screen5];
+    const screenshots = [screen1, screen2, screen3, screen4, screen5, screen6, screen7, screen8];
 
     const toggleVideo = () => {
         const video = document.getElementById('mebix-video');
@@ -261,24 +264,24 @@ const MebixProject = () => {
                         </div>
 
                         <div className="mb-16">
-                            <h3 className="text-2xl font-bold text-center mb-8">App Screenshots</h3>
-                            <div className="flex gap-4 overflow-x-auto pb-4 justify-center">
+                            <h3 className="text-2xl font-bold text-center mb-8">{t('mebix.solution.screenshots')}</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 justify-items-center max-w-6xl mx-auto">
                                 {screenshots.map((screenshot, index) => (
                                     <div
                                         key={index}
-                                        className="flex-shrink-0 cursor-pointer group"
+                                        className="cursor-pointer group"
                                         onClick={() => openImageModal(screenshot)}
                                     >
-                                        <div className="relative w-32 h-68 md:w-40 md:h-85 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
+                                        <div className="relative w-56 h-[28rem] bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
                                             <img
                                                 src={screenshot}
                                                 alt={`Mebix App Screenshot ${index + 1}`}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover rounded-2xl"
                                                 onError={(e) => {
                                                     e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzc1IiBoZWlnaHQ9Ijc5OCIgdmlld0JveD0iMCAwIDM3NSA3OTgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNzUiIGhlaWdodD0iNzk4IiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUI5QjlCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPk1lYml4IFNjcmVlbnNob3Q8L3RleHQ+Cjwvc3ZnPg==';
                                                 }}
                                             />
-                                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center rounded-2xl">
                                                 <FaExpand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                             </div>
                                         </div>
