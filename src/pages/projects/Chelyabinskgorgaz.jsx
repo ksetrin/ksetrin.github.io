@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import {
@@ -38,15 +38,30 @@ import {
     FaQuestionCircle,
     FaLock,
     FaUserCheck,
-    FaCloudUploadAlt
+    FaCloudUploadAlt,
+    FaExpand,
+    FaTimes
 } from 'react-icons/fa';
 import {
     SiRedux,
     SiGoogleanalytics
 } from 'react-icons/si';
+import screen1 from '@/assets/images/screenshots/gazcom/screen-1.png';
+import screen2 from '@/assets/images/screenshots/gazcom/screen-2.png';
+import screen3 from '@/assets/images/screenshots/gazcom/screen-3.png';
+import screen4 from '@/assets/images/screenshots/gazcom/screen-4.png';
+import screen5 from '@/assets/images/screenshots/gazcom/screen-5.png';
+import screen6 from '@/assets/images/screenshots/gazcom/screen-6.png';
+import screen7 from '@/assets/images/screenshots/gazcom/screen-7.png';
+import screen8 from '@/assets/images/screenshots/gazcom/screen-8.png';
+import screen9 from '@/assets/images/screenshots/gazcom/screen-9.png';
+import screen10 from '@/assets/images/screenshots/gazcom/screen-10.png';
+import screen11 from '@/assets/images/screenshots/gazcom/screen-11.png';
+import screen12 from '@/assets/images/screenshots/gazcom/screen-12.png';
 
 const ChelyabinskgorgazProject = () => {
     const { t, i18n } = useTranslation();
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const technologies = [
         { icon: <FaReact className="w-6 h-6" />, name: 'React Native', color: 'text-blue-400' },
@@ -63,6 +78,16 @@ const ChelyabinskgorgazProject = () => {
         { value: '800K+', label: t('chelyabinskgorgaz.impact.metrics.2.label'), description: t('chelyabinskgorgaz.impact.metrics.2.description') },
         { value: '13K', label: t('chelyabinskgorgaz.impact.metrics.3.label'), description: t('chelyabinskgorgaz.impact.metrics.3.description') }
     ];
+
+    const screenshots = [screen1, screen2, screen3, screen4, screen5, screen6, screen7, screen8, screen9, screen10, screen11, screen12];
+
+    const openImageModal = (imageSrc) => {
+        setSelectedImage(imageSrc);
+    };
+
+    const closeImageModal = () => {
+        setSelectedImage(null);
+    };
 
     const getServiceIcon = (index) => {
         switch(index) {
@@ -94,7 +119,7 @@ const ChelyabinskgorgazProject = () => {
                                 <div className="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-medium mb-4">
                                     {t('chelyabinskgorgaz.hero.subtitle')}
                                 </div>
-                                <h1 className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-green-600 to-blue-800 bg-clip-text text-transparent mb-6">
+                                <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-green-600 to-blue-800 bg-clip-text text-transparent mb-6">
                                     {t('chelyabinskgorgaz.hero.title')}
                                 </h1>
                                 <h2 className="text-2xl lg:text-3xl text-gray-700 dark:text-gray-300 font-light mb-6">
@@ -214,6 +239,33 @@ const ChelyabinskgorgazProject = () => {
                             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                                 {t('chelyabinskgorgaz.solution.description')}
                             </p>
+                        </div>
+
+                        <div className="mb-16">
+                            <h3 className="text-2xl font-bold text-center mb-8">Скриншоты приложения</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                                {screenshots.map((screenshot, index) => (
+                                    <div
+                                        key={index}
+                                        className="cursor-pointer group"
+                                        onClick={() => openImageModal(screenshot)}
+                                    >
+                                        <div className="relative w-56 h-[30rem] bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
+                                            <img
+                                                src={screenshot}
+                                                alt={`Gazcom App Screenshot ${index + 1}`}
+                                                className="w-full h-full object-cover rounded-2xl"
+                                                onError={(e) => {
+                                                    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzc1IiBoZWlnaHQ9Ijc5OCIgdmlld0JveD0iMCAwIDM3NSA3OTgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzNzUiIGhlaWdodD0iNzk4IiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUI5QjlCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPkdhemNvbSBTY3JlZW5zaG90PC90ZXh0Pgo8L3N2Zz4=';
+                                                }}
+                                            />
+                                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center rounded-2xl">
+                                                <FaExpand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                         <div className="grid lg:grid-cols-2 gap-12">
@@ -444,6 +496,25 @@ const ChelyabinskgorgazProject = () => {
                     </div>
                 </section>
             </div>
+
+            {selectedImage && (
+                <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4" onClick={closeImageModal}>
+                    <div className="relative max-w-sm mx-auto">
+                        <button
+                            onClick={closeImageModal}
+                            className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-70 transition-all"
+                        >
+                            <FaTimes className="w-4 h-4" />
+                        </button>
+                        <img
+                            src={selectedImage}
+                            alt="Gazcom App Screenshot"
+                            className="w-full h-auto max-h-[90vh] object-contain rounded-2xl"
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
