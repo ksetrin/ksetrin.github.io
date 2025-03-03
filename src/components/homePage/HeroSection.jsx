@@ -8,16 +8,17 @@ const HeroSection = () => {
     const { t } = useTranslation();
 
     return (
-        <section className="flex flex-col lg:flex-row items-center justify-between py-12">
-            <div className="relative mb-8 lg:mb-0 lg:mr-12">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20 blur-2xl transform scale-110"></div>
-                <img
-                    src={photo}
-                    alt="Peter Evsikov Portrait"
-                    className="w-48 h-48 lg:w-56 lg:h-56 rounded-full shadow-xl ring-4 ring-blue-500/30 object-cover relative z-10"
-                />
-            </div>
-            <div className="text-center lg:text-left max-w-3xl flex-1">
+        <section className="py-12">
+            <div className="flex flex-col lg:flex-row items-center">
+                <div className="relative mb-8 lg:mb-0 lg:mr-12">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20 blur-2xl transform scale-110"></div>
+                    <img
+                        src={photo}
+                        alt="Peter Evsikov Portrait"
+                        className="w-48 h-48 lg:w-72 lg:h-72 rounded-full shadow-xl ring-4 ring-blue-500/30 object-cover relative z-10"
+                    />
+                </div>
+                <div className="text-center lg:text-left flex-1">
                 <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent leading-tight">
                     {t('homepage.introduction.title')}
                 </h1>
@@ -36,6 +37,7 @@ const HeroSection = () => {
                     <Link to="/contact" className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
                         Contact Me
                     </Link>
+                </div>
                 </div>
             </div>
         </section>
