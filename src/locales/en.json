@@ -3,6 +3,8 @@
     "title": "Articles & Guides",
     "subtitle": "Sharing experience in mobile development and DevOps practices",
     "readMore": "Read more",
+    "searchPlaceholder": "Search by title, description or tag",
+    "clear": "Clear",
     "allTags": "All",
     "noArticles": "No articles found",
     "tryOtherTag": "Try selecting another tag",
