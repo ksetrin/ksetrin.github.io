@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
 import { marked } from 'marked';
@@ -7,11 +7,13 @@ import ArticlesService from '@/service/articlesService';
 marked.setOptions({
     breaks: true,
     gfm: true,
+    mangle: false,
+    headerIds: true
 });
 
 const ArticleViewer = () => {
     const { t } = useTranslation();
-    const { filename } = useParams();
+    const { slug } = useParams();
     const navigate = useNavigate();
     const [article, setArticle] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -21,24 +23,29 @@ const ArticleViewer = () => {
         const fetchArticle = async () => {
             try {
                 setLoading(true);
-                const articleData = await ArticlesService.getArticleWithMetadata(filename);
+                const articleData = await ArticlesService.getArticleBySlugOrAlias(slug);
 
                 if (articleData) {
+                    if (slug !== articleData.slug) {
+                        navigate(`/articles/${articleData.slug}/`, { replace: true });
+                        return;
+                    }
                     setArticle(articleData);
+                    setError(null);
                 } else {
                     setError('Article not found');
                 }
-                setLoading(false);
             } catch (err) {
                 setError(err.message);
+            } finally {
                 setLoading(false);
             }
         };
 
-        if (filename) {
+        if (slug) {
             fetchArticle();
         }
-    }, [filename]);
+    }, [slug, navigate]);
 
     const handleBackClick = () => {
         navigate('/articles');
@@ -85,6 +92,40 @@ const ArticleViewer = () => {
         return colors[category] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
     };
 
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        try {
+            return new Intl.DateTimeFormat('ru-RU', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            }).format(new Date(dateString));
+        } catch (e) {
+            return dateString;
+        }
+    };
+
+    const renderedArticle = useMemo(() => {
+        if (!article) {
+            return { html: '', toc: [] };
+        }
+        const slugger = new marked.Slugger();
+        const toc = [];
+        const renderer = new marked.Renderer();
+        renderer.heading = (text, level, raw) => {
+            const id = slugger.slug(raw);
+            if (level >= 2 && level <= 4) {
+                toc.push({ id, text, level });
+            }
+            return `<h${level} id="${id}">${text}</h${level}>`;
+        };
+
+        return {
+            html: marked(article.content, { renderer }),
+            toc
+        };
+    }, [article]);
+
     return (
         <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 animate-fade-in">
             <button
@@ -97,7 +138,7 @@ const ArticleViewer = () => {
                 {t('articles.backToArticles')}
             </button>
 
-            <header className="mt-8 animate-slide-down">
+            <header className="mt-8 animate-slide-down space-y-6">
                 <div className="flex items-center gap-3 mb-4">
             <span
                 className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105 ${getCategoryColor(article.category)}`}>
@@ -105,11 +146,31 @@ const ArticleViewer = () => {
             </span>
                 </div>
 
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
                     {article.title}
                 </h1>
 
-                <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
+                <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+                    {article.datePublished && (
+                        <time dateTime={article.datePublished}>
+                            {formatDate(article.datePublished)}
+                        </time>
+                    )}
+                    {article.readTimeLabel && (
+                        <>
+                            <span aria-hidden="true">•</span>
+                            <span>{article.readTimeLabel}</span>
+                        </>
+                    )}
+                    {article.author && (
+                        <>
+                            <span aria-hidden="true">•</span>
+                            <span>{article.author}</span>
+                        </>
+                    )}
+                </div>
+
+                <p className="text-xl text-gray-600 dark:text-gray-400">
                     {article.description}
                 </p>
 
@@ -125,6 +186,39 @@ const ArticleViewer = () => {
                 </div>
             </header>
 
+            {article.tldr?.length > 0 && (
+                <section className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-2xl p-6 space-y-3">
+                    <h2 className="text-2xl font-semibold text-blue-900 dark:text-blue-200">TL;DR</h2>
+                    <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2">
+                        {article.tldr.map((item) => (
+                            <li key={item}>{item}</li>
+                        ))}
+                    </ul>
+                </section>
+            )}
+
+            {renderedArticle.toc.length > 0 && (
+                <nav className="mt-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm">
+                    <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Содержание</h2>
+                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                        {renderedArticle.toc.map((item) => (
+                            <li
+                                key={item.id}
+                                className="leading-relaxed"
+                                style={{ paddingLeft: `${(item.level - 2) * 12}px` }}
+                            >
+                                <a
+                                    href={`#${item.id}`}
+                                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                >
+                                    {item.text}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            )}
+
             <article className="max-w-none animate-slide-up prose prose-lg dark:prose-invert
 prose-headings:text-gray-900 dark:prose-headings:text-gray-200
 prose-p:text-gray-700 dark:prose-p:text-gray-300
@@ -136,7 +230,7 @@ prose-pre:bg-gray-800 prose-pre:text-gray-100 prose-pre:rounded-lg prose-pre:p-4
 dark:prose-pre:bg-gray-600 dark:prose-pre:text-gray-100">
                 <div
                     dangerouslySetInnerHTML={{
-                        __html: marked(article.content)
+                        __html: renderedArticle.html
                     }}
                 />
             </article>
