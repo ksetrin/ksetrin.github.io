@@ -3,6 +3,12 @@ title: "Структура React Native проекта"
 description: "Организация файлов и папок для масштабируемого React Native приложения. Лучшие практики и проверенные подходы"
 category: "Coding"
 tags: ["react-native", "architecture", "project-structure", "best-practices", "organization"]
+slug: "react-native-project-structure"
+lang: "ru"
+datePublished: "2023-08-15"
+dateModified: "2024-01-15"
+author: "Пётр Евсиков"
+tldr: ["Показываю рабочее дерево директорий для mid размера RN", "Разделяем ответственность по слоям и фичам", "Добавляем скрипты и утилиты для поддержки команды"]
 ---
 
 # Структура React Native проекта
