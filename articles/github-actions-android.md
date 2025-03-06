@@ -3,6 +3,12 @@ title: "GitHub Actions для Android React Native"
 description: "Пошаговое руководство по настройке автоматической сборки и деплоя Android приложений на React Native через GitHub Actions"
 category: "DevOps"
 tags: ["react-native", "android", "ci-cd", "github-actions", "google-play"]
+slug: "github-actions-android"
+lang: "ru"
+datePublished: "2023-11-18"
+dateModified: "2024-01-10"
+author: "Пётр Евсиков"
+tldr: ["Настраиваем сервисный аккаунт Google Play и секреты", "Собираем Android билд в GitHub Actions с кешированием", "Деплоим артефакт в разные треки Play Console автоматически"]
 ---
 
 # Настройка GitHub Actions для Android React Native

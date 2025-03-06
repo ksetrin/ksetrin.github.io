@@ -3,6 +3,12 @@ title: "GitHub Actions для iOS React Native"
 description: "Настройка CI/CD для iOS: от создания сертификатов до автоматического деплоя в TestFlight через Fastlane"
 category: "DevOps"
 tags: ["react-native", "ios", "ci-cd", "fastlane", "testflight"]
+slug: "github-actions-ios"
+lang: "ru"
+datePublished: "2023-11-24"
+dateModified: "2024-01-12"
+author: "Пётр Евсиков"
+tldr: ["Готовим сертификаты и provisioning профили для iOS", "Конфигурируем Fastlane match и gym для автоматизации", "Собираем и отправляем билд в TestFlight через GitHub Actions"]
 ---
 
 # Настройка GitHub Actions для iOS React Native
