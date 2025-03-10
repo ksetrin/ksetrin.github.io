@@ -185,6 +185,15 @@ const loadHighlightStyles = async () => {
   }
 };
 
+const loadAppShell = async () => {
+  const indexPath = path.join(DIST_DIR, 'index.html');
+  try {
+    return await fs.readFile(indexPath, 'utf-8');
+  } catch (error) {
+    throw new Error(`Cannot read built app shell at ${indexPath}. Make sure "vite build" ran successfully.`);
+  }
+};
+
 const getOgLocale = (lang) => {
   if (lang === 'en') return 'en_US';
   if (lang === 'ru') return 'ru_RU';
@@ -652,10 +661,11 @@ const loadArticles = async () => {
 };
 
 const run = async () => {
-  const [articles, assets, highlightStyles] = await Promise.all([
+  const [articles, assets, highlightStyles, appShell] = await Promise.all([
     loadArticles(),
     readManifestAssets(),
-    loadHighlightStyles()
+    loadHighlightStyles(),
+    loadAppShell()
   ]);
 
   if (!articles.length) {
@@ -666,30 +676,28 @@ const run = async () => {
   await cleanDir(ARTICLES_DIST);
 
   for (const article of articles) {
-    const html = buildArticleTemplate(article, assets, highlightStyles, article.navigation);
     const outDir = path.join(ARTICLES_DIST, article.slug);
     await ensureDir(outDir);
-    await fs.writeFile(path.join(outDir, 'index.html'), html, 'utf-8');
+    await fs.writeFile(path.join(outDir, 'index.html'), appShell, 'utf-8');
 
     if (article.aliases?.length) {
       for (const alias of article.aliases) {
         if (!alias || alias === article.slug) continue;
         const aliasDir = path.join(ARTICLES_DIST, alias);
         await ensureDir(aliasDir);
-        const aliasHtml = buildAliasTemplate(alias, article);
-        await fs.writeFile(path.join(aliasDir, 'index.html'), aliasHtml, 'utf-8');
+        await fs.writeFile(path.join(aliasDir, 'index.html'), appShell, 'utf-8');
       }
     }
   }
 
-  const indexHtml = buildArticlesIndex(articles, assets, highlightStyles);
-  await fs.writeFile(path.join(ARTICLES_DIST, 'index.html'), indexHtml, 'utf-8');
+  await fs.writeFile(path.join(ARTICLES_DIST, 'index.html'), appShell, 'utf-8');
+  await fs.writeFile(path.join(DIST_DIR, '404.html'), appShell, 'utf-8');
 
   await generateSitemap(articles);
   await generateRobots();
   await generateFeed(articles);
 
-  console.log(`Generated ${articles.length} static article pages, sitemap, robots, and feed.`);
+  console.log(`Prepared SPA shells for ${articles.length} article routes, sitemap, robots, feed, and fallback.`);
 };
 
 run().catch((error) => {
