@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
 import { marked } from 'marked';
+import slugify from 'slugify';
 import ArticlesService from '@/service/articlesService';
 
 marked.setOptions({
@@ -47,15 +48,43 @@ const ArticleViewer = () => {
         }
     }, [slug, navigate]);
 
-    const handleBackClick = () => {
-        navigate('/articles');
+  const handleBackClick = () => {
+    navigate('/articles');
+  };
+
+  const renderedArticle = useMemo(() => {
+    if (!article) {
+      return { html: '', toc: [] };
+    }
+    const headingCounts = new Map();
+    const makeId = (rawText) => {
+      const base = slugify(String(rawText || '').trim(), { lower: true, strict: true }) || 'section';
+      const count = headingCounts.get(base) || 0;
+      headingCounts.set(base, count + 1);
+      return count ? `${base}-${count}` : base;
     };
 
-    if (loading) {
-        return (
-            <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-                <div className="flex justify-center items-center h-64">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    const toc = [];
+    const renderer = new marked.Renderer();
+    renderer.heading = (text, level, raw) => {
+      const id = makeId(raw || text);
+      if (level >= 2 && level <= 4) {
+        toc.push({ id, text, level });
+      }
+      return `<h${level} id="${id}">${text}</h${level}>`;
+    };
+
+    return {
+      html: marked(article.content, { renderer }),
+      toc
+    };
+  }, [article]);
+
+  if (loading) {
+    return (
+        <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
                 </div>
             </div>
         );
@@ -83,11 +112,11 @@ const ArticleViewer = () => {
         );
     }
 
-    const getCategoryColor = (category) => {
-        const colors = {
-            'DevOps': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-            'Architecture': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-            'Tutorial': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
+  const getCategoryColor = (category) => {
+    const colors = {
+      'DevOps': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+      'Architecture': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+      'Tutorial': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
         };
         return colors[category] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
     };
@@ -100,37 +129,16 @@ const ArticleViewer = () => {
                 month: 'long',
                 year: 'numeric'
             }).format(new Date(dateString));
-        } catch (e) {
-            return dateString;
-        }
-    };
+    } catch (e) {
+      return dateString;
+    }
+  };
 
-    const renderedArticle = useMemo(() => {
-        if (!article) {
-            return { html: '', toc: [] };
-        }
-        const slugger = new marked.Slugger();
-        const toc = [];
-        const renderer = new marked.Renderer();
-        renderer.heading = (text, level, raw) => {
-            const id = slugger.slug(raw);
-            if (level >= 2 && level <= 4) {
-                toc.push({ id, text, level });
-            }
-            return `<h${level} id="${id}">${text}</h${level}>`;
-        };
-
-        return {
-            html: marked(article.content, { renderer }),
-            toc
-        };
-    }, [article]);
-
-    return (
-        <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 animate-fade-in">
-            <button
-                onClick={handleBackClick}
-                className="inline-flex items-center px-4 py-2  rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 transform hover:scale-105 border-none"
+  return (
+      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 animate-fade-in">
+          <button
+              onClick={handleBackClick}
+              className="inline-flex items-center px-4 py-2  rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 transform hover:scale-105 border-none"
             >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/>
