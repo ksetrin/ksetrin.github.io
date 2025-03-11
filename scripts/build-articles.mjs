@@ -12,6 +12,18 @@ const ARTICLES_DIR = path.join(ROOT, 'articles');
 const DIST_DIR = path.join(ROOT, 'dist');
 const ARTICLES_DIST = path.join(DIST_DIR, 'articles');
 const SITE_URL = 'https://ksetrin.github.io';
+const STATIC_ROUTES = [
+  '/',
+  '/projects/',
+  '/projects/mebix/',
+  '/projects/tapcar/',
+  '/projects/znaj/',
+  '/projects/carmix/',
+  '/projects/chelyabinskgorgaz/',
+  '/projects/preco/',
+  '/articles/',
+  '/contact/'
+];
 const SITE_NAME = 'Пётр Евсиков';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/images/photo.jpeg`;
 const RSS_ITEM_LIMIT = 50;
@@ -92,11 +104,12 @@ const deriveTldr = (content, provided) => {
   return sentences.map((sentence) => sentence.replace(/[*_#>-]/g, '')).filter(Boolean);
 };
 
-const enhanceImages = (html) => html.replace(/<img([^>]+?)>/g, (match, attrs) => {
+const enhanceImages = (html, lang = 'ru') => html.replace(/<img([^>]+?)>/g, (match, attrs) => {
   const hasLoading = /loading=/.test(attrs);
   const hasAlt = /alt=/.test(attrs);
   const attrWithLoading = hasLoading ? attrs : ` loading="lazy" decoding="async"${attrs}`;
-  const attrFinal = hasAlt ? attrWithLoading : `${attrWithLoading} alt=""`;
+  const fallbackAlt = lang === 'en' ? 'Article illustration' : 'Иллюстрация к статье';
+  const attrFinal = hasAlt ? attrWithLoading : `${attrWithLoading} alt="${fallbackAlt}"`;
   return `<img${attrFinal}>`;
 });
 
@@ -127,7 +140,7 @@ const extractFaq = (markdown) => {
     .filter(Boolean);
 };
 
-const renderMarkdown = (content) => {
+const renderMarkdown = (content, lang = 'ru') => {
   const toc = [];
   const headingCounts = new Map();
 
@@ -150,7 +163,7 @@ const renderMarkdown = (content) => {
 
   const html = marked.parse(content, { renderer });
   return {
-    html: enhanceImages(html),
+    html: enhanceImages(html, lang),
     toc
   };
 };
@@ -214,6 +227,23 @@ const escapeXml = (value) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
+
+const replaceTitle = (html, newTitle) =>
+  html.replace(/<title>.*?<\/title>/i, `<title>${newTitle}</title>`);
+
+const injectIntoHead = (html, addition) =>
+  html.replace('</head>', `${addition}\n</head>`);
+
+const setHtmlLang = (html, lang) =>
+  html.replace(/<html([^>]*?)lang=".*?"/i, `<html$1lang="${lang}"`);
+
+const injectNoscript = (html, fallbackBody) =>
+  html.replace('</body>', `<noscript>${fallbackBody}</noscript>\n</body>`);
+
+const extractBody = (html) => {
+  const match = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  return match ? match[1].trim() : '';
+};
 
 const buildArticleTemplate = (article, assets, highlightStyles, navigation) => {
   const cssLinks = assets.css.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n');
@@ -501,13 +531,19 @@ const buildArticlesIndex = (articles, assets, highlightStyles) => {
 };
 
 const generateSitemap = async (articles) => {
-  const latestArticleDate = articles[0]?.dateModified || articles[0]?.datePublished || '2024-01-01';
+  const normalizePath = (route) => route.startsWith('/') ? route : `/${route}`;
+  const latestArticleDate = articles[0]?.dateModified || articles[0]?.datePublished;
+  const today = new Date().toISOString().split('T')[0];
+  const staticLastmod = latestArticleDate || today;
+
   const urls = [
-    { loc: `${SITE_URL}/`, lastmod: latestArticleDate },
-    { loc: `${SITE_URL}/articles/`, lastmod: latestArticleDate },
+    ...STATIC_ROUTES.map((route) => ({
+      loc: `${SITE_URL}${normalizePath(route)}`,
+      lastmod: staticLastmod
+    })),
     ...articles.map((article) => ({
       loc: `${SITE_URL}/articles/${article.slug}/`,
-      lastmod: article.dateModified || article.datePublished
+      lastmod: article.dateModified || article.datePublished || staticLastmod
     }))
   ];
 
@@ -535,6 +571,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /scripts/
+Disallow: /node_modules/
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;
@@ -621,7 +659,7 @@ const loadArticles = async () => {
     ).filter((alias) => alias !== slug);
     const datePublished = toIsoDate(data.datePublished) || new Date().toISOString().split('T')[0];
     const dateModified = toIsoDate(data.dateModified) || datePublished;
-    const { html, toc } = renderMarkdown(content);
+    const { html, toc } = renderMarkdown(content, lang);
     const faq = extractFaq(content);
 
     articles.push({
@@ -675,29 +713,93 @@ const run = async () => {
 
   await cleanDir(ARTICLES_DIST);
 
+  const articlesIndexHtml = buildArticlesIndex(articles, assets, highlightStyles);
+  const articlesIndexFallback = extractBody(articlesIndexHtml);
+  const articlesIndexMeta = {
+    title: `Статьи | ${SITE_NAME}`,
+    description: `Архив статей от ${SITE_NAME}: React Native, DevOps и архитектура.`,
+    canonical: `${SITE_URL}/articles/`,
+    lang: 'ru',
+    robots: 'index,follow',
+    image: DEFAULT_OG_IMAGE,
+    keywords: 'React Native, статьи, DevOps, архитектура'
+  };
+
+  const buildHeadMeta = ({ title, description, canonical, robots, image, lang, keywords }) => {
+    const tags = [
+      `<meta name="description" content="${escapeHtml(description || '')}">`,
+      keywords ? `<meta name="keywords" content="${escapeHtml(keywords)}">` : '',
+      canonical ? `<link rel="canonical" href="${canonical}">` : '',
+      `<meta name="robots" content="${robots || 'index,follow'}">`,
+      `<meta property="og:type" content="article">`,
+      `<meta property="og:title" content="${escapeHtml(title || SITE_NAME)}">`,
+      `<meta property="og:description" content="${escapeHtml(description || '')}">`,
+      canonical ? `<meta property="og:url" content="${canonical}">` : '',
+      `<meta property="og:image" content="${image || DEFAULT_OG_IMAGE}">`,
+      `<meta property="og:site_name" content="${SITE_NAME}">`,
+      `<meta property="og:locale" content="${getOgLocale(lang)}">`,
+      `<meta name="twitter:card" content="summary_large_image">`,
+      `<meta name="twitter:title" content="${escapeHtml(title || SITE_NAME)}">`,
+      `<meta name="twitter:description" content="${escapeHtml(description || '')}">`,
+      `<meta name="twitter:image" content="${image || DEFAULT_OG_IMAGE}">`
+    ]
+      .filter(Boolean)
+      .join('\n');
+    return tags;
+  };
+
   for (const article of articles) {
     const outDir = path.join(ARTICLES_DIST, article.slug);
     await ensureDir(outDir);
-    await fs.writeFile(path.join(outDir, 'index.html'), appShell, 'utf-8');
+    const staticArticleHtml = buildArticleTemplate(article, assets, highlightStyles, article.navigation || {});
+    const fallbackBody = extractBody(staticArticleHtml);
+    const metaTags = buildHeadMeta({
+      title: `${article.title} | ${SITE_NAME}`,
+      description: article.description,
+      canonical: `${SITE_URL}/articles/${article.slug}/`,
+      robots: 'index,follow',
+      image: article.image || DEFAULT_OG_IMAGE,
+      lang: article.lang,
+      keywords: article.tags.join(', ')
+    });
+    const articleShellWithLang = setHtmlLang(appShell, article.lang || 'ru');
+    const articleShellWithTitle = replaceTitle(articleShellWithLang, `${article.title} | ${SITE_NAME}`);
+    const articleShellWithMeta = injectIntoHead(articleShellWithTitle, metaTags);
+    const html = injectNoscript(articleShellWithMeta, fallbackBody);
+    await fs.writeFile(path.join(outDir, 'index.html'), html, 'utf-8');
 
     if (article.aliases?.length) {
       for (const alias of article.aliases) {
         if (!alias || alias === article.slug) continue;
         const aliasDir = path.join(ARTICLES_DIST, alias);
         await ensureDir(aliasDir);
-        await fs.writeFile(path.join(aliasDir, 'index.html'), appShell, 'utf-8');
+        const aliasHtml = buildAliasTemplate(alias, article);
+        await fs.writeFile(path.join(aliasDir, 'index.html'), aliasHtml, 'utf-8');
       }
     }
   }
 
-  await fs.writeFile(path.join(ARTICLES_DIST, 'index.html'), appShell, 'utf-8');
+  const indexHeadTags = buildHeadMeta({
+    title: articlesIndexMeta.title,
+    description: articlesIndexMeta.description,
+    canonical: articlesIndexMeta.canonical,
+    robots: articlesIndexMeta.robots,
+    image: articlesIndexMeta.image,
+    lang: articlesIndexMeta.lang,
+    keywords: articlesIndexMeta.keywords
+  });
+  const indexShellWithLang = setHtmlLang(appShell, 'ru');
+  const indexShellWithTitle = replaceTitle(indexShellWithLang, articlesIndexMeta.title);
+  const indexShellWithMeta = injectIntoHead(indexShellWithTitle, indexHeadTags);
+  const indexHtml = injectNoscript(indexShellWithMeta, articlesIndexFallback);
+  await fs.writeFile(path.join(ARTICLES_DIST, 'index.html'), indexHtml, 'utf-8');
   await fs.writeFile(path.join(DIST_DIR, '404.html'), appShell, 'utf-8');
 
   await generateSitemap(articles);
   await generateRobots();
   await generateFeed(articles);
 
-  console.log(`Prepared SPA shells for ${articles.length} article routes, sitemap, robots, feed, and fallback.`);
+  console.log(`Built static HTML for ${articles.length} articles, sitemap, robots, feed, and fallback.`);
 };
 
 run().catch((error) => {
