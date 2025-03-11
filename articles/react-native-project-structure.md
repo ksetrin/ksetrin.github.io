@@ -1,7 +1,7 @@
 ---
 title: "Структура React Native проекта"
 description: "Организация файлов и папок для масштабируемого React Native приложения. Лучшие практики и проверенные подходы"
-category: "Coding"
+category: "Architecture"
 tags: ["react-native", "architecture", "project-structure", "best-practices", "organization"]
 slug: "react-native-project-structure"
 lang: "ru"

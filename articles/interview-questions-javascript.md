@@ -17,7 +17,6 @@ tldr: ["Разбираем классические вопросы по типа
 примитивные: number, bigint, string, boolean, null, undefined, symbol
 object
 
-
 Вопрос:  
 **В чем смысл оборачивания всего содержимого JavaScript-файла в функцию?**
 
