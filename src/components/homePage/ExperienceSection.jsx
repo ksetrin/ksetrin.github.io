@@ -6,36 +6,12 @@ import theRedOneLogo from '@/assets/images/companies/the-red-one.jpg';
 
 const ExperienceSection = () => {
     const { t } = useTranslation();
-
-    const experience = [
-        {
-            company: 'Mebix',
-            years: '2021 - 2025',
-            duration: '3+ ' + t('homepage.experience.years'),
-            location: 'Germany',
-            description: 'Digital therapy companion for diabetes and cardiovascular diseases',
-            tech: 'React Native, TypeScript, Redux, Firebase',
-            logo: mebixLogo
-        },
-        {
-            company: 'Bamboo Agile',
-            years: '2019 - 2021',
-            duration: '2 ' + t('homepage.experience.years'),
-            location: 'UAE/Remote',
-            description: 'Emirates HR, TapCar, Zna.by education platform',
-            tech: 'React Native, Angular, Redux, MobX, AWS, GraphQL',
-            logo: bambooLogo
-        },
-        {
-            company: 'The Red One',
-            years: '2017 - 2019',
-            duration: '2 ' + t('homepage.experience.years'),
-            location: 'Russia',
-            description: 'Started mobile development direction, various RN projects',
-            tech: 'React Native, Redux, MobX, TypeScript, Swift, Java',
-            logo: theRedOneLogo
-        }
-    ];
+    const experiences = t('homepage.experience.items', { returnObjects: true }) || [];
+    const logos = {
+        mebix: mebixLogo,
+        bamboo: bambooLogo,
+        theredone: theRedOneLogo
+    };
 
     return (
         <section className="py-8">
@@ -44,12 +20,12 @@ const ExperienceSection = () => {
                 <p className="mt-4 text-gray-600 dark:text-gray-300 text-lg">{t('homepage.experience.description')}</p>
             </div>
             <div className="space-y-6">
-                {experience.map(exp => (
+                {experiences.map(exp => (
                     <div key={exp.company} className="relative">
                         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1">
                             <div className="flex-shrink-0">
                                 <img
-                                    src={exp.logo}
+                                    src={logos[exp.key] || mebixLogo}
                                     alt={`${exp.company} logo`}
                                     className="w-16 h-16 rounded-lg object-cover shadow-md"
                                 />
@@ -65,15 +41,21 @@ const ExperienceSection = () => {
                                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                                     <div>
                                         <p className="text-gray-600 dark:text-gray-300 font-medium">{exp.location}</p>
-                                        <p className="mt-2 text-gray-700 dark:text-gray-300">{exp.description}</p>
+                                        <p className="mt-2 text-gray-700 dark:text-gray-300">
+                                            {exp.description}
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="mt-3 flex flex-wrap gap-2">
-                                    {exp.tech.split(', ').map(tech => (
-                                        <span key={tech} className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
-                      {tech}
-                    </span>
-                                    ))}
+                                    {(exp.tech || '').split(',').map(tech => {
+                                        const trimmed = tech.trim();
+                                        if (!trimmed) return null;
+                                        return (
+                                            <span key={trimmed} className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
+                                                {trimmed}
+                                            </span>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
