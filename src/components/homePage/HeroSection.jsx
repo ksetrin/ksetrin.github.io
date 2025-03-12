@@ -6,6 +6,7 @@ import photo from '@/assets/images/photo.jpeg';
 
 const HeroSection = () => {
     const { t } = useTranslation();
+    const portraitAlt = t('homepage.introduction.portraitAlt');
 
     return (
         <section className="py-12">
@@ -14,7 +15,7 @@ const HeroSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20 blur-2xl transform scale-110"></div>
                     <img
                         src={photo}
-                        alt="Peter Evsikov Portrait"
+                        alt={portraitAlt}
                         className="w-48 h-48 lg:w-72 lg:h-72 rounded-full shadow-xl ring-4 ring-blue-500/30 object-cover relative z-10"
                     />
                 </div>
@@ -35,7 +36,7 @@ const HeroSection = () => {
                         {t('homepage.introduction.ctaButton')}
                     </Link>
                     <Link to="/contact" className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
-                        Contact Me
+                        {t('homepage.introduction.contactCta')}
                     </Link>
                 </div>
                 </div>
