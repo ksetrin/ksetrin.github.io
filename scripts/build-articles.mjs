@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
@@ -27,6 +28,63 @@ const STATIC_ROUTES = [
 const SITE_NAME = 'Пётр Евсиков';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/images/photo.jpeg`;
 const RSS_ITEM_LIMIT = 50;
+const DEFAULT_LANG = 'ru';
+
+const loadLocale = (relativePath) => {
+  const fullPath = path.join(ROOT, relativePath);
+  const raw = fsSync.readFileSync(fullPath, 'utf-8');
+  return JSON.parse(raw);
+};
+
+const enLocale = loadLocale('src/locales/en.json');
+const ruLocale = loadLocale('src/locales/ru.json');
+
+const ROOT_TRANSLATIONS = {
+  en: enLocale,
+  ru: ruLocale
+};
+const SEO_TRANSLATIONS = {
+  en: enLocale.seo || {},
+  ru: ruLocale.seo || {}
+};
+const ARTICLES_TRANSLATIONS = {
+  en: enLocale.articles || {},
+  ru: ruLocale.articles || {}
+};
+
+const getFromTree = (tree, lang, path, fallbackLang = DEFAULT_LANG) => {
+  const value = path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), tree[lang]);
+  if (value !== undefined) return value;
+  return path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), tree[fallbackLang]);
+};
+
+const interpolate = (template, params = {}) => {
+  if (typeof template !== 'string') return template;
+  return Object.entries(params).reduce(
+    (acc, [key, val]) => acc.replace(new RegExp(`{{\\s*${key}\\s*}}`, 'g'), val),
+    template
+  );
+};
+
+const getSeoString = (lang, path, fallbackLang = DEFAULT_LANG) => {
+  const raw = getFromTree(SEO_TRANSLATIONS, lang, path, fallbackLang);
+  return typeof raw === 'string' ? raw : '';
+};
+
+const getSeoArray = (lang, path, fallbackLang = DEFAULT_LANG) => {
+  const raw = getFromTree(SEO_TRANSLATIONS, lang, path, fallbackLang);
+  return Array.isArray(raw) ? raw : [];
+};
+
+const getArticlesString = (lang, path, fallbackLang = DEFAULT_LANG) => {
+  const raw = getFromTree(ARTICLES_TRANSLATIONS, lang, path, fallbackLang);
+  return typeof raw === 'string' ? raw : '';
+};
+
+const getGeneralString = (lang, path, fallbackLang = DEFAULT_LANG) => {
+  const raw = getFromTree(ROOT_TRANSLATIONS, lang, path, fallbackLang);
+  return typeof raw === 'string' ? raw : '';
+};
 
 marked.setOptions({
   gfm: true,
@@ -64,10 +122,12 @@ const toIsoDate = (value) => {
   return parsed.toISOString().split('T')[0];
 };
 
-const readableDate = (value, lang = 'ru') => {
+const localeMap = { en: 'en-US', ru: 'ru-RU' };
+const readableDate = (value, lang = DEFAULT_LANG) => {
   if (!value) return '';
   try {
-    return new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'ru-RU', {
+    const locale = localeMap[lang] || localeMap[DEFAULT_LANG];
+    return new Intl.DateTimeFormat(locale, {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
@@ -77,9 +137,10 @@ const readableDate = (value, lang = 'ru') => {
   }
 };
 
-const readingTimeLabel = (minutes, lang = 'ru') => {
+const readingTimeLabel = (minutes, lang = DEFAULT_LANG) => {
   const safeMinutes = Math.max(1, minutes);
-  return lang === 'en' ? `${safeMinutes} min read` : `${safeMinutes} мин чтения`;
+  const template = getArticlesString(lang, ['readTime']) || getArticlesString(DEFAULT_LANG, ['readTime']);
+  return template.replace('{{count}}', safeMinutes);
 };
 
 const trimDescription = (text) => {
@@ -104,12 +165,13 @@ const deriveTldr = (content, provided) => {
   return sentences.map((sentence) => sentence.replace(/[*_#>-]/g, '')).filter(Boolean);
 };
 
-const enhanceImages = (html, lang = 'ru') => html.replace(/<img([^>]+?)>/g, (match, attrs) => {
+const enhanceImages = (html, lang = DEFAULT_LANG) => html.replace(/<img([^>]+?)>/g, (match, attrs) => {
   const hasLoading = /loading=/.test(attrs);
   const hasAlt = /alt=/.test(attrs);
   const attrWithLoading = hasLoading ? attrs : ` loading="lazy" decoding="async"${attrs}`;
-  const fallbackAlt = lang === 'en' ? 'Article illustration' : 'Иллюстрация к статье';
-  const attrFinal = hasAlt ? attrWithLoading : `${attrWithLoading} alt="${fallbackAlt}"`;
+  const fallbackAlt = getSeoString(lang, ['articles', 'fallbackAlt']) || getSeoString(DEFAULT_LANG, ['articles', 'fallbackAlt']);
+  const safeAlt = escapeHtml(fallbackAlt || 'Article illustration');
+  const attrFinal = hasAlt ? attrWithLoading : `${attrWithLoading} alt="${safeAlt}"`;
   return `<img${attrFinal}>`;
 });
 
@@ -208,9 +270,8 @@ const loadAppShell = async () => {
 };
 
 const getOgLocale = (lang) => {
-  if (lang === 'en') return 'en_US';
-  if (lang === 'ru') return 'ru_RU';
-  return 'en_US';
+  const locales = { en: 'en_US', ru: 'ru_RU' };
+  return locales[lang] || locales.ru;
 };
 
 const escapeHtml = (value) =>
@@ -467,8 +528,15 @@ const buildAliasTemplate = (alias, article) => {
 </html>`;
 };
 
-const buildArticlesIndex = (articles, assets, highlightStyles) => {
+const buildArticlesIndex = (articles, assets, highlightStyles, lang = DEFAULT_LANG, meta = {}) => {
   const cssLinks = assets.css.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n');
+  const articlesText = ARTICLES_TRANSLATIONS[lang] || {};
+  const headingTitle = articlesText.title || 'Articles';
+  const headingSubtitle = articlesText.subtitle || '';
+  const blogLabel = articlesText.title || 'Articles';
+  const navHome = getGeneralString(lang, ['header', 'home']) || 'Home';
+  const navProjects = getGeneralString(lang, ['header', 'projects']) || 'Projects';
+  const navArticles = getGeneralString(lang, ['header', 'articles']) || 'Articles';
   const listItems = articles
     .map(
       (article) => `
@@ -491,13 +559,14 @@ const buildArticlesIndex = (articles, assets, highlightStyles) => {
     .join('\n');
 
   return `<!DOCTYPE html>
-<html lang="ru">
+<html lang="${lang}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Статьи | ${SITE_NAME}</title>
-    <meta name="description" content="Архив статей от ${SITE_NAME}: React Native, DevOps и архитектура.">
-    <link rel="canonical" href="${SITE_URL}/articles/">
+    <title>${escapeHtml(meta.title || '')}</title>
+    <meta name="description" content="${escapeHtml(meta.description || '')}">
+    ${meta.keywords ? `<meta name="keywords" content="${escapeHtml(meta.keywords)}">` : ''}
+    ${meta.canonical ? `<link rel="canonical" href="${meta.canonical}">` : ''}
     ${cssLinks}
     <style>${highlightStyles}</style>
     <link rel="alternate" type="application/rss+xml" title="${SITE_NAME} feed" href="${SITE_URL}/feed.xml">
@@ -507,17 +576,17 @@ const buildArticlesIndex = (articles, assets, highlightStyles) => {
       <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <a href="/" class="text-lg font-semibold text-gray-900 dark:text-white">${SITE_NAME}</a>
         <nav class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
-          <a href="/" class="hover:text-blue-600">Главная</a>
-          <a href="/projects/" class="hover:text-blue-600">Проекты</a>
-          <a href="/articles/" class="text-blue-600 font-semibold">Статьи</a>
+          <a href="/" class="hover:text-blue-600">${escapeHtml(navHome)}</a>
+          <a href="/projects/" class="hover:text-blue-600">${escapeHtml(navProjects)}</a>
+          <a href="/articles/" class="text-blue-600 font-semibold">${escapeHtml(navArticles)}</a>
         </nav>
       </div>
     </header>
     <main class="max-w-5xl mx-auto px-4 py-10 space-y-6">
       <div class="space-y-2">
-        <p class="text-sm text-gray-500 uppercase tracking-wide">Блог</p>
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Архив статей</h1>
-        <p class="text-gray-600 dark:text-gray-300">Публикации о React Native, архитектуре и DevOps.</p>
+        <p class="text-sm text-gray-500 uppercase tracking-wide">${escapeHtml(blogLabel)}</p>
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white">${escapeHtml(headingTitle)}</h1>
+        <p class="text-gray-600 dark:text-gray-300">${escapeHtml(headingSubtitle)}</p>
       </div>
       <div class="grid gap-6">
         ${listItems}
@@ -713,22 +782,32 @@ const run = async () => {
 
   await cleanDir(ARTICLES_DIST);
 
-  const articlesIndexHtml = buildArticlesIndex(articles, assets, highlightStyles);
-  const articlesIndexFallback = extractBody(articlesIndexHtml);
   const articlesIndexMeta = {
-    title: `Статьи | ${SITE_NAME}`,
-    description: `Архив статей от ${SITE_NAME}: React Native, DevOps и архитектура.`,
+    title: interpolate(getSeoString(DEFAULT_LANG, ['articles', 'indexTitle']) || `Статьи | ${SITE_NAME}`, { site: SITE_NAME }),
+    description: interpolate(getSeoString(DEFAULT_LANG, ['articles', 'indexDescription']) || '', { site: SITE_NAME }),
     canonical: `${SITE_URL}/articles/`,
-    lang: 'ru',
+    lang: DEFAULT_LANG,
     robots: 'index,follow',
     image: DEFAULT_OG_IMAGE,
-    keywords: 'React Native, статьи, DevOps, архитектура'
+    keywords: getSeoArray(DEFAULT_LANG, ['articles', 'indexKeywords'])
   };
+  const articlesIndexHtml = buildArticlesIndex(
+    articles,
+    assets,
+    highlightStyles,
+    DEFAULT_LANG,
+    {
+      ...articlesIndexMeta,
+      keywords: Array.isArray(articlesIndexMeta.keywords) ? articlesIndexMeta.keywords.join(', ') : articlesIndexMeta.keywords
+    }
+  );
+  const articlesIndexFallback = extractBody(articlesIndexHtml);
 
   const buildHeadMeta = ({ title, description, canonical, robots, image, lang, keywords }) => {
+    const keywordsContent = Array.isArray(keywords) ? keywords.join(', ') : (keywords || '');
     const tags = [
       `<meta name="description" content="${escapeHtml(description || '')}">`,
-      keywords ? `<meta name="keywords" content="${escapeHtml(keywords)}">` : '',
+      keywordsContent ? `<meta name="keywords" content="${escapeHtml(keywordsContent)}">` : '',
       canonical ? `<link rel="canonical" href="${canonical}">` : '',
       `<meta name="robots" content="${robots || 'index,follow'}">`,
       `<meta property="og:type" content="article">`,
@@ -788,7 +867,7 @@ const run = async () => {
     lang: articlesIndexMeta.lang,
     keywords: articlesIndexMeta.keywords
   });
-  const indexShellWithLang = setHtmlLang(appShell, 'ru');
+  const indexShellWithLang = setHtmlLang(appShell, articlesIndexMeta.lang || DEFAULT_LANG);
   const indexShellWithTitle = replaceTitle(indexShellWithLang, articlesIndexMeta.title);
   const indexShellWithMeta = injectIntoHead(indexShellWithTitle, indexHeadTags);
   const indexHtml = injectNoscript(indexShellWithMeta, articlesIndexFallback);
