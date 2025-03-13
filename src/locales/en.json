@@ -1,7 +1,7 @@
 {
   "articles": {
-    "title": "Articles & Guides",
-    "subtitle": "Sharing experience in mobile development and DevOps practices",
+    "title": "React Native articles & guides",
+    "subtitle": "Architecture, store releases, DevOps, and hands-on checklists for mobile teams",
     "readMore": "Read more",
     "searchPlaceholder": "Search by title, description or tag",
     "clear": "Clear",
@@ -13,11 +13,67 @@
     "otherArticles": "Other articles",
     "notFound": "Article not found",
     "articleNotExists": "The requested article does not exist",
-    "words": "words"
+    "words": "words",
+    "seeProjects": "See React Native projects",
+    "goHome": "Go to homepage",
+    "readTime": "{{count}} min read"
+  },
+  "seo": {
+    "home": {
+      "title": "React Native Engineer and mobile architecture lead",
+      "description": "Peter Evsikov — React Native engineer who builds mobile apps under production constraints: architecture, performance, releases, and DevOps.",
+      "keywords": [
+        "React Native developer",
+        "mobile app architecture",
+        "React Native optimization",
+        "mobile development",
+        "React Native engineer"
+      ]
+    },
+    "projects": {
+      "title": "React Native portfolio: healthcare, automotive, education",
+      "description": "Real-world React Native case studies: Mebix, TapCar, Znaj.by, Apollo CarMix and other production apps with complex integrations.",
+      "keywords": [
+        "React Native portfolio",
+        "mobile case studies",
+        "React Native projects",
+        "mobile app development"
+      ],
+      "cardAlt": "{{title}} mobile app preview"
+    },
+    "articles": {
+      "title": "React Native blog: architecture, DevOps, release process",
+      "description": "Guides and checklists for React Native teams: CI/CD, store releases, project structure, interviews.",
+      "keywords": [
+        "React Native blog",
+        "mobile development articles",
+        "React Native architecture",
+        "CI/CD for mobile"
+      ],
+      "fallbackAlt": "Article illustration",
+      "indexTitle": "Articles | {{site}}",
+      "indexDescription": "Article archive from {{site}}: React Native, DevOps and architecture.",
+      "indexKeywords": [
+        "React Native",
+        "articles",
+        "DevOps",
+        "architecture"
+      ]
+    },
+    "contact": {
+      "title": "Contact a React Native engineer",
+      "description": "Reach out to Peter Evsikov for React Native consulting, architecture reviews, and mobile app delivery.",
+      "keywords": [
+        "React Native contacts",
+        "React Native consulting",
+        "mobile architecture"
+      ]
+    }
   },
   "projects": {
-    "title": "Projects",
-    "subtitle": "Selected works and contributions",
+    "title": "React Native Projects",
+    "subtitle": "Selected mobile case studies and architecture work",
+    "cardAlt": "{{title}} mobile app preview",
     "viewProject": "View Project",
     "sourceCode": "Source Code",
     "liveDemo": "Live Demo",
@@ -27,14 +83,42 @@
       "automotive": "Automotive",
       "education": "Education",
       "utilities": "Utilities"
+    },
+    "cards": {
+      "mebix": {
+        "description": "Digital therapy companion for diabetes type 2. AI-powered nutrition tracking with medical-grade accuracy.",
+        "status": "Live in Production"
+      },
+      "tapcar": {
+        "description": "Peer-to-peer car sharing application with zero third-party telematics. Direct OEM integration with trust-based sharing groups.",
+        "status": "Research-Backed Innovation"
+      },
+      "znaj": {
+        "description": "Unified educational platform connecting teachers, parents, and students. Top 100 EdTech companies in CIS region.",
+        "status": "Top 100 EdTech CIS"
+      },
+      "carmix": {
+        "description": "Smart mobile concrete plant management with AR technology and IoT integration. Revolutionary construction industry solution.",
+        "status": "Industrial IoT Innovation"
+      },
+      "chelyabinskgorgaz": {
+        "description": "Government digital services platform serving 58K+ users across Chelyabinsk region. Complete gas infrastructure management system.",
+        "status": "Government Digital Services"
+      },
+      "preco": {
+        "description": "Comprehensive mobile application for educational institutions featuring dual-role architecture for students and faculty, complete academic management, and seamless offline-online synchronization.",
+        "status": "Education"
+      }
     }
   },
   "homepage": {
     "introduction": {
-      "title": "Hi! I'm Peter Evsikov",
-      "subtitle": "Principal Engineer focused on architecture and technical leadership",
-      "description": "Building product systems since 2012 across fintech, healthcare, education, and e-commerce. I specialize in architecting solutions and establishing development processes — from technical decisions to team formation. Launched projects from scratch, scaled to thousands of users, achieved top rankings in app stores. Full-stack experience across backend, frontend, and mobile gives me a holistic product vision and the ability to make sound technical decisions.",
-      "ctaButton": "View My Projects"
+      "title": "Peter Evsikov — React Native Engineer",
+      "subtitle": "End-to-end mobile development and technical leadership",
+      "description": "Building React Native products since 2012 across fintech, healthcare, education, and e-commerce. I focus on mobile architecture, performance, releases, and DevOps while shaping processes and teams. Launched apps from scratch, scaled to thousands of users, and shipped store-leading releases.",
+      "ctaButton": "View My Projects",
+      "contactCta": "Contact me",
+      "portraitAlt": "Portrait of Peter Evsikov — React Native engineer"
     },
     "contact": {
       "email": "ksetrinn@gmail.com",
@@ -110,7 +194,36 @@
       "title": "Professional Journey",
       "description": "7+ years of React Native development experience",
       "current": "Present",
-      "years": "years"
+      "years": "years",
+      "items": [
+        {
+          "key": "mebix",
+          "company": "Mebix",
+          "years": "2021 - 2025",
+          "duration": "3+ years",
+          "location": "Germany",
+          "description": "Digital therapy companion for diabetes and cardiovascular diseases",
+          "tech": "React Native, TypeScript, Redux, Firebase"
+        },
+        {
+          "key": "bamboo",
+          "company": "Bamboo Agile",
+          "years": "2019 - 2021",
+          "duration": "2 years",
+          "location": "UAE/Remote",
+          "description": "Emirates HR, TapCar, Zna.by education platform",
+          "tech": "React Native, Angular, Redux, MobX, AWS, GraphQL"
+        },
+        {
+          "key": "theredone",
+          "company": "The Red One",
+          "years": "2017 - 2019",
+          "duration": "2 years",
+          "location": "Russia",
+          "description": "Started mobile development direction, various RN projects",
+          "tech": "React Native, Redux, MobX, TypeScript, Swift, Java"
+        }
+      ]
     },
     "techStack": {
       "title": "Technology Stack",
@@ -124,6 +237,11 @@
       "backendCloud": "Backend & Cloud",
       "databases": "Databases",
       "developmentTools": "Development Tools"
+    },
+    "featuredArticles": {
+      "title": "React Native blog",
+      "subtitle": "Latest content on mobile architecture, releases, and DevOps",
+      "cta": "See all articles"
     },
     "purpose": {
       "title": "What I Can Offer",
@@ -147,8 +265,8 @@
     "lightMode": "Light Mode"
   },
   "contact": {
-    "title": "Get In Touch",
-    "subtitle": "Let's connect and discuss opportunities for collaboration",
+    "title": "Contact a React Native engineer",
+    "subtitle": "Architecture reviews, code audits, and full mobile delivery",
     "visit": "Visit"
   },
   "footer": {
