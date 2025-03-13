@@ -33,6 +33,16 @@
         }
       ]
     },
+    "seo": {
+      "title": "Mebix — medical React Native app with AI nutrition",
+      "description": "React Native architecture for Mebix: glucose control, nutrition AI, secure analytics, and clinic integrations.",
+      "keywords": [
+        "React Native healthcare",
+        "diabetes app",
+        "AI nutrition",
+        "medical React Native apps"
+      ]
+    },
     "solution": {
       "title": "The Solution",
       "description": "I developed a comprehensive React Native application that combines AI-powered food recognition, personalized medical recommendations, and gamified therapy adherence to create an engaging and effective diabetes management platform.",
@@ -78,6 +88,11 @@
           ]
         }
       ]
+    },
+    "showcase": {
+      "title": "Project showcase",
+      "description": "Watch how Mebix revolutionizes diabetes management through AI-powered nutrition tracking and personalized therapy guidance.",
+      "videoFallback": "Your browser does not support the video tag."
     },
     "technical": {
       "title": "Technical Implementation",

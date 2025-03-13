@@ -39,6 +39,16 @@
         }
       ]
     },
+    "seo": {
+      "title": "TapCar — React Native car sharing without third-party telematics",
+      "description": "Peer-to-peer car sharing app: OEM integrations, BLE locks, AutoPASS payments, Node.js backend and secure mobile architecture.",
+      "keywords": [
+        "React Native automotive",
+        "BLE car sharing",
+        "car sharing app",
+        "OEM integrations"
+      ]
+    },
     "solution": {
       "title": "Innovative Solution",
       "description": "I developed a comprehensive React Native application that revolutionizes car sharing through direct OEM integration, proprietary algorithms, and trust-based user relationships.",

@@ -39,6 +39,16 @@
         }
       ]
     },
+    "seo": {
+      "title": "Apollo CarMix — React Native IoT app for concrete plants",
+      "description": "React Native + AR control for mobile concrete plants: IoT telemetry, offline workflows, and industrial automation.",
+      "keywords": [
+        "React Native IoT",
+        "industrial mobile app",
+        "AR equipment control",
+        "industrial automation"
+      ]
+    },
     "solution": {
       "title": "Smart Construction Solution",
       "description": "I developed an innovative React Native application that revolutionizes concrete production through AR visualization, IoT integration, and intelligent automation systems for optimal construction site efficiency.",

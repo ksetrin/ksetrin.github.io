@@ -39,6 +39,16 @@
         }
       ]
     },
+    "seo": {
+      "title": "Znaj.by — education superapp on React Native",
+      "description": "Unified school platform for teachers, parents, and students: schedules, payments, notifications, and offline-first mobile experience.",
+      "keywords": [
+        "React Native education",
+        "school mobile app",
+        "education superapp",
+        "electronic diary"
+      ]
+    },
     "solution": {
       "title": "Comprehensive Educational Solution",
       "description": "I developed a complete mobile ecosystem that connects all participants in the educational process through intuitive React Native applications with real-time synchronization and smart automation.",

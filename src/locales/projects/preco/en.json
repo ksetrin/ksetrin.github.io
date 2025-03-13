@@ -39,6 +39,16 @@
         }
       ]
     },
+    "seo": {
+      "title": "URC & SUTU — university superapps on React Native",
+      "description": "Dual-role React Native apps for students and faculty with schedules, grades, offline access, and LMS workflows.",
+      "keywords": [
+        "React Native education",
+        "university app",
+        "mobile LMS",
+        "student schedule app"
+      ]
+    },
     "solution": {
       "title": "Technical Solution",
       "description": "I developed a sophisticated React Native application with advanced state management, offline-first architecture, and role-based access control to handle complex educational workflows and data management.",

@@ -39,6 +39,16 @@
         }
       ]
     },
+    "seo": {
+      "title": "Chelyabinskgorgaz — utilities superapp on React Native",
+      "description": "Government-grade mobile services: gas infrastructure management, digital identity, secure payments, and offline inspections.",
+      "keywords": [
+        "React Native utilities",
+        "government mobile services",
+        "digital identity",
+        "utility payments"
+      ]
+    },
     "solution": {
       "title": "Digital Government Solution",
       "description": "I developed a comprehensive React Native application that revolutionizes gas infrastructure services through digital transformation, providing 24/7 access to over 20 unified service types for regional residents.",
