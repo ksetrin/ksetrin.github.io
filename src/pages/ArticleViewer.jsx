@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { marked } from 'marked';
 import slugify from 'slugify';
 import ArticlesService from '@/service/articlesService';
+import usePageMetadata from '@/hooks/usePageMetadata';
 
 marked.setOptions({
     breaks: true,
@@ -13,12 +14,14 @@ marked.setOptions({
 });
 
 const ArticleViewer = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { slug } = useParams();
     const navigate = useNavigate();
     const [article, setArticle] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const dateLocales = { en: 'en-US', ru: 'ru-RU' };
+    const getDateLocale = () => dateLocales[i18n.language?.slice(0, 2)] || dateLocales.ru;
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -66,12 +69,15 @@ const ArticleViewer = () => {
 
     const toc = [];
     const renderer = new marked.Renderer();
-    renderer.heading = (text, level, raw) => {
-      const id = makeId(raw || text);
+    renderer.heading = function heading(token) {
+      const level = token?.depth || 1;
+      const raw = token?.raw || token?.text || '';
+      const id = makeId(raw);
       if (level >= 2 && level <= 4) {
-        toc.push({ id, text, level });
+        toc.push({ id, text: token?.text || raw, level });
       }
-      return `<h${level} id="${id}">${text}</h${level}>`;
+      const content = this.parser?.parseInline ? this.parser.parseInline(token.tokens || []) : (token?.text || raw);
+      return `<h${level} id="${id}">${content}</h${level}>`;
     };
 
     return {
@@ -79,6 +85,16 @@ const ArticleViewer = () => {
       toc
     };
   }, [article]);
+
+  usePageMetadata({
+    title: article?.title || t('articles.title'),
+    description: article?.description || t('articles.subtitle'),
+    keywords: article?.tags || ['React Native', 'мобильная разработка'],
+    canonical: article ? `https://ksetrin.github.io/articles/${article.slug}/` : 'https://ksetrin.github.io/articles/',
+    type: article ? 'article' : 'website',
+    lang: article?.lang || i18n.language,
+    robots: error ? 'noindex,follow' : 'index,follow'
+  });
 
   if (loading) {
     return (
@@ -124,7 +140,7 @@ const ArticleViewer = () => {
     const formatDate = (dateString) => {
         if (!dateString) return '';
         try {
-            return new Intl.DateTimeFormat('ru-RU', {
+            return new Intl.DateTimeFormat(getDateLocale(), {
                 day: 'numeric',
                 month: 'long',
                 year: 'numeric'
@@ -132,6 +148,13 @@ const ArticleViewer = () => {
     } catch (e) {
       return dateString;
     }
+  };
+
+  const formatReadTime = (articleData) => {
+    const minutes = articleData?.readTimeMinutes;
+    if (!minutes) return '';
+    const safeMinutes = Math.max(1, minutes);
+    return t('articles.readTime', { count: safeMinutes });
   };
 
   return (
@@ -164,10 +187,10 @@ const ArticleViewer = () => {
                             {formatDate(article.datePublished)}
                         </time>
                     )}
-                    {article.readTimeLabel && (
+                    {formatReadTime(article) && (
                         <>
                             <span aria-hidden="true">•</span>
-                            <span>{article.readTimeLabel}</span>
+                            <span>{formatReadTime(article)}</span>
                         </>
                     )}
                     {article.author && (
@@ -206,7 +229,7 @@ const ArticleViewer = () => {
             )}
 
             {renderedArticle.toc.length > 0 && (
-                <nav className="mt-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm">
+                <nav className="mt-8 mb-10 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm">
                     <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Содержание</h2>
                     <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                         {renderedArticle.toc.map((item) => (
@@ -227,7 +250,7 @@ const ArticleViewer = () => {
                 </nav>
             )}
 
-            <article className="max-w-none animate-slide-up prose prose-lg dark:prose-invert
+            <article className="max-w-none animate-slide-up prose prose-lg dark:prose-invert mt-4
 prose-headings:text-gray-900 dark:prose-headings:text-gray-200
 prose-p:text-gray-700 dark:prose-p:text-gray-300
 prose-a:text-blue-600 hover:prose-a:text-blue-800 dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300
@@ -275,6 +298,21 @@ dark:prose-pre:bg-gray-600 dark:prose-pre:text-gray-100">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
                         </svg>
                     </button>
+                </div>
+
+                <div className="flex flex-wrap gap-3 mt-4">
+                  <Link
+                      to="/projects"
+                      className="inline-flex items-center px-4 py-2 rounded-md text-sm font-medium text-blue-600 dark:text-blue-300 border border-blue-200 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+                  >
+                    {t('articles.seeProjects')}
+                  </Link>
+                  <Link
+                      to="/"
+                      className="inline-flex items-center px-4 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    {t('articles.goHome')}
+                  </Link>
                 </div>
             </footer>
         </div>

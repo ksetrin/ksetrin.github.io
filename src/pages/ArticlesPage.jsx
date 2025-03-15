@@ -2,13 +2,25 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import ArticlesService from '@/service/articlesService';
+import usePageMetadata from '@/hooks/usePageMetadata';
 
 const ArticlesPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const seoKeywords = t('seo.articles.keywords', { returnObjects: true });
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedTag, setSelectedTag] = useState('all');
   const [search, setSearch] = useState('');
+  const dateLocales = { en: 'en-US', ru: 'ru-RU' };
+  const getDateLocale = () => dateLocales[i18n.language?.slice(0, 2)] || dateLocales.ru;
+
+  usePageMetadata({
+    title: t('seo.articles.title'),
+    description: t('seo.articles.description'),
+    keywords: Array.isArray(seoKeywords) ? seoKeywords : [],
+    canonical: 'https://ksetrin.github.io/articles/',
+    lang: i18n.language
+  });
 
   useEffect(() => {
     ArticlesService.getAllArticles().then((loadedArticles) => {
@@ -69,7 +81,7 @@ const ArticlesPage = () => {
   const formatDate = (dateString) => {
     if (!dateString) return '';
     try {
-      return new Intl.DateTimeFormat('ru-RU', {
+      return new Intl.DateTimeFormat(getDateLocale(), {
         day: 'numeric',
         month: 'short',
         year: 'numeric'
@@ -77,6 +89,13 @@ const ArticlesPage = () => {
     } catch (e) {
       return dateString;
     }
+  };
+
+  const formatReadTime = (article) => {
+    const minutes = article?.readTimeMinutes;
+    if (!minutes) return '';
+    const safeMinutes = Math.max(1, minutes);
+    return t('articles.readTime', { count: safeMinutes });
   };
 
   if (loading) {
@@ -150,7 +169,7 @@ const ArticlesPage = () => {
                     <span className="flex items-center gap-1">
                       <time dateTime={article.datePublished}>{formatDate(article.datePublished)}</time>
                       <span aria-hidden="true">•</span>
-                      <span>{article.readTimeLabel}</span>
+                      <span>{formatReadTime(article)}</span>
                     </span>
                   </div>
 

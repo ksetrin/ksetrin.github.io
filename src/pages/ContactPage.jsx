@@ -1,9 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub, FaTelegram, FaLinkedin } from 'react-icons/fa';
+import usePageMetadata from '@/hooks/usePageMetadata';
 
 const ContactPage = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const seoKeywords = t('seo.contact.keywords', { returnObjects: true });
+
+    usePageMetadata({
+        title: t('seo.contact.title'),
+        description: t('seo.contact.description'),
+        keywords: Array.isArray(seoKeywords) ? seoKeywords : [],
+        canonical: 'https://ksetrin.github.io/contact/',
+        lang: i18n.language
+    });
 
     const contacts = [
         {
