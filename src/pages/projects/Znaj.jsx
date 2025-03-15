@@ -51,10 +51,22 @@ import screen13 from '@/assets/images/screenshots/znaj/screen-13.png';
 import screen14 from '@/assets/images/screenshots/znaj/screen-14.png';
 import screen15 from '@/assets/images/screenshots/znaj/screen-15.png';
 import screen16 from '@/assets/images/screenshots/znaj/screen-16.png';
+import usePageMetadata from '@/hooks/usePageMetadata';
 
 const ZnajProject = () => {
     const { t, i18n } = useTranslation();
     const [selectedImage, setSelectedImage] = useState(null);
+
+    const seoKeywords = t('znaj.seo.keywords', { returnObjects: true });
+
+    usePageMetadata({
+        title: t('znaj.seo.title'),
+        description: t('znaj.seo.description'),
+        keywords: Array.isArray(seoKeywords) ? seoKeywords : [],
+        canonical: 'https://ksetrin.github.io/projects/znaj/',
+        lang: i18n.language,
+        type: 'article'
+    });
 
     const technologies = [
         { icon: <FaReact className="w-6 h-6" />, name: 'React Native', color: 'text-blue-400' },

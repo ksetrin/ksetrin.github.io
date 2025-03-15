@@ -39,10 +39,22 @@ import screen6 from '@/assets/images/screenshots/tapcar/screen-6.png';
 import screen7 from '@/assets/images/screenshots/tapcar/screen-7.png';
 import screen8 from '@/assets/images/screenshots/tapcar/screen-8.png';
 import screen9 from '@/assets/images/screenshots/tapcar/screen-9.png';
+import usePageMetadata from '@/hooks/usePageMetadata';
 
 const TapcarProject = () => {
     const { t, i18n } = useTranslation();
     const [selectedImage, setSelectedImage] = useState(null);
+
+    const seoKeywords = t('tapcar.seo.keywords', { returnObjects: true });
+
+    usePageMetadata({
+        title: t('tapcar.seo.title'),
+        description: t('tapcar.seo.description'),
+        keywords: Array.isArray(seoKeywords) ? seoKeywords : [],
+        canonical: 'https://ksetrin.github.io/projects/tapcar/',
+        lang: i18n.language,
+        type: 'article'
+    });
 
     const tTapcar = (key) => t(key, { ns: 'tapcar' });
 

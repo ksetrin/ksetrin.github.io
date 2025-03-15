@@ -39,12 +39,24 @@ import screen5 from '@/assets/images/screenshots/mebix/screen-5.png';
 import screen6 from '@/assets/images/screenshots/mebix/screen-6.png';
 import screen7 from '@/assets/images/screenshots/mebix/screen-7.png';
 import screen8 from '@/assets/images/screenshots/mebix/screen-8.png';
+import usePageMetadata from '@/hooks/usePageMetadata';
 
 const MebixProject = () => {
     const { t, i18n } = useTranslation();
     const [selectedImage, setSelectedImage] = useState(null);
     const [videoPlaying, setVideoPlaying] = useState(false);
     const [videoMuted, setVideoMuted] = useState(true);
+
+    const seoKeywords = t('mebix.seo.keywords', { returnObjects: true });
+
+    usePageMetadata({
+        title: t('mebix.seo.title'),
+        description: t('mebix.seo.description'),
+        keywords: Array.isArray(seoKeywords) ? seoKeywords : [],
+        canonical: 'https://ksetrin.github.io/projects/mebix/',
+        lang: i18n.language,
+        type: 'article'
+    });
 
     const technologies = [
         { icon: <FaReact className="w-6 h-6" />, name: 'React Native', color: 'text-blue-400' },
@@ -173,9 +185,9 @@ const MebixProject = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <section className="py-20">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold mb-6">Project Showcase</h2>
+                        <h2 className="text-4xl font-bold mb-6">{t('mebix.showcase.title')}</h2>
                         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                            Watch how Mebix revolutionizes diabetes management through AI-powered nutrition tracking and personalized therapy guidance.
+                            {t('mebix.showcase.description')}
                         </p>
                     </div>
 
@@ -191,7 +203,7 @@ const MebixProject = () => {
                                 onPause={() => setVideoPlaying(false)}
                             >
                                 <source src={video1} type="video/mp4" />
-                                Your browser does not support the video tag.
+                                {t('mebix.showcase.videoFallback')}
                             </video>
 
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">

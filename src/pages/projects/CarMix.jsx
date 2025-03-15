@@ -50,10 +50,22 @@ import screen9 from '@/assets/images/screenshots/carmix/screen-9.png';
 import screen10 from '@/assets/images/screenshots/carmix/screen-10.png';
 import screen11 from '@/assets/images/screenshots/carmix/screen-11.png';
 import screen12 from '@/assets/images/screenshots/carmix/screen-12.png';
+import usePageMetadata from '@/hooks/usePageMetadata';
 
 const CarMixProject = () => {
     const { t, i18n } = useTranslation();
     const [selectedImage, setSelectedImage] = useState(null);
+
+    const seoKeywords = t('carmix.seo.keywords', { returnObjects: true });
+
+    usePageMetadata({
+        title: t('carmix.seo.title'),
+        description: t('carmix.seo.description'),
+        keywords: Array.isArray(seoKeywords) ? seoKeywords : [],
+        canonical: 'https://ksetrin.github.io/projects/carmix/',
+        lang: i18n.language,
+        type: 'article'
+    });
 
     const technologies = [
         { icon: <FaReact className="w-6 h-6" />, name: 'React Native', color: 'text-blue-400' },
