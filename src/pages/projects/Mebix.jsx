@@ -48,6 +48,18 @@ const MebixProject = () => {
     const [videoMuted, setVideoMuted] = useState(true);
 
     const seoKeywords = t('mebix.seo.keywords', { returnObjects: true });
+    const heroLinks = [
+        {
+            type: 'website',
+            href: 'https://www.mebix.de/',
+            label: t('mebix.hero.visitWebsite')
+        },
+        {
+            type: 'appStore',
+            href: 'https://apps.apple.com/de/app/mebix-die-diabetes-typ-2-app/id1603216448',
+            label: t('projects.links.appStore')
+        }
+    ];
 
     usePageMetadata({
         title: t('mebix.seo.title'),
@@ -146,15 +158,18 @@ const MebixProject = () => {
                             </div>
 
                             <div className="flex gap-4">
-                                <a
-                                    href="https://www.mebix.de/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-colors"
-                                >
-                                    {t('mebix.hero.visitWebsite')}
-                                    <FaExternalLinkAlt className="w-4 h-4" />
-                                </a>
+                                {heroLinks.map((link) => (
+                                    <a
+                                        key={link.href}
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-colors"
+                                    >
+                                        {link.label}
+                                        <FaExternalLinkAlt className="w-4 h-4" />
+                                    </a>
+                                ))}
                             </div>
                         </div>
 

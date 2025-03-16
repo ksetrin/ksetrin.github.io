@@ -84,6 +84,11 @@
       "education": "Образование",
       "utilities": "Коммунальные услуги"
     },
+    "links": {
+      "website": "Перейти на сайт",
+      "appStore": "Скачать в App Store",
+      "googlePlay": "Скачать в Google Play"
+    },
     "cards": {
       "mebix": {
         "description": "Цифровой терапевт для диабета 2 типа: AI-анализ питания и медицинские рекомендации.",

@@ -58,6 +58,22 @@ const ZnajProject = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const seoKeywords = t('znaj.seo.keywords', { returnObjects: true });
+    const downloadLinks = [
+        {
+            type: 'appStore',
+            href: 'https://apps.apple.com/by/app/%D0%B7%D0%BD%D0%B0%D0%B9-%D0%B1%D0%B0%D0%B9/id1500741599',
+            label: t('projects.links.appStore'),
+            icon: <FaApple className="w-5 h-5" />,
+            className: 'bg-black hover:bg-gray-800 text-white'
+        },
+        {
+            type: 'googlePlay',
+            href: 'https://play.google.com/store/apps/details?id=by.znaj2',
+            label: t('projects.links.googlePlay'),
+            icon: <FaGooglePlay className="w-4 h-4" />,
+            className: 'bg-green-600 hover:bg-green-700 text-white'
+        }
+    ];
 
     usePageMetadata({
         title: t('znaj.seo.title'),
@@ -123,6 +139,20 @@ const ZnajProject = () => {
                                 <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
                                     {t('znaj.hero.tagline')}
                                 </p>
+                                <div className="flex flex-wrap gap-4">
+                                    {downloadLinks.map((link) => (
+                                        <a
+                                            key={link.href}
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-colors ${link.className}`}
+                                        >
+                                            {link.icon}
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
 
                             <div className="flex flex-wrap gap-3">

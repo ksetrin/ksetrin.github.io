@@ -73,6 +73,15 @@ const PrecoProject = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const seoKeywords = t('preco.seo.keywords', { returnObjects: true });
+    const downloadLinks = [
+        {
+            type: 'appStore',
+            href: 'https://apps.apple.com/ru/app/%D1%8E%D1%83%D1%82%D1%83-%D0%B8-%D1%83%D1%80%D0%BA-%D0%BB%D0%B8%D1%87%D0%BD%D1%8B%D0%B9-%D0%BA%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82/id6747708990',
+            label: t('projects.links.appStore'),
+            icon: <FaApple className="w-5 h-5" />,
+            className: 'bg-black hover:bg-gray-800 text-white'
+        }
+    ];
 
     usePageMetadata({
         title: t('preco.seo.title'),
@@ -138,6 +147,20 @@ const PrecoProject = () => {
                                 <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
                                     {t('preco.hero.tagline')}
                                 </p>
+                                <div className="flex flex-wrap gap-4">
+                                    {downloadLinks.map((link) => (
+                                        <a
+                                            key={link.href}
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-colors ${link.className}`}
+                                        >
+                                            {link.icon}
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
 
                             <div className="flex flex-wrap gap-3">

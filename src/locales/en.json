@@ -84,6 +84,11 @@
       "education": "Education",
       "utilities": "Utilities"
     },
+    "links": {
+      "website": "Visit website",
+      "appStore": "Download on App Store",
+      "googlePlay": "Get it on Google Play"
+    },
     "cards": {
       "mebix": {
         "description": "Digital therapy companion for diabetes type 2. AI-powered nutrition tracking with medical-grade accuracy.",
