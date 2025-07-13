@@ -15,17 +15,20 @@ AwesomeProject
     - icons
     - images
     - i18n
+    - styles
   - components
-  - types
-    - enums
-    - interfaces
-  - hooks
-  - models
   - navigators
+  - redux
+    - features
   - screens
     - screen Foo
       - components
       - utils
   - services
-  - store
+  - sheets
+  - types
+    - enums
+    - interfaces
+  - hooks
+  - models
   - utils
