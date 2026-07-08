@@ -1,193 +1,66 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { FaExternalLinkAlt, FaArrowRight, FaApple, FaGooglePlay } from 'react-icons/fa';
-import image_mebix from '@/assets/images/project_preview/mebix.png';
-import image_tapcar from '@/assets/images/project_preview/tapcar.png';
-import image_znajby from '@/assets/images/project_preview/znajby.png';
-import image_carmix from '@/assets/images/project_preview/carmix.png';
-import image_gazcom from '@/assets/images/project_preview/gazcom.png';
-import image_preco from '@/assets/images/project_preview/preco.png';
+import { FaApple, FaGooglePlay, FaExternalLinkAlt, FaArrowRight } from 'react-icons/fa';
+import { projects } from '@/projects';
 import usePageMetadata from '@/hooks/usePageMetadata';
 
 const ProjectsPage = () => {
   const { t, i18n } = useTranslation();
-  const seoKeywords = t('seo.projects.keywords', { returnObjects: true });
 
   usePageMetadata({
-    title: t('seo.projects.title'),
-    description: t('seo.projects.description'),
-    keywords: Array.isArray(seoKeywords) ? seoKeywords : [],
+    title: t('projects.metaTitle'),
+    description: t('projects.metaDescription'),
     canonical: 'https://ksetrin.github.io/projects/',
     lang: i18n.language
   });
 
-  const projects = [
-    {
-      key: 'mebix',
-      title: 'Mebix',
-      image: image_mebix,
-      imageBackground: 'bg-gradient-to-br from-indigo-100 to-white-100 dark:from-indigo-100 dark:to-white-100',
-      technologies: ['React Native', 'TypeScript', 'Redux', 'Firebase', 'AI/ML'],
-      detailLink: '/projects/mebix',
-      externalLink: 'https://www.mebix.de/',
-      domain: 'healthcare'
-    },
-    {
-      key: 'tapcar',
-      title: 'TapCar',
-      image: image_tapcar,
-      imageBackground: 'bg-black dark:bg-black',
-      technologies: ['React Native', 'Node.js', 'OEM Integration', 'BLE', 'AutoPASS'],
-      detailLink: '/projects/tapcar',
-      externalLink: 'https://www.tapcar.no/',
-      appStoreLink: 'https://apps.apple.com/no/app/tapcar-bildeling/id1567367431',
-      domain: 'automotive'
-    },
-    {
-      key: 'znaj',
-      title: 'Znaj.by',
-      image: image_znajby,
-      imageBackground: 'bg-[#186032] dark:bg-[#186032]',
-      technologies: ['React Native', 'AWS', 'Redux', 'Educational APIs', 'Real-time Sync'],
-      detailLink: '/projects/znaj',
-      appStoreLink: 'https://apps.apple.com/by/app/%D0%B7%D0%BD%D0%B0%D0%B9-%D0%B1%D0%B0%D0%B9/id1500741599',
-      googlePlayLink: 'https://play.google.com/store/apps/details?id=by.znaj2',
-      domain: 'education'
-    },
-    {
-      key: 'carmix',
-      title: 'Apollo CarMix',
-      image: image_carmix,
-      imageBackground: 'bg-gradient-to-br from-indigo-100 to-white-100 dark:from-indigo-100 dark:to-white-100',
-      technologies: ['React Native', 'Redux', 'Augmented Reality', 'IoT', 'SQL Server'],
-      detailLink: '/projects/carmix',
-      appStoreLink: 'https://apps.apple.com/ar/app/apollo-carmix/id6476922567?l=en-GB',
-      googlePlayLink: 'https://play.google.com/store/apps/details?id=com.torai.tor_equip.apollo&hl=en_GB&pli=1',
-      domain: 'automotive'
-    },
-    {
-      key: 'chelyabinskgorgaz',
-      title: 'Chelyabinskgorgaz',
-      image: image_gazcom,
-      imageBackground: 'bg-white dark:bg-gray-100',
-      technologies: ['React Native', 'Redux', 'Government APIs', 'Digital Identity', 'Payment Integration'],
-      detailLink: '/projects/chelyabinskgorgaz',
-      domain: 'utilities'
-    },
-    {
-      key: 'preco',
-      title: 'URC and SUTU',
-      image: image_preco,
-      imageBackground: 'bg-[#79BF92] dark:bg-[#79BF92]',
-      technologies: ['React Native', 'Redux'],
-      detailLink: '/projects/preco',
-      domain: 'healthcare'
-    }
-  ];
-
   return (
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {t('projects.title')}
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
-            {t('projects.subtitle')}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => {
-            const description = t(`projects.cards.${project.key}.description`);
-            const status = t(`projects.cards.${project.key}.status`);
-            const imageAlt = t('projects.cardAlt', { title: project.title });
-
-            return (
-                <div
-                    key={index}
-                    className={`bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px] ${
-                        project.domain ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''
-                    }`}
-                >
-                  {project.domain && (
-                      <div
-                          className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center py-2 text-sm font-medium">
-                        {t(`projects.domains.${project.domain}`)}
-                      </div>
-                  )}
-
-                  <div
-                      className={`h-48 ${project.imageBackground || 'bg-gradient-to-br from-indigo-100 to-white-100 dark:from-indigo-100 dark:to-white-100'} relative p-3`}>
-                    {project.image ? (
-                        <img
-                            src={project.image}
-                            alt={imageAlt}
-                            className="w-full h-full object-contain transition-opacity duration-300"
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                            }}
-                        />
-                    ) : (
-                        <div
-                            className="absolute inset-0 flex items-center justify-center text-gray-500 dark:text-gray-400 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600">
-                          <div className="text-center">
-                            <div className="text-2xl font-bold">{project.title}</div>
-                            <div className="text-sm">{status || 'Project'}</div>
-                          </div>
-                        </div>
-                    )}
-                  </div>
-
-                  <div className="p-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
-                      {project.title}
-                    </h2>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      {description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech, techIndex) => (
-                          <span
-                              key={techIndex}
-                              className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
-                          >
-                      {tech}
-                    </span>
-                      ))}
-                    </div>
-
-                    <div className="flex flex-col space-y-3">
-                      {project.detailLink && project.detailLink !== '#' && (
-                          <Link
-                              to={project.detailLink}
-                              className="inline-flex justify-center items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white text-sm font-medium rounded-md transition-colors duration-200"
-                          >
-                            {t('projects.viewProject')}
-                            <FaArrowRight className="w-4 h-4"/>
-                          </Link>
-                      )}
-
-                      <div className="flex space-x-3">
-                        {project.sourceLink && (
-                            <a
-                                href={project.sourceLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 inline-flex justify-center items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
-                            >
-                              {t('projects.sourceCode')}
-                            </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            );
-          })}
-        </div>
+    <div className="container page">
+      <div className="page-head">
+        <p className="eyebrow">{t('projects.eyebrow')}</p>
+        <h1>{t('projects.title')}</h1>
+        <p>{t('projects.subtitle')}</p>
       </div>
+
+      <ul className="project-list">
+        {projects.map((project) => (
+          <li key={project.key} className="project">
+            {project.preview && (
+              <img className="project__thumb" src={project.preview} alt={project.title} loading="lazy" />
+            )}
+            <div className="project__body">
+              <h2 className="project__title">
+                <Link to={`/projects/${project.key}`}>{project.title}</Link>
+                <span className="project__domain">{t(`projects.domains.${project.domain}`)}</span>
+              </h2>
+              <p className="project__desc">{t(`projects.cards.${project.key}.description`)}</p>
+              <div className="project__links">
+                <span className="tag">{project.tech}</span>
+                <Link to={`/projects/${project.key}`}>
+                  {t('projects.viewProject')} <FaArrowRight size={12} />
+                </Link>
+                {project.links.website && (
+                  <a href={project.links.website} target="_blank" rel="noopener noreferrer">
+                    <FaExternalLinkAlt size={13} /> {t('projects.links.website')}
+                  </a>
+                )}
+                {project.links.appStore && (
+                  <a href={project.links.appStore} target="_blank" rel="noopener noreferrer">
+                    <FaApple size={14} /> App Store
+                  </a>
+                )}
+                {project.links.googlePlay && (
+                  <a href={project.links.googlePlay} target="_blank" rel="noopener noreferrer">
+                    <FaGooglePlay size={13} /> Google Play
+                  </a>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

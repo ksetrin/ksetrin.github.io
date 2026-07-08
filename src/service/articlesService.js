@@ -129,9 +129,13 @@ class ArticlesService {
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
         const datePublished = this.normalizeDate(metadata.datePublished);
         const dateModified = this.normalizeDate(metadata.dateModified) || datePublished;
+        const series = metadata.series ? String(metadata.series).trim() : null;
+        const parsedDay = Number.parseInt(metadata.day, 10);
+        const day = Number.isNaN(parsedDay) ? null : parsedDay;
         const tags = Array.isArray(metadata.tags) ? metadata.tags : this.parseArrayValue(metadata.tags);
         const tldr = Array.isArray(metadata.tldr) ? metadata.tldr : this.parseArrayValue(metadata.tldr);
         const aliases = this.parseArrayValue(metadata.aliases);
+        const hideDescription = metadata.hideDescription === 'true' || metadata.hideDescription === true;
 
         return {
             slug,
@@ -147,8 +151,11 @@ class ArticlesService {
             datePublished,
             dateModified,
             author: metadata.author || this.defaultAuthor,
+            series,
+            day,
             content,
             aliases,
+            hideDescription,
             metadata: {
                 ...metadata,
                 wordCount,
@@ -178,6 +185,17 @@ class ArticlesService {
                 }
                 return dateB - dateA;
             });
+    }
+
+    async getSeriesArticles(seriesId) {
+        if (!seriesId) {
+            return [];
+        }
+
+        const articles = await this.getAllArticles();
+        return articles
+            .filter(article => article.series === seriesId)
+            .sort((a, b) => (a.day ?? Number.MAX_SAFE_INTEGER) - (b.day ?? Number.MAX_SAFE_INTEGER));
     }
 
     async getArticleBySlugOrAlias(identifier) {

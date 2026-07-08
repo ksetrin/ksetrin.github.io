@@ -18,7 +18,7 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'i18n-vendor': ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
           'markdown-vendor': ['marked'],
-          'icons-vendor': ['react-icons', 'country-flag-icons'],
+          'icons-vendor': ['react-icons'],
         },
       },
     },

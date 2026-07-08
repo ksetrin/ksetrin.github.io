@@ -1,33 +1,21 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from '@/pages/HomePage';
-import ArticlesPage from "@/pages/ArticlesPage.jsx";
-import ProjectsPage from "@/pages/ProjectsPage.jsx";
-import ContactPage from "@/pages/ContactPage.jsx";
-import MebixProject from "@/pages/projects/Mebix.jsx";
-import TapcarProject from "@/pages/projects/TapCar.jsx";
-import ZnajProject from "@/pages/projects/Znaj.jsx";
-import CarMixProject from "@/pages/projects/CarMix.jsx";
-import ChelyabinskgorgazProject from "@/pages/projects/Chelyabinskgorgaz.jsx";
-import PrecoProject from "@/pages/projects/Preco.jsx";
-import ArticleViewer from "@/pages/ArticleViewer.jsx";
+import BlogPage from '@/pages/BlogPage';
+import AboutPage from '@/pages/AboutPage';
+import ProjectsPage from '@/pages/ProjectsPage';
+import ProjectDetailPage from '@/pages/ProjectDetailPage';
+import ArticleViewer from '@/pages/ArticleViewer';
 
 const AppRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/projects/mebix" element={<MebixProject />} />
-            <Route path="/projects/tapcar" element={<TapcarProject />} />
-            <Route path="/projects/znaj" element={<ZnajProject />} />
-            <Route path="/projects/carmix" element={<CarMixProject />} />
-            <Route path="/projects/chelyabinskgorgaz" element={<ChelyabinskgorgazProject />} />
-            <Route path="/projects/preco" element={<PrecoProject />} />
-            <Route path="/articles" element={<ArticlesPage />} />
-            <Route path="/articles/:slug/*" element={<ArticleViewer />} />
-            <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<BlogPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/projects" element={<ProjectsPage />} />
+      <Route path="/projects/:key" element={<ProjectDetailPage />} />
+      <Route path="/articles/:slug/*" element={<ArticleViewer />} />
+    </Routes>
+  );
 };
 
 export default AppRoutes;

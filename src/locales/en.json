@@ -1,280 +1,140 @@
 {
-  "articles": {
-    "title": "React Native articles & guides",
-    "subtitle": "Architecture, store releases, DevOps, and hands-on checklists for mobile teams",
-    "readMore": "Read more",
-    "searchPlaceholder": "Search by title, description or tag",
-    "clear": "Clear",
-    "allTags": "All",
-    "noArticles": "No articles found",
-    "tryOtherTag": "Try selecting another tag",
-    "totalArticles": "Total articles",
-    "backToArticles": "Back to articles",
-    "otherArticles": "Other articles",
-    "notFound": "Article not found",
-    "articleNotExists": "The requested article does not exist",
-    "words": "words",
-    "seeProjects": "See React Native projects",
-    "goHome": "Go to homepage",
-    "readTime": "{{count}} min read"
+  "header": {
+    "brand": "Petr Evsikov",
+    "blog": "Blog",
+    "projects": "Projects",
+    "about": "About",
+    "languageSwitch": "Switch language"
   },
-  "seo": {
-    "home": {
-      "title": "React Native Engineer and mobile architecture lead",
-      "description": "Peter Evsikov — React Native engineer who builds mobile apps under production constraints: architecture, performance, releases, and DevOps.",
-      "keywords": [
-        "React Native developer",
-        "mobile app architecture",
-        "React Native optimization",
-        "mobile development",
-        "React Native engineer"
-      ]
-    },
-    "projects": {
-      "title": "React Native portfolio: healthcare, automotive, education",
-      "description": "Real-world React Native case studies: Mebix, TapCar, Znaj.by, Apollo CarMix and other production apps with complex integrations.",
-      "keywords": [
-        "React Native portfolio",
-        "mobile case studies",
-        "React Native projects",
-        "mobile app development"
-      ],
-      "cardAlt": "{{title}} mobile app preview"
-    },
-    "articles": {
-      "title": "React Native blog: architecture, DevOps, release process",
-      "description": "Guides and checklists for React Native teams: CI/CD, store releases, project structure, interviews.",
-      "keywords": [
-        "React Native blog",
-        "mobile development articles",
-        "React Native architecture",
-        "CI/CD for mobile"
-      ],
-      "fallbackAlt": "Article illustration",
-      "indexTitle": "Articles | {{site}}",
-      "indexDescription": "Article archive from {{site}}: React Native, DevOps and architecture.",
-      "indexKeywords": [
-        "React Native",
-        "articles",
-        "DevOps",
-        "architecture"
-      ]
-    },
-    "contact": {
-      "title": "Contact a React Native engineer",
-      "description": "Reach out to Peter Evsikov for React Native consulting, architecture reviews, and mobile app delivery.",
-      "keywords": [
-        "React Native contacts",
-        "React Native consulting",
-        "mobile architecture"
-      ]
-    }
+  "footer": {
+    "copyright": "© Petr Evsikov"
+  },
+  "blog": {
+    "eyebrow": "Engineering log",
+    "title": "Blog",
+    "subtitle": "Notes on engineering and LLM systems: what I build, what breaks, and how I think.",
+    "allTags": "all",
+    "loading": "Loading…",
+    "empty": "No posts yet. The first one will show up here soon.",
+    "readTime": "{{count}} min",
+    "words": "words",
+    "metaTitle": "Blog",
+    "metaDescription": "Notes on engineering and LLM systems: experiments, breakdowns and system design."
+  },
+  "article": {
+    "notFound": "Post not found.",
+    "toBlog": "Back to blog",
+    "contents": "Contents"
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Petr Evsikov",
+    "lead": "Building product systems since 2012 — in fintech, healthcare, education and e-commerce. Specialising in React Native: app architecture, performance, store releases and DevOps. Now shifting focus toward LLM engineering — designing and orchestrating systems on top of neural networks. That's what this blog is about.",
+    "skillsTitle": "Skills",
+    "skills": [
+      "Mobile architecture (React Native)",
+      "TypeScript",
+      "State management (Redux, MobX)",
+      "Refactoring and migrations",
+      "Native modules and bridges",
+      "CI/CD and store releases",
+      "Code review and mentoring",
+      "Web development (React)",
+      "Backend integrations",
+      "LLM engineering"
+    ],
+    "experienceTitle": "Experience",
+    "experience": [
+      {
+        "key": "mebix",
+        "company": "Mebix",
+        "years": "2021–2025",
+        "description": "Digital therapeutic for diabetes and cardiovascular disease.",
+        "tech": "React Native, TypeScript, Redux, Firebase"
+      },
+      {
+        "key": "bamboo",
+        "company": "Bamboo Agile",
+        "years": "2019–2021",
+        "description": "Emirates HR, TapCar, the Znaj.by education platform.",
+        "tech": "React Native, Angular, Redux, MobX, AWS, GraphQL"
+      },
+      {
+        "key": "theredone",
+        "company": "The Red One",
+        "years": "2017–2019",
+        "description": "Launched the mobile development practice, React Native projects.",
+        "tech": "React Native, Redux, MobX, TypeScript, Swift, Java"
+      }
+    ],
+    "stackTitle": "Stack",
+    "stack": [
+      {
+        "group": "Mobile",
+        "items": "React Native, Expo, native modules"
+      },
+      {
+        "group": "Frontend",
+        "items": "React, TypeScript, Vite"
+      },
+      {
+        "group": "State",
+        "items": "Redux, MobX, React Query"
+      },
+      {
+        "group": "Backend / Cloud",
+        "items": "Node.js, Firebase, AWS"
+      },
+      {
+        "group": "Tools",
+        "items": "Git, CI/CD, Fastlane"
+      },
+      {
+        "group": "LLM",
+        "items": "Ollama, MLX, RAG, agents"
+      }
+    ],
+    "metaTitle": "About",
+    "metaDescription": "Petr Evsikov — engineer: React Native mobile development and a move into LLM engineering."
   },
   "projects": {
-    "title": "React Native Projects",
-    "subtitle": "Selected mobile case studies and architecture work",
-    "cardAlt": "{{title}} mobile app preview",
-    "viewProject": "View Project",
-    "sourceCode": "Source Code",
-    "liveDemo": "Live Demo",
-    "backToProjects": "Back to Projects",
+    "eyebrow": "Work",
+    "title": "Projects",
+    "subtitle": "Selected mobile projects, 2017–2025.",
+    "metaTitle": "Projects",
+    "metaDescription": "Selected React Native mobile projects: healthcare, automotive, education, public services.",
     "domains": {
-      "healthcare": "Healthcare",
-      "automotive": "Automotive",
+      "healthcare": "Health",
+      "automotive": "Auto",
       "education": "Education",
-      "utilities": "Utilities"
+      "utilities": "Public services"
     },
     "links": {
-      "website": "Visit website",
-      "appStore": "Download on App Store",
-      "googlePlay": "Get it on Google Play"
+      "website": "Website"
     },
     "cards": {
       "mebix": {
-        "description": "Digital therapy companion for diabetes type 2. AI-powered nutrition tracking with medical-grade accuracy.",
-        "status": "Live in Production"
+        "description": "Digital therapeutic for type 2 diabetes: AI nutrition analysis and medical guidance."
       },
       "tapcar": {
-        "description": "Peer-to-peer car sharing application with zero third-party telematics. Direct OEM integration with trust-based sharing groups.",
-        "status": "Research-Backed Innovation"
+        "description": "Car sharing for closed communities without third-party telematics: direct OEM integrations."
       },
       "znaj": {
-        "description": "Unified educational platform connecting teachers, parents, and students. Top 100 EdTech companies in CIS region.",
-        "status": "Top 100 EdTech CIS"
+        "description": "Education platform for teachers, parents and students. Top-100 EdTech in the CIS."
       },
       "carmix": {
-        "description": "Smart mobile concrete plant management with AR technology and IoT integration. Revolutionary construction industry solution.",
-        "status": "Industrial IoT Innovation"
+        "description": "Managing mobile concrete plants with AR and IoT."
       },
       "chelyabinskgorgaz": {
-        "description": "Government digital services platform serving 58K+ users across Chelyabinsk region. Complete gas infrastructure management system.",
-        "status": "Government Digital Services"
+        "description": "Digital services for 58K+ users: gas utilities and payments."
       },
       "preco": {
-        "description": "Comprehensive mobile application for educational institutions featuring dual-role architecture for students and faculty, complete academic management, and seamless offline-online synchronization.",
-        "status": "Education"
-      }
-    }
-  },
-  "homepage": {
-    "introduction": {
-      "title": "Peter Evsikov — React Native Engineer",
-      "subtitle": "End-to-end mobile development and technical leadership",
-      "description": "Building React Native products since 2012 across fintech, healthcare, education, and e-commerce. I focus on mobile architecture, performance, releases, and DevOps while shaping processes and teams. Launched apps from scratch, scaled to thousands of users, and shipped store-leading releases.",
-      "ctaButton": "View My Projects",
-      "contactCta": "Contact me",
-      "portraitAlt": "Portrait of Peter Evsikov — React Native engineer"
-    },
-    "contact": {
-      "email": "ksetrinn@gmail.com",
-      "telegram": "ksetrin",
-      "availability": "Available for new projects"
-    },
-    "skills": {
-      "title": "Core Skills",
-      "description": "My expertise in mobile and web development",
-      "primary": "Primary Skills",
-      "secondary": "Additional Technologies",
-      "coreReactNativeSkills": "Core React Native Skills",
-      "architecturalTeamSkills": "Architectural & Team Skills",
-      "additionalAppliedSkills": "Additional Applied Skills",
-      "coreRNSkills": {
-        "mobileArchitecture": {
-          "title": "Mobile Architecture Design",
-          "description": "Design and maintenance of React Native mobile applications",
-          "details": "Application architecture, modularity, performance optimization"
-        },
-        "codeRefactoring": {
-          "title": "Code Refactoring & Migration",
-          "description": "Code refactoring and improvement",
-          "details": "Refactoring large codebases, migration between library versions"
-        },
-        "dependencyManagement": {
-          "title": "Dependency Management",
-          "description": "Maintenance and updating of external dependencies",
-          "details": "Dependency upkeep, resolving breaking changes, versioning"
-        },
-        "productionDevelopment": {
-          "title": "Production Development",
-          "description": "Development of new functionality in production applications",
-          "details": "Feature development, integration with existing systems"
-        },
-        "nativeModuleDevelopment": {
-          "title": "Native Module Development",
-          "description": "Working with native/modular components",
-          "details": "Improving native modules, bridge development, platform integration"
-        },
-        "crossPlatformWebIntegration": {
-          "title": "Cross-Platform Web Integration",
-          "description": "Integration of web technologies into mobile projects",
-          "details": "Component reuse between web and mobile, WebView integration, API synchronization"
-        }
-      },
-      "architecturalSkills": {
-        "stateManagement": {
-          "title": "State Management Architecture",
-          "description": "State management design and migration"
-        },
-        "codeReview": {
-          "title": "Code Review & Team Support",
-          "description": "Code review and codebase support at team level"
-        },
-        "fullStack": {
-          "title": "Full-Stack Integration",
-          "description": "Understanding full-stack processes and backend integration"
-        }
-      },
-      "additionalSkills": {
-        "webDevelopment": {
-          "title": "Web Development",
-          "description": "Web development (React) — transferring web→mobile experience"
-        },
-        "backendDatabases": {
-          "title": "Backend & Databases",
-          "description": "Working with databases and backend as a supporting skill"
-        }
+        "description": "Mobile apps for the URC and SUTU medical services."
       }
     },
-    "experience": {
-      "title": "Professional Journey",
-      "description": "7+ years of React Native development experience",
-      "current": "Present",
-      "years": "years",
-      "items": [
-        {
-          "key": "mebix",
-          "company": "Mebix",
-          "years": "2021 - 2025",
-          "duration": "3+ years",
-          "location": "Germany",
-          "description": "Digital therapy companion for diabetes and cardiovascular diseases",
-          "tech": "React Native, TypeScript, Redux, Firebase"
-        },
-        {
-          "key": "bamboo",
-          "company": "Bamboo Agile",
-          "years": "2019 - 2021",
-          "duration": "2 years",
-          "location": "UAE/Remote",
-          "description": "Emirates HR, TapCar, Zna.by education platform",
-          "tech": "React Native, Angular, Redux, MobX, AWS, GraphQL"
-        },
-        {
-          "key": "theredone",
-          "company": "The Red One",
-          "years": "2017 - 2019",
-          "duration": "2 years",
-          "location": "Russia",
-          "description": "Started mobile development direction, various RN projects",
-          "tech": "React Native, Redux, MobX, TypeScript, Swift, Java"
-        }
-      ]
-    },
-    "techStack": {
-      "title": "Technology Stack",
-      "description": "Tools and technologies I use daily",
-      "frontend": "Frontend & Mobile",
-      "backend": "Backend & Services",
-      "tools": "Development Tools",
-      "mobileDevelopment": "Mobile Development",
-      "frontendDevelopment": "Frontend Development",
-      "stateManagement": "State Management",
-      "backendCloud": "Backend & Cloud",
-      "databases": "Databases",
-      "developmentTools": "Development Tools"
-    },
-    "featuredArticles": {
-      "title": "React Native blog",
-      "subtitle": "Latest content on mobile architecture, releases, and DevOps",
-      "cta": "See all articles"
-    },
-    "purpose": {
-      "title": "What I Can Offer",
-      "description": "I specialize in React Native development with focus on high-quality mobile applications for startups and enterprise solutions.",
-      "expertise": "Areas of Expertise",
-      "specialization": "React Native Specialist",
-      "specializationDesc": "7+ years focused exclusively on React Native development",
-      "fullCycle": "Full Development Cycle",
-      "fullCycleDesc": "From MVP prototyping to enterprise-level applications",
-      "modernTech": "Modern Technologies",
-      "modernTechDesc": "TypeScript, Redux, MobX, AWS, Firebase integration"
-    }
-  },
-  "header": {
-    "home": "Home",
-    "projects": "Projects",
-    "articles": "Articles",
-    "themeToggle": "Theme Toggle",
-    "languageSwitch": "Language Switch",
-    "darkMode": "Dark Mode",
-    "lightMode": "Light Mode"
-  },
-  "contact": {
-    "title": "Contact a React Native engineer",
-    "subtitle": "Architecture reviews, code audits, and full mobile delivery",
-    "visit": "Visit"
-  },
-  "footer": {
-    "copyright": "© 2025 SP Evsikov Petr. All rights reserved."
+    "viewProject": "Open project",
+    "back": "Back to projects",
+    "screenshots": "Screenshots",
+    "notFound": "Project not found."
   }
 }

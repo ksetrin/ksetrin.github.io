@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-const SITE_NAME = 'Пётр Евсиков — React Native инженер';
+const SITE_NAME = 'Пётр Евсиков';
 const SITE_URL = 'https://ksetrin.github.io';
 const DEFAULT_DESCRIPTION =
-  'React Native разработчик и технический лидер: архитектура мобильных приложений, публикации в сторах, DevOps и оптимизация процессов.';
+  'Инженерный блог: разработка и LLM-инженерия — эксперименты, разборы и системный дизайн.';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/images/photo.jpeg`;
 
 const ensureElement = (selector, create) => {

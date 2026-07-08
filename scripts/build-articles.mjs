@@ -22,8 +22,7 @@ const STATIC_ROUTES = [
   '/projects/carmix/',
   '/projects/chelyabinskgorgaz/',
   '/projects/preco/',
-  '/articles/',
-  '/contact/'
+  '/about/'
 ];
 const SITE_NAME = 'Пётр Евсиков';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/images/photo.jpeg`;
@@ -139,7 +138,7 @@ const readableDate = (value, lang = DEFAULT_LANG) => {
 
 const readingTimeLabel = (minutes, lang = DEFAULT_LANG) => {
   const safeMinutes = Math.max(1, minutes);
-  const template = getArticlesString(lang, ['readTime']) || getArticlesString(DEFAULT_LANG, ['readTime']);
+  const template = getGeneralString(lang, ['blog', 'readTime']) || getGeneralString(DEFAULT_LANG, ['blog', 'readTime']) || '{{count}} min';
   return template.replace('{{count}}', safeMinutes);
 };
 
@@ -306,7 +305,33 @@ const extractBody = (html) => {
   return match ? match[1].trim() : '';
 };
 
-const buildArticleTemplate = (article, assets, highlightStyles, navigation) => {
+const navHtml = (lang, current) => {
+  const items = [
+    { href: '/', label: getGeneralString(lang, ['header', 'blog']) || 'Blog', id: 'blog' },
+    { href: '/projects/', label: getGeneralString(lang, ['header', 'projects']) || 'Projects', id: 'projects' },
+    { href: '/about/', label: getGeneralString(lang, ['header', 'about']) || 'About', id: 'about' }
+  ];
+  const brand = getGeneralString(lang, ['header', 'brand']) || SITE_NAME;
+  const links = items
+    .map((item) => `<a href="${item.href}"${item.id === current ? ' class="active"' : ''}>${escapeHtml(item.label)}</a>`)
+    .join('\n          ');
+  return `<header class="site-header">
+      <div class="site-header__inner">
+        <a href="/" class="brand">${escapeHtml(brand)}</a>
+        <nav class="site-nav">
+          ${links}
+        </nav>
+      </div>
+    </header>`;
+};
+
+const footerHtml = () =>
+  `<footer class="site-footer">
+      <div class="site-footer__inner"><span>© ${new Date().getFullYear()} ${SITE_NAME}</span></div>
+    </footer>`;
+
+const buildArticleTemplate = (article, assets, highlightStyles) => {
+  const lang = article.lang || DEFAULT_LANG;
   const cssLinks = assets.css.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n');
   const safeTitle = escapeHtml(article.title);
   const safeDescription = escapeHtml(article.description);
@@ -314,6 +339,9 @@ const buildArticleTemplate = (article, assets, highlightStyles, navigation) => {
   const safeAuthor = article.author ? escapeHtml(article.author) : '';
   const canonical = `${SITE_URL}/articles/${article.slug}/`;
   const ogImage = article.image || DEFAULT_OG_IMAGE;
+  const backLabel = getGeneralString(lang, ['article', 'toBlog']) || 'Blog';
+  const contentsLabel = getGeneralString(lang, ['article', 'contents']) || 'Contents';
+
   const blogPostingJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -321,110 +349,32 @@ const buildArticleTemplate = (article, assets, highlightStyles, navigation) => {
     datePublished: article.datePublished,
     dateModified: article.dateModified || article.datePublished,
     image: [ogImage],
-    author: {
-      '@type': 'Person',
-      name: article.author || SITE_NAME
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': canonical
-    },
+    author: { '@type': 'Person', name: article.author || SITE_NAME },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     description: article.description,
     articleSection: article.category,
     keywords: article.tags.join(', '),
     wordCount: article.wordCount
   };
 
-  const faqJsonLd = article.faq.length
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: article.faq.map((item) => ({
-          '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: item.answerText
-          }
-        }))
-      }
-    : null;
-
-  const relatedSection = article.related.length
-    ? `<section class="mt-12">
-        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Похожие материалы</h2>
-        <div class="grid gap-4 md:grid-cols-3">
-          ${article.related
-            .map((related) => `
-              <a href="/articles/${related.slug}/" class="block p-4 border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800 hover:border-blue-400 dark:hover:border-blue-500 transition-colors">
-                <p class="text-xs text-gray-500">${readableDate(related.datePublished, related.lang)}</p>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mt-2 mb-1">${escapeHtml(related.title)}</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">${escapeHtml(related.description)}</p>
-              </a>
-            `)
-            .join('')}
-        </div>
-      </section>`
+  const tldrSection = article.tldr.length
+    ? `<section class="tldr">
+          <h2>TL;DR</h2>
+          <ul>${article.tldr.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+        </section>`
     : '';
 
   const tocSection = article.toc.length
-    ? `<nav class="mt-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-sm">
-        <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Содержание</h2>
-        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-          ${article.toc
-            .map(
-              (item) => `
-            <li class="leading-relaxed" style="padding-left: ${(item.level - 2) * 12}px">
-              <a href="#${item.id}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">${escapeHtml(item.text)}</a>
-            </li>`
-            )
-            .join('')}
-        </ul>
-      </nav>`
-    : '';
-
-  const prevLink = navigation.previous
-    ? `<a href="/articles/${navigation.previous.slug}/" class="flex-1 text-left">
-        <p class="text-xs text-gray-500 uppercase tracking-wide">Предыдущая</p>
-        <p class="text-base font-semibold text-blue-600 dark:text-blue-400">${escapeHtml(navigation.previous.title)}</p>
-      </a>`
-    : '';
-
-  const nextLink = navigation.next
-    ? `<a href="/articles/${navigation.next.slug}/" class="flex-1 text-right">
-        <p class="text-xs text-gray-500 uppercase tracking-wide">Следующая</p>
-        <p class="text-base font-semibold text-blue-600 dark:text-blue-400">${escapeHtml(navigation.next.title)}</p>
-      </a>`
-    : '';
-
-  const prevNextSection = prevLink || nextLink
-    ? `<section class="mt-12 border-t border-gray-200 dark:border-gray-700 pt-6 flex flex-col md:flex-row gap-6">
-        ${prevLink}
-        ${nextLink}
-      </section>`
-    : '';
-
-  const faqSection = article.faq.length
-    ? `<section class="mt-12 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border border-purple-100 dark:border-purple-900 rounded-2xl p-8">
-        <h2 class="text-3xl font-bold text-purple-900 dark:text-purple-200 mb-6">FAQ</h2>
-        <div class="space-y-6">
-          ${article.faq
-            .map(
-              (item) => `
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-purple-100 dark:border-purple-800">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">${escapeHtml(item.question)}</h3>
-              <div class="prose prose-sm dark:prose-invert text-gray-700 dark:text-gray-300">
-                ${item.answerHtml}
-              </div>
-            </div>`
-            )
-            .join('')}
-        </div>
-      </section>`
+    ? `<nav class="toc">
+          <h2>${escapeHtml(contentsLabel)}</h2>
+          <ul>${article.toc
+            .map((item) => `<li style="padding-left:${(item.level - 2) * 12}px"><a href="#${item.id}">${escapeHtml(item.text)}</a></li>`)
+            .join('')}</ul>
+        </nav>`
     : '';
 
   return `<!DOCTYPE html>
-<html lang="${article.lang}">
+<html lang="${lang}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -433,17 +383,14 @@ const buildArticleTemplate = (article, assets, highlightStyles, navigation) => {
     <link rel="canonical" href="${canonical}">
     <meta name="robots" content="index,follow">
     ${cssLinks}
-    <style>
-      ${highlightStyles}
-      body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-    </style>
+    <style>${highlightStyles}</style>
     <meta property="og:type" content="article">
     <meta property="og:title" content="${safeTitle}">
     <meta property="og:description" content="${safeDescription}">
     <meta property="og:url" content="${canonical}">
     <meta property="og:image" content="${ogImage}">
     <meta property="og:site_name" content="${SITE_NAME}">
-    <meta property="og:locale" content="${getOgLocale(article.lang)}">
+    <meta property="og:locale" content="${getOgLocale(lang)}">
     <meta property="article:published_time" content="${article.datePublished}">
     <meta property="article:modified_time" content="${article.dateModified || article.datePublished}">
     ${article.tags.map((tag) => `<meta property="article:tag" content="${escapeHtml(tag)}">`).join('\n')}
@@ -453,57 +400,32 @@ const buildArticleTemplate = (article, assets, highlightStyles, navigation) => {
     <meta name="twitter:image" content="${ogImage}">
     <link rel="alternate" type="application/rss+xml" title="${SITE_NAME} feed" href="${SITE_URL}/feed.xml">
     <script type="application/ld+json">${JSON.stringify(blogPostingJsonLd)}</script>
-    ${faqJsonLd ? `<script type="application/ld+json">${JSON.stringify(faqJsonLd)}</script>` : ''}
   </head>
-  <body class="bg-gray-100 text-gray-900">
-    <header class="bg-white/90 dark:bg-gray-900/90 border-b border-gray-100 dark:border-gray-800">
-      <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="/" class="text-lg font-semibold text-gray-900 dark:text-white">${SITE_NAME}</a>
-        <nav class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
-          <a href="/" class="hover:text-blue-600">Главная</a>
-          <a href="/projects/" class="hover:text-blue-600">Проекты</a>
-          <a href="/articles/" class="text-blue-600 font-semibold">Статьи</a>
-        </nav>
-      </div>
-    </header>
-    <main class="max-w-4xl mx-auto px-4 py-10">
-      <article class="bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 p-8 space-y-8">
-        <div class="space-y-4">
-          <p class="text-sm text-gray-500 uppercase tracking-wide">${safeCategory}</p>
-          <h1 class="text-4xl font-bold text-gray-900 dark:text-white">${safeTitle}</h1>
-          <p class="text-lg text-gray-600 dark:text-gray-300">${safeDescription}</p>
-          <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
-            <time datetime="${article.datePublished}">${readableDate(article.datePublished, article.lang)}</time>
-            <span aria-hidden="true">•</span>
-            <span>${article.readingTimeLabel}</span>
-            ${safeAuthor ? `<span aria-hidden="true">•</span><span>${safeAuthor}</span>` : ''}
+  <body>
+    ${navHtml(lang, 'blog')}
+    <main>
+      <div class="container article">
+        <a href="/" class="article__back">← ${escapeHtml(backLabel)}</a>
+        <header class="article__head">
+          <h1>${safeTitle}</h1>
+          <div class="article__meta">
+            <time datetime="${article.datePublished}">${readableDate(article.datePublished, lang)}</time>
+            ${safeAuthor ? `<span>· ${safeAuthor}</span>` : ''}
           </div>
-          <div class="flex flex-wrap gap-2">
-            ${article.tags
-              .map((tag) => `<span class="text-xs px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200">#${escapeHtml(tag)}</span>`)
-              .join('')}
-          </div>
-        </div>
-        ${article.tldr.length
-          ? `<section class="bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-900 rounded-2xl p-6 space-y-3">
-              <h2 class="text-2xl font-semibold text-blue-900 dark:text-blue-200">TL;DR</h2>
-              <ul class="list-disc pl-6 text-gray-700 dark:text-gray-200 space-y-2">
-                ${article.tldr.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
-              </ul>
-            </section>`
-          : ''}
+        </header>
+        ${tldrSection}
         ${tocSection}
-        <div class="prose prose-lg dark:prose-invert max-w-none">
-          ${article.html}
-        </div>
-        ${faqSection}
-        ${relatedSection}
-        ${prevNextSection}
-      </article>
+        <article class="prose">${article.html}</article>
+        <footer class="article__foot">
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <span>${wordCount} ${getGeneralString(lang, ['blog', 'words']) || 'слов'}</span>
+            ${article.tags.length > 0 ? `<div class="tags">${article.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>` : ''}
+          </div>
+          <a href="/" class="article__back">← ${escapeHtml(backLabel)}</a>
+        </footer>
+      </div>
     </main>
-    <footer class="text-center py-6 text-sm text-gray-500">
-      © ${new Date().getFullYear()} ${SITE_NAME}. Все права защищены.
-    </footer>
+    ${footerHtml()}
   </body>
 </html>`;
 };
@@ -530,31 +452,20 @@ const buildAliasTemplate = (alias, article) => {
 
 const buildArticlesIndex = (articles, assets, highlightStyles, lang = DEFAULT_LANG, meta = {}) => {
   const cssLinks = assets.css.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n');
-  const articlesText = ARTICLES_TRANSLATIONS[lang] || {};
-  const headingTitle = articlesText.title || 'Articles';
-  const headingSubtitle = articlesText.subtitle || '';
-  const blogLabel = articlesText.title || 'Articles';
-  const navHome = getGeneralString(lang, ['header', 'home']) || 'Home';
-  const navProjects = getGeneralString(lang, ['header', 'projects']) || 'Projects';
-  const navArticles = getGeneralString(lang, ['header', 'articles']) || 'Articles';
+  const eyebrow = getGeneralString(lang, ['blog', 'eyebrow']) || '';
+  const headingTitle = getGeneralString(lang, ['blog', 'title']) || 'Blog';
+  const headingSubtitle = getGeneralString(lang, ['blog', 'subtitle']) || '';
   const listItems = articles
     .map(
       (article) => `
-    <a href="/articles/${article.slug}/" class="block p-6 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-400 dark:hover:border-blue-500 transition-colors flex flex-col gap-3">
-      <div class="flex items-center justify-between text-xs text-gray-500">
-        <span>${escapeHtml(article.category)}</span>
-        <div class="flex items-center gap-2">
-          <time datetime="${article.datePublished}">${readableDate(article.datePublished, article.lang)}</time>
-          <span aria-hidden="true">•</span>
-          <span>${article.readingTimeLabel}</span>
-        </div>
-      </div>
-      <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">${escapeHtml(article.title)}</h2>
-      <p class="text-sm text-gray-600 dark:text-gray-300 flex-1">${escapeHtml(article.description)}</p>
-      <div class="flex flex-wrap gap-2 text-xs text-gray-500">
-        ${article.tags.slice(0, 4).map((tag) => `<span class="px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800">#${escapeHtml(tag)}</span>`).join('')}
-      </div>
-    </a>`
+        <li class="post-item">
+          <div class="post-item__meta">
+            <time datetime="${article.datePublished}">${readableDate(article.datePublished, article.lang)}</time>
+          </div>
+          <h2 class="post-item__title"><a href="/articles/${article.slug}/">${escapeHtml(article.title)}</a></h2>
+          <p class="post-item__excerpt">${escapeHtml(article.description)}</p>
+          <div class="tags">${article.tags.slice(0, 4).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>
+        </li>`
     )
     .join('\n');
 
@@ -563,38 +474,29 @@ const buildArticlesIndex = (articles, assets, highlightStyles, lang = DEFAULT_LA
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${escapeHtml(meta.title || '')}</title>
-    <meta name="description" content="${escapeHtml(meta.description || '')}">
+    <title>${escapeHtml(meta.title || headingTitle)}</title>
+    <meta name="description" content="${escapeHtml(meta.description || headingSubtitle)}">
     ${meta.keywords ? `<meta name="keywords" content="${escapeHtml(meta.keywords)}">` : ''}
     ${meta.canonical ? `<link rel="canonical" href="${meta.canonical}">` : ''}
     ${cssLinks}
     <style>${highlightStyles}</style>
     <link rel="alternate" type="application/rss+xml" title="${SITE_NAME} feed" href="${SITE_URL}/feed.xml">
   </head>
-  <body class="bg-gray-100 text-gray-900">
-    <header class="bg-white/90 dark:bg-gray-900/90 border-b border-gray-100 dark:border-gray-800">
-      <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="/" class="text-lg font-semibold text-gray-900 dark:text-white">${SITE_NAME}</a>
-        <nav class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
-          <a href="/" class="hover:text-blue-600">${escapeHtml(navHome)}</a>
-          <a href="/projects/" class="hover:text-blue-600">${escapeHtml(navProjects)}</a>
-          <a href="/articles/" class="text-blue-600 font-semibold">${escapeHtml(navArticles)}</a>
-        </nav>
-      </div>
-    </header>
-    <main class="max-w-5xl mx-auto px-4 py-10 space-y-6">
-      <div class="space-y-2">
-        <p class="text-sm text-gray-500 uppercase tracking-wide">${escapeHtml(blogLabel)}</p>
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white">${escapeHtml(headingTitle)}</h1>
-        <p class="text-gray-600 dark:text-gray-300">${escapeHtml(headingSubtitle)}</p>
-      </div>
-      <div class="grid gap-6">
+  <body>
+    ${navHtml(lang, 'blog')}
+    <main>
+      <div class="container page">
+        <div class="page-head">
+          ${eyebrow ? `<p class="eyebrow">${escapeHtml(eyebrow)}</p>` : ''}
+          <h1>${escapeHtml(headingTitle)}</h1>
+          <p>${escapeHtml(headingSubtitle)}</p>
+        </div>
+        <ul class="post-list">
         ${listItems}
+        </ul>
       </div>
     </main>
-    <footer class="text-center py-6 text-sm text-gray-500">
-      © ${new Date().getFullYear()} ${SITE_NAME}.
-    </footer>
+    ${footerHtml()}
   </body>
 </html>`;
 };
@@ -750,7 +652,8 @@ const loadArticles = async () => {
       wordCount,
       image: data.image,
       content,
-      aliases
+      aliases,
+      hideDescription: data.hideDescription === true || data.hideDescription === 'true'
     });
   }
 
@@ -775,8 +678,12 @@ const run = async () => {
     loadAppShell()
   ]);
 
+  await fs.writeFile(path.join(DIST_DIR, '404.html'), appShell, 'utf-8');
+  await generateRobots();
+
   if (!articles.length) {
-    console.warn('No articles found for static generation.');
+    await generateSitemap([]);
+    console.warn('No articles found. Wrote 404.html, sitemap, robots.');
     return;
   }
 

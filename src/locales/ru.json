@@ -1,280 +1,140 @@
 {
-  "articles": {
-    "title": "Статьи по React Native и мобильной разработке",
-    "subtitle": "Архитектура React Native, публикации, DevOps и практические чек-листы",
-    "readMore": "Читать далее",
-    "searchPlaceholder": "Найдите статью по названию, описанию или тегам",
-    "clear": "Очистить",
-    "allTags": "Все",
-    "noArticles": "Статьи не найдены",
-    "tryOtherTag": "Попробуйте выбрать другой тег",
-    "totalArticles": "Всего статей",
-    "backToArticles": "Назад к статьям",
-    "otherArticles": "Другие статьи",
-    "notFound": "Статья не найдена",
-    "articleNotExists": "Запрашиваемая статья не существует",
-    "words": "слов",
-    "seeProjects": "Посмотреть проекты React Native",
-    "goHome": "На главную",
-    "readTime": "{{count}} мин чтения"
+  "header": {
+    "brand": "Пётр Евсиков",
+    "blog": "Блог",
+    "projects": "Проекты",
+    "about": "О себе",
+    "languageSwitch": "Сменить язык"
   },
-  "seo": {
-    "home": {
-      "title": "Разработчик React Native и архитектура мобильных приложений",
-      "description": "Пётр Евсиков — разработчик React Native, создающий мобильные приложения под ключ: архитектура, производительность, публикации и DevOps.",
-      "keywords": [
-        "React Native разработчик",
-        "архитектура мобильных приложений",
-        "оптимизация React Native",
-        "мобильная разработка",
-        "React Native engineer"
-      ]
-    },
-    "projects": {
-      "title": "Проекты React Native: здравоохранение, авто, образование",
-      "description": "Кейсы React Native в продакшене: Mebix, TapCar, Znaj.by, Apollo CarMix и другие приложения с интеграциями и публикациями в сторах.",
-      "keywords": [
-        "React Native портфолио",
-        "мобильные кейсы",
-        "кейсы React Native",
-        "разработка мобильных приложений"
-      ],
-      "cardAlt": "{{title}} — мобильное приложение"
-    },
-    "articles": {
-      "title": "Блог о React Native: архитектура, DevOps, публикации",
-      "description": "Гайды и чек-листы для команд React Native: CI/CD, релизы в сторах, структура проектов, собеседования.",
-      "keywords": [
-        "React Native статьи",
-        "мобильная разработка блог",
-        "архитектура React Native",
-        "CI/CD мобильных приложений"
-      ],
-      "fallbackAlt": "Иллюстрация к статье",
-      "indexTitle": "Статьи | {{site}}",
-      "indexDescription": "Архив статей от {{site}}: React Native, DevOps и архитектура.",
-      "indexKeywords": [
-        "React Native",
-        "статьи",
-        "DevOps",
-        "архитектура"
-      ]
-    },
-    "contact": {
-      "title": "Связаться с разработчиком React Native",
-      "description": "Свяжитесь с Петром Евсиковым по вопросам разработки React Native, аудита архитектуры и запуска мобильных продуктов.",
-      "keywords": [
-        "контакты React Native",
-        "React Native консультация",
-        "архитектор мобильной разработки"
-      ]
-    }
+  "footer": {
+    "copyright": "© Пётр Евсиков"
+  },
+  "blog": {
+    "eyebrow": "Инженерный лог",
+    "title": "Блог",
+    "subtitle": "Заметки о разработке и LLM-инженерии: что строю, что ломается и как думаю.",
+    "allTags": "все",
+    "loading": "Загрузка…",
+    "empty": "Пока записей нет. Первый пост скоро появится здесь.",
+    "readTime": "{{count}} мин",
+    "words": "слов",
+    "metaTitle": "Блог",
+    "metaDescription": "Заметки о разработке и LLM-инженерии: эксперименты, разборы и системный дизайн."
+  },
+  "article": {
+    "notFound": "Запись не найдена.",
+    "toBlog": "В блог",
+    "contents": "Содержание"
+  },
+  "about": {
+    "eyebrow": "О себе",
+    "title": "Пётр Евсиков",
+    "lead": "С 2012 года создаю продуктовые системы в финтех, healthcare, образовании и e-commerce. Специализируюсь на React Native: архитектура приложений, оптимизация производительности, публикации и DevOps. Сейчас фокус смещается в LLM-инженерию — проектирование и оркестрация систем поверх нейросетей. Этому и посвящён блог.",
+    "skillsTitle": "Навыки",
+    "skills": [
+      "Мобильная архитектура (React Native)",
+      "TypeScript",
+      "Управление состоянием (Redux, MobX)",
+      "Рефакторинг и миграции",
+      "Нативные модули и bridge",
+      "CI/CD и публикации в сторах",
+      "Code review и менторинг",
+      "Веб-разработка (React)",
+      "Backend-интеграции",
+      "LLM-инженерия"
+    ],
+    "experienceTitle": "Опыт",
+    "experience": [
+      {
+        "key": "mebix",
+        "company": "Mebix",
+        "years": "2021–2025",
+        "description": "Цифровой терапевт для диабета и сердечно-сосудистых заболеваний.",
+        "tech": "React Native, TypeScript, Redux, Firebase"
+      },
+      {
+        "key": "bamboo",
+        "company": "Bamboo Agile",
+        "years": "2019–2021",
+        "description": "Emirates HR, TapCar, образовательная платформа Znaj.by.",
+        "tech": "React Native, Angular, Redux, MobX, AWS, GraphQL"
+      },
+      {
+        "key": "theredone",
+        "company": "The Red One",
+        "years": "2017–2019",
+        "description": "Запустил направление мобильной разработки, проекты на React Native.",
+        "tech": "React Native, Redux, MobX, TypeScript, Swift, Java"
+      }
+    ],
+    "stackTitle": "Стек",
+    "stack": [
+      {
+        "group": "Mobile",
+        "items": "React Native, Expo, нативные модули"
+      },
+      {
+        "group": "Frontend",
+        "items": "React, TypeScript, Vite"
+      },
+      {
+        "group": "State",
+        "items": "Redux, MobX, React Query"
+      },
+      {
+        "group": "Backend / Cloud",
+        "items": "Node.js, Firebase, AWS"
+      },
+      {
+        "group": "Tools",
+        "items": "Git, CI/CD, Fastlane"
+      },
+      {
+        "group": "LLM",
+        "items": "Ollama, MLX, RAG, агенты"
+      }
+    ],
+    "metaTitle": "О себе",
+    "metaDescription": "Пётр Евсиков — инженер: мобильная разработка на React Native и переход в LLM-инженерию."
   },
   "projects": {
-    "title": "Проекты React Native",
-    "subtitle": "Избранные мобильные кейсы и вклад в архитектуру",
-    "cardAlt": "{{title}} — мобильное приложение",
-    "viewProject": "Посмотреть проект",
-    "sourceCode": "Исходный код",
-    "liveDemo": "Демо версия",
-    "backToProjects": "Назад к Проектам",
+    "eyebrow": "Работа",
+    "title": "Проекты",
+    "subtitle": "Избранные мобильные проекты, 2017–2025.",
+    "metaTitle": "Проекты",
+    "metaDescription": "Избранные мобильные проекты на React Native: healthcare, automotive, образование, госсервисы.",
     "domains": {
       "healthcare": "Здоровье",
       "automotive": "Авто",
       "education": "Образование",
-      "utilities": "Коммунальные услуги"
+      "utilities": "Госсервисы"
     },
     "links": {
-      "website": "Перейти на сайт",
-      "appStore": "Скачать в App Store",
-      "googlePlay": "Скачать в Google Play"
+      "website": "Сайт"
     },
     "cards": {
       "mebix": {
-        "description": "Цифровой терапевт для диабета 2 типа: AI-анализ питания и медицинские рекомендации.",
-        "status": "В продакшене"
+        "description": "Цифровой терапевт для диабета 2 типа: AI-анализ питания и медицинские рекомендации."
       },
       "tapcar": {
-        "description": "Каршеринг для закрытых сообществ без сторонней телематики: прямые OEM-интеграции и доверенные группы.",
-        "status": "Инновация на базе исследований"
+        "description": "Каршеринг для закрытых сообществ без сторонней телематики: прямые OEM-интеграции."
       },
       "znaj": {
-        "description": "Образовательная платформа, объединяющая учителей, родителей и учеников. В топ-100 EdTech компаний СНГ.",
-        "status": "Топ-100 EdTech СНГ"
+        "description": "Образовательная платформа для учителей, родителей и учеников. Топ-100 EdTech СНГ."
       },
       "carmix": {
-        "description": "Управление мобильными бетонными заводами с AR и IoT. Автоматизация процессов на стройплощадке.",
-        "status": "Индустриальная IoT-инновация"
+        "description": "Управление мобильными бетонными заводами с AR и IoT."
       },
       "chelyabinskgorgaz": {
-        "description": "Цифровые услуги для 58K+ пользователей Челябинской области: управление газовым хозяйством и сервисами.",
-        "status": "Цифровые государственные сервисы"
+        "description": "Цифровые услуги для 58K+ пользователей: газовое хозяйство и платежи."
       },
       "preco": {
-        "description": "Комплексное мобильное приложение для учебных заведений: две роли (студенты и преподаватели), полный учебный цикл и бесшовная offline/online синхронизация.",
-        "status": "Образование"
-      }
-    }
-  },
-  "homepage": {
-    "introduction": {
-      "title": "Пётр Евсиков — разработчик React Native",
-      "subtitle": "Мобильная разработка под ключ и архитектура продуктовых систем",
-      "description": "С 2012 года создаю продуктовые системы в финтех, healthcare, образовании и e-commerce. Специализируюсь на React Native: архитектура приложений, оптимизация производительности, публикации и DevOps. Выстраиваю процессы и команды, запускаю продукты с нуля и довожу до топа стора.",
-      "ctaButton": "Посмотреть Мои Проекты",
-      "contactCta": "Связаться",
-      "portraitAlt": "Портрет Петра Евсикова — разработчика React Native"
-    },
-    "contact": {
-      "email": "epv01@mail.ru",
-      "telegram": "ksetrin",
-      "availability": "Доступен для новых проектов"
-    },
-    "skills": {
-      "title": "Основные Навыки",
-      "description": "Мой опыт в мобильной и веб-разработке",
-      "primary": "Основные навыки",
-      "secondary": "Дополнительные технологии",
-      "coreReactNativeSkills": "Основные навыки React Native",
-      "architecturalTeamSkills": "Архитектурные и командные навыки",
-      "additionalAppliedSkills": "Дополнительные прикладные навыки",
-      "coreRNSkills": {
-        "mobileArchitecture": {
-          "title": "Проектирование мобильной архитектуры",
-          "description": "Проектирование и поддержка мобильных приложений на React Native",
-          "details": "Архитектура приложения, модульность, оптимизация производительности"
-        },
-        "codeRefactoring": {
-          "title": "Рефакторинг и миграция кода",
-          "description": "Рефакторинг и улучшение кода",
-          "details": "Рефакторинг больших кодовых баз, migration между версиями библиотек"
-        },
-        "dependencyManagement": {
-          "title": "Управление зависимостями",
-          "description": "Поддержка и обновление внешних зависимостей",
-          "details": "Dependency upkeep, устранение breaking changes, версионирование"
-        },
-        "productionDevelopment": {
-          "title": "Разработка в продакшене",
-          "description": "Разработка новой функциональности в продакшн-приложениях",
-          "details": "Feature development, интеграция с существующими системами"
-        },
-        "nativeModuleDevelopment": {
-          "title": "Разработка нативных модулей",
-          "description": "Работа с нативными/модульными компонентами",
-          "details": "Улучшение native модулей, bridge разработка, платформенная интеграция"
-        },
-        "crossPlatformWebIntegration": {
-          "title": "Кросс-платформенная веб-интеграция",
-          "description": "Интеграция веб-технологий в мобильные проекты",
-          "details": "Переиспользование компонентов между web и mobile, WebView интеграция, API синхронизация"
-        }
-      },
-      "architecturalSkills": {
-        "stateManagement": {
-          "title": "Архитектура управления состоянием",
-          "description": "Проектирование state-management и его миграция"
-        },
-        "codeReview": {
-          "title": "Код-ревью и поддержка команды",
-          "description": "Code review и поддержка кодовой базы на уровне команды"
-        },
-        "fullStack": {
-          "title": "Full-Stack интеграция",
-          "description": "Понимание full-stack процессов / интеграции с бэкендом"
-        }
-      },
-      "additionalSkills": {
-        "webDevelopment": {
-          "title": "Веб-разработка",
-          "description": "Веб-разработка (React) — перенос опыта веб→мобильное"
-        },
-        "backendDatabases": {
-          "title": "Backend и базы данных",
-          "description": "Работа с базами данных и backend как supporting skill"
-        }
+        "description": "Мобильные приложения для медицинских сервисов URC и SUTU."
       }
     },
-    "experience": {
-      "title": "Профессиональный Путь",
-      "description": "7+ лет опыта разработки на React Native",
-      "current": "Настоящее время",
-      "years": "лет",
-      "items": [
-        {
-          "key": "mebix",
-          "company": "Mebix",
-          "years": "2021 - 2025",
-          "duration": "3+ лет",
-          "location": "Германия",
-          "description": "Цифровой терапевт для диабета и сердечно-сосудистых заболеваний",
-          "tech": "React Native, TypeScript, Redux, Firebase"
-        },
-        {
-          "key": "bamboo",
-          "company": "Bamboo Agile",
-          "years": "2019 - 2021",
-          "duration": "2 года",
-          "location": "ОАЭ / удалённо",
-          "description": "Emirates HR, TapCar, образовательная платформа Zna.by",
-          "tech": "React Native, Angular, Redux, MobX, AWS, GraphQL"
-        },
-        {
-          "key": "theredone",
-          "company": "The Red One",
-          "years": "2017 - 2019",
-          "duration": "2 года",
-          "location": "Россия",
-          "description": "Запустил направление мобильной разработки, проекты на React Native",
-          "tech": "React Native, Redux, MobX, TypeScript, Swift, Java"
-        }
-      ]
-    },
-    "techStack": {
-      "title": "Стек Технологий",
-      "description": "Инструменты и технологии, которые я использую ежедневно",
-      "frontend": "Frontend и Mobile",
-      "backend": "Backend и Сервисы",
-      "tools": "Инструменты разработки",
-      "mobileDevelopment": "Мобильная разработка",
-      "frontendDevelopment": "Frontend разработка",
-      "stateManagement": "Управление состоянием",
-      "backendCloud": "Backend и облако",
-      "databases": "Базы данных",
-      "developmentTools": "Инструменты разработки"
-    },
-    "featuredArticles": {
-      "title": "Блог о React Native",
-      "subtitle": "Свежие материалы о мобильной разработке, DevOps и публикациях",
-      "cta": "Все статьи"
-    },
-    "purpose": {
-      "title": "Что Я Могу Предложить",
-      "description": "Специализируюсь на разработке React Native с фокусом на высококачественные мобильные приложения для стартапов и корпоративных решений.",
-      "expertise": "Области Экспертизы",
-      "specialization": "Специалист React Native",
-      "specializationDesc": "7+ лет исключительно на разработке React Native",
-      "fullCycle": "Полный Цикл Разработки",
-      "fullCycleDesc": "От MVP прототипов до корпоративных приложений",
-      "modernTech": "Современные Технологии",
-      "modernTechDesc": "TypeScript, Redux, MobX, AWS, интеграция Firebase"
-    }
-  },
-  "header": {
-    "home": "Главная",
-    "projects": "Проекты",
-    "articles": "Статьи",
-    "themeToggle": "Переключение темы",
-    "languageSwitch": "Переключение языка",
-    "darkMode": "Темная тема",
-    "lightMode": "Светлая тема"
-  },
-  "contact": {
-    "title": "Связаться с разработчиком React Native",
-    "subtitle": "Обсудим архитектуру, аудит кода и запуск мобильного продукта",
-    "visit": "Перейти"
-  },
-  "footer": {
-    "copyright": "© 2025 ИП Евсиков Петр. Все права защищены."
+    "viewProject": "Открыть проект",
+    "back": "К проектам",
+    "screenshots": "Скриншоты",
+    "notFound": "Проект не найден."
   }
 }
