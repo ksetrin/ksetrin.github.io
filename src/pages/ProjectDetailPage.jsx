@@ -162,7 +162,7 @@ const ProjectDetailPage = () => {
             ))}
           </div>
         )}
-        <Points items={data.results?.studies} />
+        <Points items={data.results?.studies || data.results?.achievements} />
       </Section>
 
       <Section data={data.methodology}>
