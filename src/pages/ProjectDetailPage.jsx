@@ -122,6 +122,57 @@ const ProjectDetailPage = () => {
         <Points items={data.solution?.features} />
       </Section>
 
+      <Section data={data.technical}>
+        {data.technical && Object.entries(data.technical).map(([k, sectionData]) => {
+          if (['title', 'description', 'technologies'].includes(k)) return null;
+          return (
+            <div key={k} style={{ marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>{sectionData.title}</h3>
+              <ul className="details" style={{ margin: 0, paddingLeft: '1.2rem' }}>
+                {asArray(sectionData.items).map((item, i) => <li key={i}>{typeof item === 'string' ? item : Object.values(item).join(' — ')}</li>)}
+              </ul>
+            </div>
+          );
+        })}
+        {asArray(data.technical?.technologies).length > 0 && (
+          <div style={{ marginTop: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+              {data.technical.technologies.map((tech, i) => (
+                <div key={i} style={{ backgroundColor: 'var(--surface)', padding: '1rem', borderRadius: '12px' }}>
+                  <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '1rem' }}>{tech.category}</h4>
+                  <ul className="details" style={{ margin: 0, paddingLeft: '1.2rem' }}>
+                    {asArray(tech.items).map((item, j) => <li key={j}>{item}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </Section>
+
+      <Section data={data.results}>
+        {asArray(data.results?.metrics).length > 0 && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+            {data.results.metrics.map((m, i) => (
+              <div key={i} style={{ textAlign: 'center', backgroundColor: 'var(--surface)', padding: '1.5rem', borderRadius: '12px' }}>
+                <div style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--primary)', marginBottom: '0.5rem' }}>{m.value}</div>
+                <div style={{ fontSize: '0.9rem', fontWeight: '600', marginBottom: '0.2rem' }}>{m.label}</div>
+                <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>{m.period || m.description}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        <Points items={data.results?.studies} />
+      </Section>
+
+      <Section data={data.methodology}>
+        <Points items={data.methodology?.criteria || data.methodology?.items} />
+      </Section>
+
+      <Section data={data.userExperience}>
+        <Points items={data.userExperience?.stakeholders || data.userExperience?.items} />
+      </Section>
+
       <Section data={data.impact}>
         {impactList.length > 0 && (
           <ul className="proj-meta">
@@ -132,20 +183,38 @@ const ProjectDetailPage = () => {
         )}
       </Section>
 
-      {project.screens.length > 0 && (
+      {(project.video || project.screens.length > 0) && (
         <section className="proj-section">
           <h2>{t('projects.screenshots')}</h2>
-          <div className="screens">
-            {project.screens.map((src, index) => (
-              <img
-                key={src}
-                src={src}
-                alt={`${project.title} — ${index + 1}`}
-                loading="lazy"
-                onClick={() => setZoom(src)}
-              />
-            ))}
-          </div>
+
+          {project.video && (
+            <div className="proj-video" style={{ marginBottom: '2rem', borderRadius: '12px', overflow: 'hidden', backgroundColor: 'var(--surface)' }}>
+              <video
+                controls
+                muted
+                loop
+                playsInline
+                poster={project.videoPoster}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              >
+                <source src={project.video} type="video/mp4" />
+              </video>
+            </div>
+          )}
+
+          {project.screens.length > 0 && (
+            <div className="screens">
+              {project.screens.map((src, index) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={`${project.title} — ${index + 1}`}
+                  loading="lazy"
+                  onClick={() => setZoom(src)}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
 

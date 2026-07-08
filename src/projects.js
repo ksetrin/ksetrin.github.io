@@ -1,3 +1,6 @@
+import mebixVideo from './assets/video/mebix_video.mp4';
+import mebixPoster from './assets/images/project_preview/mebix_video_poster.jpg';
+
 const previewModules = import.meta.glob('./assets/images/project_preview/*.png', { eager: true, import: 'default' });
 const screenshotModules = import.meta.glob('./assets/images/screenshots/**/*.png', { eager: true, import: 'default' });
 
@@ -17,6 +20,8 @@ export const projects = [
     domain: 'healthcare',
     tech: 'React Native · TypeScript · Redux · Firebase',
     preview: preview('mebix.png'),
+    video: mebixVideo,
+    videoPoster: mebixPoster,
     screens: screensFor('mebix'),
     links: {
       website: 'https://www.mebix.de/',
