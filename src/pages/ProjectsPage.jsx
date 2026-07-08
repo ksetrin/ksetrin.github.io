@@ -18,9 +18,9 @@ const ProjectsPage = () => {
   return (
     <div className="container page">
       <div className="page-head">
-        <p className="eyebrow">{t('projects.eyebrow')}</p>
+        {t('projects.eyebrow') && <p className="eyebrow">{t('projects.eyebrow')}</p>}
         <h1>{t('projects.title')}</h1>
-        <p>{t('projects.subtitle')}</p>
+        {t('projects.subtitle') && <p>{t('projects.subtitle')}</p>}
       </div>
 
       <ul className="project-list">

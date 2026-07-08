@@ -1,0 +1,155 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1783535405488,
+  "projectRoot": "/Users/ksetrin/Work/ksetrin.github.io",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "18.2.0",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "18.2.0",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "4.4.0",
+        "category": "build"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run start",
+    "scripts": {
+      "start": "vite",
+      "build": "vite build",
+      "postbuild": "node scripts/build-articles.mjs",
+      "serve": "vite preview"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "scripts",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "master",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "articles": {
+      "path": "articles",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1783535405475,
+      "keyFiles": [
+        "ai-nn-llm-glossary.md",
+        "kak-ustroen-blog.md"
+      ]
+    },
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 6,
+      "lastAccessed": 1783535405477,
+      "keyFiles": [
+        "404.html",
+        "feed.xml",
+        "index.html",
+        "manifest.json",
+        "robots.txt"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 1,
+      "lastAccessed": 1783535405477,
+      "keyFiles": [
+        "build-articles.mjs"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 8,
+      "lastAccessed": 1783535405478,
+      "keyFiles": [
+        "App.jsx",
+        "i18n.js",
+        "index.html",
+        "main.jsx",
+        "projects.js"
+      ]
+    },
+    "dist/assets": {
+      "path": "dist/assets",
+      "purpose": "Static assets",
+      "fileCount": 110,
+      "lastAccessed": 1783535405478,
+      "keyFiles": [
+        "bamboo-f8bd4aca.jpeg",
+        "carmix-bef2e185.png",
+        "gazcom-b9294f7f.png"
+      ]
+    },
+    "src/assets": {
+      "path": "src/assets",
+      "purpose": "Static assets",
+      "fileCount": 0,
+      "lastAccessed": 1783535405479,
+      "keyFiles": []
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 2,
+      "lastAccessed": 1783535405480,
+      "keyFiles": [
+        "Footer.jsx",
+        "Header.jsx"
+      ]
+    },
+    "src/pages": {
+      "path": "src/pages",
+      "purpose": "Page components",
+      "fileCount": 5,
+      "lastAccessed": 1783535405480,
+      "keyFiles": [
+        "AboutPage.jsx",
+        "ArticleViewer.jsx",
+        "BlogPage.jsx"
+      ]
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}
