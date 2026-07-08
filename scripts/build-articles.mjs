@@ -418,7 +418,7 @@ const buildArticleTemplate = (article, assets, highlightStyles) => {
         <article class="prose">${article.html}</article>
         <footer class="article__foot">
           <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-            <span>${wordCount} ${getGeneralString(lang, ['blog', 'words']) || 'слов'}</span>
+            <span>${article.wordCount} ${getGeneralString(lang, ['blog', 'words']) || 'слов'}</span>
             ${article.tags.length > 0 ? `<div class="tags">${article.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>` : ''}
           </div>
           <a href="/" class="article__back">← ${escapeHtml(backLabel)}</a>
