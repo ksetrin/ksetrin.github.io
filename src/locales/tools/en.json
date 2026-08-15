@@ -1,0 +1,348 @@
+{
+  "tools": {
+    "title": "Tools",
+    "subtitle": "Small working tools I build for myself. Everything runs in the browser and the data stays on your device.",
+    "metaTitle": "Tools",
+    "metaDescription": "Interactive tools: applications that run entirely in the browser and keep their data locally.",
+    "open": "Open",
+    "back": "Back to tools",
+    "statuses": {
+      "live": "live",
+      "beta": "beta",
+      "planned": "planned"
+    },
+    "items": {
+      "career": {
+        "title": "Career Control Center",
+        "description": "A visual board for career movement: today's actions, campaign progress, market funnel, engineering evidence and interview readiness."
+      }
+    }
+  },
+  "career": {
+    "title": "Career Control Center",
+    "subtitle": "AI Engineering Career Campaign",
+    "metaTitle": "Career Control Center",
+    "metaDescription": "A tool for running a career campaign: today's actions, progress, market signals and engineering evidence. Runs locally in the browser.",
+    "header": {
+      "day": "Day",
+      "date": "Date",
+      "state": "State",
+      "active": "campaign running",
+      "complete": "campaign complete"
+    },
+    "nav": {
+      "label": "Tool sections",
+      "dashboard": "Overview",
+      "today": "Today",
+      "campaign": "Campaign",
+      "activity": "Activity",
+      "knowledge": "Knowledge",
+      "evidence": "Evidence",
+      "interviews": "Interviews",
+      "analytics": "Analytics",
+      "settings": "Settings"
+    },
+    "focus": {
+      "title": "Current focus"
+    },
+    "streams": {
+      "market": "Market",
+      "evidence": "Evidence",
+      "knowledge": "Knowledge",
+      "interview": "Interview"
+    },
+    "tiers": {
+      "must": "Must",
+      "should": "Should",
+      "bonus": "Bonus"
+    },
+    "taskTypes": {
+      "market": "Market",
+      "learn": "Learn",
+      "recall": "Recall",
+      "build": "Build",
+      "interview": "Interview",
+      "evidence": "Evidence",
+      "review": "Review",
+      "rest": "Rest"
+    },
+    "today": {
+      "title": "Today",
+      "day": "Day {{day}}",
+      "estimateHint": "A rough estimate, not a quota",
+      "noteZero": "One meaningful step is enough to keep the campaign alive.",
+      "notePartial": "{{done}} done. That is a trace — the day is not lost.",
+      "noteComplete": "Everything required for today is closed.",
+      "milestoneToday": "A campaign milestone is scheduled for today."
+    },
+    "quick": {
+      "title": "Quick actions",
+      "hint": "One click, one event. Right-click a button to add a comment.",
+      "withNote": "Add with a comment",
+      "noteFor": "Comment for the \"{{type}}\" event",
+      "notePlaceholder": "Company, role, detail — optional",
+      "typeLabel": "Event type"
+    },
+    "eventTypes": {
+      "task": "Task",
+      "study": "Study",
+      "recall": "Recall",
+      "artifact": "Artifact",
+      "mock": "Mock interview",
+      "question": "Question",
+      "note": "Note",
+      "observation": "Observation",
+      "application": "Application",
+      "response": "Response",
+      "screening": "Screening",
+      "interview": "Interview",
+      "technical": "Technical interview",
+      "test_task": "Test task",
+      "feedback": "Feedback",
+      "rejection": "Rejection",
+      "offer": "Offer",
+      "milestone": "Milestone"
+    },
+    "scoreboard": {
+      "title": "Career scoreboard",
+      "nonZero": "Non-zero days",
+      "nonZeroHint": "A day counts as real if it left at least one trace",
+      "metrics": {
+        "day": "Campaign day",
+        "applications": "Applications",
+        "responses": "Responses",
+        "interviews": "Interviews",
+        "artifacts": "Artifacts",
+        "topics": "Confirmed topics",
+        "mocks": "Mock interviews"
+      }
+    },
+    "timeline": {
+      "title": "Campaign timeline",
+      "week": "Week {{week}}",
+      "dayTitle": "Day {{day}}",
+      "last7": "Last 7 days",
+      "continuityLabel": "Campaign continuity over recent days",
+      "milestone": "Milestone"
+    },
+    "dayStates": {
+      "EMPTY": "empty",
+      "STARTED": "started",
+      "ACTIVE": "in progress",
+      "COMPLETE": "complete",
+      "GREAT": "complete and more",
+      "MARKET_SIGNAL": "market signal"
+    },
+    "day": {
+      "title": "Day {{day}}",
+      "goals": "Today's goals",
+      "done": "Done",
+      "noEvents": "No events yet.",
+      "marketSignal": "Market signal",
+      "marketSignalHint": "Record an external signal for this day",
+      "selectSignal": "— select —",
+      "notes": "Notes",
+      "notesPlaceholder": "Optional",
+      "reflection": "Reflection",
+      "reflectionFields": {
+        "worked": "What worked?",
+        "didNotWork": "What did not work?",
+        "clearer": "What became clearer?"
+      }
+    },
+    "funnel": {
+      "title": "Market funnel",
+      "stages": {
+        "applications": "Applications",
+        "responses": "Responses",
+        "screenings": "Screenings",
+        "interviews": "Interviews",
+        "technical": "Technical",
+        "offers": "Offers"
+      },
+      "hintEmpty": "No applications yet — the funnel has nothing to show.",
+      "hintPositioning": "{{applications}} applications and no responses: the problem is likely positioning, the CV, or which vacancies you target.",
+      "hintDiagnostic": "The funnel is a diagnostic, not a grade. Look for the stage where movement stops."
+    },
+    "knowledge": {
+      "title": "Knowledge matrix",
+      "hint": "Click a cell to change a topic's status. CONFIRMED means you can explain it, apply it and answer questions about it.",
+      "topic": "Topic",
+      "lastReview": "Last review",
+      "fromDay": "from day {{day}}",
+      "questions": "{{n}} q.",
+      "confirmedHint": "Confirmed topics: explained, applied, questions answered."
+    },
+    "topicStatuses": {
+      "NEW": "New",
+      "STUDYING": "Studying",
+      "CONFIRMED": "Confirmed"
+    },
+    "evidence": {
+      "title": "Evidence board",
+      "lifecycle": "Artifact lifecycle",
+      "stage": "Stage",
+      "link": "Link"
+    },
+    "evidenceStages": {
+      "IDEA": "Idea",
+      "DRAFT": "Draft",
+      "WORKING": "Working",
+      "PUBLISHED": "Published",
+      "FEEDBACK": "Feedback",
+      "IMPROVED": "Improved"
+    },
+    "readiness": {
+      "title": "Interview readiness",
+      "aria": "Interview readiness: {{percent}} percent",
+      "parts": {
+        "knowledge": "Knowledge",
+        "questions": "Questions",
+        "projects": "Projects",
+        "mocks": "Mock interviews"
+      },
+      "disclaimer": "This is not a probability of passing an interview. It is an internal preparation indicator: a weighted sum of four counters."
+    },
+    "activity": {
+      "title": "Activity",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "empty": "Nothing yet. Your first recorded action will show up here."
+    },
+    "heatmap": {
+      "title": "Activity map",
+      "aria": "Activity map across campaign days",
+      "traces": "traces: {{n}}",
+      "hint": "Intensity is the number of meaningful actions per day, not hours spent."
+    },
+    "week": {
+      "title": "Week {{week}}",
+      "previous": "Previous week",
+      "next": "Next week",
+      "output": "Weekly output",
+      "outcome": "What was done",
+      "noOutcome": "No events for this week yet.",
+      "signal": "Market signal",
+      "moved": "What moved",
+      "nonZero": "Non-zero days: {{n}} of {{total}}",
+      "streams": {
+        "market": "Market",
+        "learn": "Learning",
+        "recall": "Recall",
+        "build": "Build",
+        "interview": "Interview"
+      },
+      "directions": {
+        "up": "up",
+        "down": "down",
+        "flat": "unchanged"
+      }
+    },
+    "milestones": {
+      "title": "Campaign milestones",
+      "achieved": "reached",
+      "pending": "ahead",
+      "bySignal": "by external signal"
+    },
+    "questions": {
+      "title": "Question bank",
+      "filter": "Filter by domain",
+      "all": "All",
+      "mark": "Mark",
+      "markAria": "Mark as reviewed: {{text}}"
+    },
+    "questionKinds": {
+      "definition": "Definition",
+      "mechanism": "Mechanism",
+      "tradeoff": "Trade-off",
+      "failure": "Failure",
+      "architecture": "Architecture",
+      "production": "Production",
+      "interview": "Interview"
+    },
+    "parking": {
+      "title": "Parking lot",
+      "hint": "A place for ideas that must not steal the current focus. Landing here does not count as a task.",
+      "add": "Add an idea",
+      "placeholder": "An idea worth keeping",
+      "empty": "Empty for now."
+    },
+    "changelog": {
+      "title": "Career changelog",
+      "empty": "No entries yet. Milestones and notable campaign events will appear here."
+    },
+    "start": {
+      "title": "Create a campaign",
+      "lead": "The campaign lives in this browser only: no account, no server. Pick a start date and a length.",
+      "create": "Create campaign",
+      "restoreHint": "Already have a backup file? Restore the state instead of starting over."
+    },
+    "recovery": {
+      "title": "Local data could not be read",
+      "lead": "The stored state is corrupted or incompatible. Nothing has been overwritten — choose what to do.",
+      "restore": "Restore from backup",
+      "startNew": "Start a new campaign",
+      "note": "Until you choose, the existing localStorage record is left untouched."
+    },
+    "complete": {
+      "title": "Campaign complete",
+      "lead": "{{days}} days behind you. Below is data, not congratulations: the next cycle is built on it.",
+      "continue": "Stay in the current campaign",
+      "startNew": "Start a new campaign",
+      "confirmNew": "Start a new campaign? The current one will be kept in history.",
+      "note": "The next cycle builds on this one: market numbers, technical gaps and interview weak spots are already collected.",
+      "rows": {
+        "applications": "Applications",
+        "responses": "Responses",
+        "interviews": "Interviews",
+        "offers": "Offers",
+        "topics": "Confirmed topics",
+        "artifacts": "Published artifacts",
+        "questions": "Questions reviewed",
+        "mocks": "Mock interviews",
+        "nonZeroDays": "Non-zero days",
+        "signals": "Market signals"
+      }
+    },
+    "settings": {
+      "campaign": "Campaign",
+      "startDate": "Start date",
+      "duration": "Length, days",
+      "appearance": "Appearance",
+      "theme": "Theme",
+      "themes": {
+        "system": "System",
+        "light": "Light",
+        "dark": "Dark"
+      },
+      "data": "Data",
+      "dataHint": "localStorage is tied to this browser, can be cleared and does not sync between devices. Export is the only way to truly own your data.",
+      "export": "Export data",
+      "import": "Import data",
+      "importOk": "Data restored.",
+      "importErrors": {
+        "parse": "The file is not valid JSON. No existing data was changed.",
+        "invalid": "This does not look like a Career Control Center backup. No existing data was changed.",
+        "versionTooNew": "The file was created by a newer version of the tool. No existing data was changed.",
+        "migration": "The data in this file could not be migrated. No existing data was changed."
+      },
+      "lastBackup": "Last backup: {{date}} ({{days}} days ago)",
+      "noBackup": "Backup not created yet.",
+      "danger": "Danger zone",
+      "dangerHint": "Both actions require confirmation and cannot be undone. Export first if in doubt.",
+      "reset": "Reset current campaign",
+      "deleteAll": "Delete all local data",
+      "confirmReset": "Reset the current campaign? Checkmarks, events and statuses will be removed; settings and history stay.",
+      "confirmDelete": "Delete all local data for this tool? This cannot be undone.",
+      "privacy": "Privacy",
+      "privacyText": "Your campaign, notes and events never leave the browser: the tool has no backend, no accounts and no sync, and sends nothing outward. Once loaded, it works offline. The site as a whole runs a visit counter — it sees that a page was opened, not what is on it."
+    },
+    "actions": {
+      "add": "Add",
+      "save": "Save",
+      "cancel": "Cancel",
+      "close": "Close",
+      "remove": "Remove"
+    }
+  }
+}

@@ -383,6 +383,64 @@ img {
   text-decoration: none;
 }
 
+.tool-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tool {
+  padding: 1.8rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.tool:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.tool__title {
+  font-size: 1.3rem;
+  margin: 0 0 0.3rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tool__status {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.tool__desc {
+  margin: 0 0 0.7rem;
+  color: var(--ink-soft);
+}
+
+.tool__meta {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tool__meta a {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tool__meta a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
 .about-section {
   margin-bottom: 3rem;
 }

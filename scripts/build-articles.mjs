@@ -22,6 +22,8 @@ const STATIC_ROUTES = [
   '/projects/carmix/',
   '/projects/chelyabinskgorgaz/',
   '/projects/preco/',
+  '/tools/',
+  '/tools/career/',
   '/about/'
 ];
 const SITE_NAME = 'Пётр Евсиков';
@@ -309,6 +311,7 @@ const navHtml = (lang, current) => {
   const items = [
     { href: '/', label: getGeneralString(lang, ['header', 'blog']) || 'Blog', id: 'blog' },
     { href: '/projects/', label: getGeneralString(lang, ['header', 'projects']) || 'Projects', id: 'projects' },
+    { href: '/tools/', label: getGeneralString(lang, ['header', 'tools']) || 'Tools', id: 'tools' },
     { href: '/about/', label: getGeneralString(lang, ['header', 'about']) || 'About', id: 'about' }
   ];
   const brand = getGeneralString(lang, ['header', 'brand']) || SITE_NAME;

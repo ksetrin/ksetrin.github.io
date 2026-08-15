@@ -6,19 +6,23 @@ import en from './locales/en.json';
 import ru from './locales/ru.json';
 
 const projectLocales = import.meta.glob('./locales/projects/*/*.json', { eager: true, import: 'default' });
+const toolLocales = import.meta.glob('./locales/tools/*.json', { eager: true, import: 'default' });
 
-const mergeProjects = (lang) =>
-  Object.entries(projectLocales)
+const mergeByLang = (modules, lang) =>
+  Object.entries(modules)
     .filter(([filePath]) => filePath.endsWith(`/${lang}.json`))
     .reduce((acc, [, data]) => ({ ...acc, ...data }), {});
+
+const mergeProjects = (lang) => mergeByLang(projectLocales, lang);
+const mergeTools = (lang) => mergeByLang(toolLocales, lang);
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      en: { translation: { ...en, ...mergeProjects('en') } },
-      ru: { translation: { ...ru, ...mergeProjects('ru') } }
+      en: { translation: { ...en, ...mergeProjects('en'), ...mergeTools('en') } },
+      ru: { translation: { ...ru, ...mergeProjects('ru'), ...mergeTools('ru') } }
     },
     fallbackLng: 'ru',
     detection: {

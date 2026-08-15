@@ -18,6 +18,7 @@ const Header = () => {
         <nav className="site-nav">
           <NavLink to="/" end>{t('header.blog')}</NavLink>
           <NavLink to="/projects">{t('header.projects')}</NavLink>
+          <NavLink to="/tools">{t('header.tools')}</NavLink>
           <NavLink to="/about">{t('header.about')}</NavLink>
           <button type="button" className="lang-toggle" onClick={toggleLanguage} aria-label={t('header.languageSwitch')}>
             {nextLang}
